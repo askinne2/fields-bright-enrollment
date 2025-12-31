@@ -1,0 +1,184 @@
+/**
+ * Waitlist Meta Box Styles
+ *
+ * @package FieldsBright\Enrollment
+ * @since   1.2.0
+ */
+
+.fb-waitlist-meta {
+    max-width: 1200px;
+}
+
+.fb-meta-section {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.fb-meta-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #271C1A;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.fb-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.fb-meta-field {
+    margin-bottom: 15px;
+}
+
+.fb-meta-field:last-child {
+    margin-bottom: 0;
+}
+
+.fb-meta-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.fb-meta-field input[type="text"],
+.fb-meta-field input[type="email"],
+.fb-meta-field select,
+.fb-meta-field textarea {
+    margin-top: 5px;
+}
+
+.fb-meta-field .description {
+    font-style: italic;
+    color: #666;
+    font-size: 13px;
+}
+
+.fb-position-display {
+    margin: 10px 0;
+}
+
+.fb-position-badge {
+    display: inline-block;
+    background: #F9DB5E;
+    color: #271C1A;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.fb-notified-badge,
+.fb-not-notified-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.fb-notified-badge {
+    background: #d1f0d1;
+    color: #1e7e34;
+    border: 1px solid #b8e6b8;
+}
+
+.fb-not-notified-badge {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.fb-notified-badge .dashicons,
+.fb-not-notified-badge .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.fb-notification-status p {
+    margin: 10px 0;
+}
+
+.fb-conversion-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background: #d1f0d1;
+    border: 1px solid #b8e6b8;
+    border-radius: 4px;
+}
+
+.fb-conversion-info .dashicons {
+    color: #1e7e34;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.fb-conversion-info p {
+    margin: 0;
+}
+
+.fb-action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.fb-action-buttons .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.fb-action-buttons .button .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.fb-action-buttons label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #f0f0f1;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.fb-action-buttons label:hover {
+    background: #dcdcde;
+}
+
+.fb-action-buttons label input[type="checkbox"] {
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 782px) {
+    .fb-meta-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .fb-action-buttons {
+        flex-direction: column;
+    }
+    
+    .fb-action-buttons .button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+

@@ -1,0 +1,225 @@
+/**
+ * Log Viewer Styles
+ *
+ * Styles for the enrollment system log viewer admin page.
+ *
+ * @package FieldsBright\Enrollment
+ * @since   1.2.0
+ */
+
+.fb-log-viewer {
+    margin-top: 20px;
+}
+
+.fb-log-filters {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccd0d4;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fb-log-filters form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.fb-log-filters label {
+    font-weight: 600;
+}
+
+.fb-log-filters select,
+.fb-log-filters input[type="text"] {
+    min-width: 150px;
+}
+
+.fb-log-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.fb-log-stats {
+    background: #f0f0f1;
+    padding: 15px 20px;
+    border: 1px solid #ccd0d4;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 30px;
+}
+
+.fb-log-stat {
+    font-size: 14px;
+}
+
+.fb-log-stat strong {
+    margin-right: 5px;
+}
+
+/* Log Table */
+.fb-log-row {
+    transition: background-color 0.2s;
+}
+
+.fb-log-row:hover {
+    background-color: #f9f9f9;
+}
+
+.fb-log-timestamp {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #666;
+}
+
+.fb-log-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.fb-log-badge-debug {
+    background: #e3e3e3;
+    color: #666;
+}
+
+.fb-log-badge-info {
+    background: #d4edda;
+    color: #155724;
+}
+
+.fb-log-badge-warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.fb-log-badge-error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.fb-log-badge-critical {
+    background: #721c24;
+    color: #fff;
+}
+
+.fb-log-message {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    word-break: break-word;
+}
+
+.fb-view-context {
+    cursor: pointer;
+}
+
+/* Modal */
+.fb-modal {
+    position: fixed;
+    z-index: 100000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fb-modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.fb-modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.fb-modal-close:hover,
+.fb-modal-close:focus {
+    color: #000;
+}
+
+.fb-modal h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+#fb-context-data {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .fb-log-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .fb-log-filters form,
+    .fb-log-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .fb-log-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .fb-modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+

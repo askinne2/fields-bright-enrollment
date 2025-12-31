@@ -1,0 +1,75 @@
+# Fields Bright Enrollment System Documentation
+# Jekyll Configuration
+
+# Site settings
+title: "Fields Bright Enrollment System"
+description: "Easy-to-use workshop enrollment system with Stripe payments"
+baseurl: "/fields-bright-enrollment" # GitHub Pages repository name
+url: "" # Your GitHub Pages URL, e.g., https://yourusername.github.io
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Navigation (displayed in header)
+navigation:
+  - title: Home
+    url: /
+  - title: Getting Started
+    url: /getting-started
+  - title: Managing Workshops
+    url: /managing-workshops
+  - title: Managing Enrollments
+    url: /managing-enrollments
+  - title: Processing Refunds
+    url: /processing-refunds
+  - title: Email Templates
+    url: /email-templates
+  - title: Troubleshooting
+    url: /troubleshooting
+
+# Technical navigation (for developers)
+technical_navigation:
+  - title: API Reference
+    url: /api-reference
+  - title: Security Guide
+    url: /security
+  - title: Deployment
+    url: /deployment
+
+# Code highlighting
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - .gitignore
+  - README.md
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Footer
+footer:
+  version: "1.2.0"
+  copyright: "Fields Bright"
+

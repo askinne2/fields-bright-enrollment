@@ -1,0 +1,59 @@
+# WordPress configuration (site-specific)
+wp-config.php
+.htaccess
+
+# Local development
+.DS_Store
+*.log
+debug.log
+debug.log.old
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Dependencies (if using npm/composer)
+node_modules/
+vendor/
+composer.lock
+package-lock.json
+
+# Build artifacts
+dist/
+build/
+
+# Backup files
+*.backup
+*.bak
+*-backup-*.json
+*.orig
+
+# Email test files
+*.eml
+
+# Temporary files
+*.tmp
+*.temp
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Debug script (local testing only)
+debug.sh
+
+# Local PHP error logs
+error_log
+php_errors.log
+

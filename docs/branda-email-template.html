@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{EMAIL_SUBJECT}</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f4f4f4;">
+    <table role="presentation" style="width: 100%;border-collapse: collapse;background-color: #f4f4f4">
+        <tr>
+            <td align="center" style="padding: 20px 0">
+                <!-- Main Container -->
+                <table role="presentation" style="width: 600px;max-width: 100%;border-collapse: collapse;background-color: #ffffff">
+                    
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #271C1A 0%, #3d312e 100%);padding: 40px 30px;text-align: center">
+                            <table role="presentation" style="width: 100%;border-collapse: collapse">
+                                <tr>
+                                    <td style="text-align: center">
+   
+                                        <!-- Header Title -->
+                                        <h1 style="margin: 0;color: #F9DB5E;font-size: 28px;font-weight: 600;line-height: 1.2">
+                                            {EMAIL_SUBJECT}
+                                        </h1>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Body Content -->
+                    <tr>
+                        <td style="padding: 40px 30px;background-color: #f9f9f9">
+                            <table role="presentation" style="width: 100%;border-collapse: collapse">
+                                <tr>
+                                    <td>
+                                        <!-- Main Content -->
+                                        <div style="color: #333333;font-size: 16px;line-height: 1.6">
+                                            {MESSAGE}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Call to Action Section (Optional) -->
+                    <tr>
+                        <td style="padding: 30px;text-align: center;background-color: #ffffff">
+                            <table role="presentation" style="width: 100%;border-collapse: collapse">
+                                <tr>
+                                    <td style="text-align: center">
+                                        <!-- CTA Button (will only show if email includes a button/link) -->
+                                        <div style="margin: 20px 0">
+                                            <!-- Your email content will include buttons as needed -->
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Divider -->
+                    <tr>
+                        <td style="padding: 0 30px">
+                            <div style="border-top: 2px solid #F9DB5E;margin: 0"></div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Contact/Help Section -->
+                    <tr>
+                        <td style="padding: 30px;background-color: #ffffff;text-align: center">
+                            <table role="presentation" style="width: 100%;border-collapse: collapse">
+                                <tr>
+                                    <td style="text-align: center">
+                                        <p style="margin: 0 0 10px;color: #666666;font-size: 14px">
+                                            Questions? We're here to help!
+                                        </p>
+                                        <p style="margin: 0;color: #666666;font-size: 14px">
+                                            Reply to this email or contact us at 
+                                            <a href="mailto:{ADMIN_EMAIL}" style="color: #271C1A;text-decoration: underline">
+                                                {ADMIN_EMAIL}
+                                            </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #271C1A;padding: 30px;text-align: center">
+                            <table role="presentation" style="width: 100%;border-collapse: collapse">
+                                <tr>
+                                    <td style="text-align: center">
+                                        <!-- Site Name -->
+                                        <p style="margin: 0 0 10px;color: #F9DB5E;font-size: 16px;font-weight: 600">
+                                            {BLOG_NAME}
+                                        </p>
+                                        
+                                        <!-- Site URL -->
+                                        <p style="margin: 0 0 15px;color: #999999;font-size: 13px">
+                                            <a href="{BLOG_URL}" style="color: #999999;text-decoration: none">
+                                                {BLOG_URL}
+                                            </a>
+                                        </p>
+                                        
+                                        
+                                        <!-- Copyright -->
+                                        <p style="margin: 15px 0 0;color: #666666;font-size: 12px">
+                                            © {DATE} {BLOG_NAME}. All rights reserved.
+                                        </p>
+                                        
+                                        <!-- Unsubscribe Link (if applicable) -->
+                                        <p style="margin: 10px 0 0;color: #666666;font-size: 11px">
+                                            You're receiving this email because you have an account with us or enrolled in one of our workshops.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                </table>
+                <!-- End Main Container -->
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+

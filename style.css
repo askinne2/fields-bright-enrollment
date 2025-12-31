@@ -1,0 +1,707 @@
+/* 
+Theme Name: Fields Bright - Hello Elementor Child
+Theme URI: https://github.com/elementor/hello-theme/
+Description: Hello Elementor Child is a child theme of Hello Elementor, created by Elementor team
+Author: Elementor Team
+Author URI: https://elementor.com/
+Template: hello-elementor
+Version: 1.0.1
+Text Domain: hello-elementor-child
+License: GNU General Public License v3 or later.
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
+*/
+
+/* ==========================================================================
+   Fields Bright Custom Styles
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CSS Custom Properties (Inheriting from Elementor Site Kit)
+   -------------------------------------------------------------------------- */
+:root {
+    /* Primary Brand Colors */
+    --fb-primary: #271C1A;
+    --fb-secondary: #998D8B;
+    --fb-accent: #F9DB5E;
+    --fb-accent-hover: #FAE075;
+    --fb-white: #FFFFFF;
+    --fb-cream: #FDFDFC;
+    --fb-cream-warm: #F9F9F3;
+    
+    /* Text Colors */
+    --fb-text: #271C1A;
+    --fb-text-muted: #655D5C;
+    --fb-text-light: #847D7C;
+    
+    /* Border Colors */
+    --fb-border: #C1BEBD;
+    --fb-border-light: #E0DFDE;
+    
+    /* Status Colors */
+    --fb-success: #4D7C4D;
+    --fb-success-bg: #E8F5E8;
+    --fb-warning: #B58A00;
+    --fb-warning-bg: #FFF8E1;
+    --fb-error: #C0392B;
+    --fb-error-bg: #FDEDEC;
+    
+    /* Typography */
+    --fb-font-heading: "tenez", serif;
+    --fb-font-body: "Poppins", sans-serif;
+    
+    /* Spacing */
+    --fb-spacing-xs: 0.5rem;
+    --fb-spacing-sm: 1rem;
+    --fb-spacing-md: 1.5rem;
+    --fb-spacing-lg: 2rem;
+    --fb-spacing-xl: 3rem;
+    
+    /* Border Radius */
+    --fb-radius-sm: 8px;
+    --fb-radius-md: 10px;
+    --fb-radius-lg: 15px;
+    --fb-radius-full: 50%;
+}
+
+/* --------------------------------------------------------------------------
+   Enrollment Page Base Styles
+   -------------------------------------------------------------------------- */
+.enrollment-page {
+    min-height: 60vh;
+    background: linear-gradient(135deg, var(--fb-cream) 0%, var(--fb-cream-warm) 100%);
+    font-family: var(--fb-font-body);
+    color: var(--fb-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--fb-spacing-xl) var(--fb-spacing-lg);
+}
+
+.enrollment-page * {
+    box-sizing: border-box;
+}
+
+.enrollment-card {
+    max-width: 580px;
+    width: 100%;
+    background: var(--fb-white);
+    border-radius: var(--fb-radius-lg);
+    /* border: 1px solid var(--fb-border-light); */
+    overflow: hidden;
+    animation: slideUp 0.5s ease-out;
+    margin: 2% auto;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Enrollment Card Header
+   -------------------------------------------------------------------------- */
+.enrollment-card__header {
+    padding: var(--fb-spacing-xl) var(--fb-spacing-lg) var(--fb-spacing-lg);
+    text-align: center;
+}
+
+.enrollment-card__icon {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto var(--fb-spacing-md);
+    border-radius: var(--fb-radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: popIn 0.4s ease-out 0.2s both;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.enrollment-card__icon svg {
+    width: 44px;
+    height: 44px;
+}
+
+.enrollment-card__icon--success {
+    background: linear-gradient(135deg, var(--fb-success) 0%, #5A9A5A 100%);
+}
+
+.enrollment-card__icon--success svg {
+    fill: var(--fb-white);
+}
+
+.enrollment-card__icon--cancel {
+    background: linear-gradient(135deg, var(--fb-secondary) 0%, #847D7C 100%);
+}
+
+.enrollment-card__icon--cancel svg {
+    fill: var(--fb-white);
+}
+
+.enrollment-card__icon--warning {
+    background: linear-gradient(135deg, var(--fb-warning) 0%, #D4A100 100%);
+}
+
+.enrollment-card__icon--warning svg {
+    fill: var(--fb-white);
+}
+
+.enrollment-card__title {
+    font-family: var(--fb-font-heading);
+    font-size: 2.25rem;
+    font-weight: 400;
+    color: var(--fb-primary);
+    margin: 0 0 var(--fb-spacing-sm);
+    line-height: 1.2;
+}
+
+.enrollment-card__subtitle {
+    font-size: 1rem;
+    color: var(--fb-text-muted);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Status Banner
+   -------------------------------------------------------------------------- */
+.enrollment-status {
+    padding: var(--fb-spacing-sm) var(--fb-spacing-md);
+    margin: 0 var(--fb-spacing-lg);
+    border-radius: var(--fb-radius-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--fb-spacing-sm);
+}
+
+.enrollment-status--pending {
+    background: var(--fb-warning-bg);
+    color: var(--fb-warning);
+}
+
+.enrollment-status--success {
+    background: var(--fb-success-bg);
+    color: var(--fb-success);
+}
+
+.enrollment-status svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.enrollment-status p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   Enrollment Details Section
+   -------------------------------------------------------------------------- */
+.enrollment-card__body {
+    padding: var(--fb-spacing-lg);
+}
+
+.enrollment-details {
+    background: var(--fb-cream);
+    border-radius: var(--fb-radius-md);
+    padding: var(--fb-spacing-md);
+    margin-bottom: var(--fb-spacing-md);
+}
+
+.enrollment-details__title {
+    font-family: var(--fb-font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--fb-text-light);
+    margin: 0 0 var(--fb-spacing-sm);
+    padding-bottom: var(--fb-spacing-xs);
+    border-bottom: 1px solid var(--fb-border-light);
+}
+
+.enrollment-details dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--fb-spacing-xs) var(--fb-spacing-md);
+}
+
+.enrollment-details dt {
+    font-weight: 600;
+    color: var(--fb-text-muted);
+    font-size: 0.9rem;
+}
+
+.enrollment-details dd {
+    margin: 0;
+    color: var(--fb-text);
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+.enrollment-details dd.workshop-name {
+    font-weight: 600;
+    color: var(--fb-primary);
+}
+
+/* Receipt-style divider */
+.enrollment-details__divider {
+    grid-column: 1 / -1;
+    border: none;
+    border-top: 1px dashed var(--fb-border);
+    margin: var(--fb-spacing-xs) 0;
+}
+
+/* Receipt total row */
+.enrollment-details dt.total-label,
+.enrollment-details dd.total-amount {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fb-primary);
+    padding-top: var(--fb-spacing-xs);
+}
+
+/* Receipt header with logo */
+.enrollment-receipt-header {
+    text-align: center;
+    padding-bottom: var(--fb-spacing-md);
+    margin-bottom: var(--fb-spacing-md);
+    border-bottom: 2px solid var(--fb-primary);
+}
+
+.enrollment-receipt-header__logo {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: var(--fb-spacing-sm);
+}
+
+.enrollment-receipt-header__business {
+    font-size: 0.85rem;
+    color: var(--fb-text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Transaction ID styling */
+.enrollment-details dd.transaction-id {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--fb-text-light);
+    word-break: break-all;
+}
+
+/* Date/Time styling */
+.enrollment-details dd.datetime {
+    white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Next Steps Section
+   -------------------------------------------------------------------------- */
+.enrollment-next-steps {
+    margin-bottom: var(--fb-spacing-md);
+}
+
+.enrollment-next-steps__title {
+    font-family: var(--fb-font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fb-primary);
+    margin: 0 0 var(--fb-spacing-sm);
+}
+
+.enrollment-next-steps ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.enrollment-next-steps li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: var(--fb-spacing-xs);
+    color: var(--fb-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.enrollment-next-steps li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 6px;
+    height: 6px;
+    background: var(--fb-accent);
+    border-radius: var(--fb-radius-full);
+}
+
+/* --------------------------------------------------------------------------
+   Workshop Info Card (Cancel Page)
+   -------------------------------------------------------------------------- */
+.enrollment-workshop-card {
+    background: var(--fb-cream);
+    border-radius: var(--fb-radius-md);
+    padding: var(--fb-spacing-md);
+    margin-bottom: var(--fb-spacing-md);
+    border-left: 4px solid var(--fb-accent);
+}
+
+.enrollment-workshop-card__title {
+    font-family: var(--fb-font-heading);
+    font-size: 1.25rem;
+    color: var(--fb-primary);
+    margin: 0 0 var(--fb-spacing-xs);
+}
+
+.enrollment-workshop-card__text {
+    color: var(--fb-text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   Action Buttons
+   -------------------------------------------------------------------------- */
+.enrollment-card__footer {
+    padding: 0 var(--fb-spacing-lg) var(--fb-spacing-xl);
+}
+
+.enrollment-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fb-spacing-sm);
+}
+
+.enrollment-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--fb-spacing-sm) var(--fb-spacing-md);
+    font-family: var(--fb-font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: var(--fb-radius-md);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.enrollment-btn--primary {
+    background: var(--fb-accent);
+    color: var(--fb-primary);
+}
+
+.enrollment-btn--primary:hover,
+.enrollment-btn--primary:focus {
+    background: var(--fb-accent-hover);
+    color: var(--fb-primary);
+    border-radius: var(--fb-radius-lg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(249, 219, 94, 0.4);
+}
+
+.enrollment-btn--secondary {
+    background: var(--fb-cream);
+    color: var(--fb-text-muted);
+    border: 2px solid var(--fb-border);
+}
+
+.enrollment-btn--secondary:hover,
+.enrollment-btn--secondary:focus {
+    background: var(--fb-white);
+    color: var(--fb-primary);
+    border-color: var(--fb-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Help Footer
+   -------------------------------------------------------------------------- */
+.enrollment-help {
+    text-align: center;
+    padding: var(--fb-spacing-md) var(--fb-spacing-lg);
+    background: var(--fb-cream);
+    border-top: 1px solid var(--fb-border-light);
+}
+
+.enrollment-help p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--fb-text-light);
+}
+
+.enrollment-help a {
+    color: var(--fb-primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.enrollment-help a:hover {
+    color: var(--fb-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Error State
+   -------------------------------------------------------------------------- */
+.enrollment-error {
+    background: var(--fb-warning-bg);
+    border-radius: var(--fb-radius-md);
+    padding: var(--fb-spacing-md);
+    margin-bottom: var(--fb-spacing-md);
+}
+
+.enrollment-error__title {
+    font-family: var(--fb-font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fb-warning);
+    margin: 0 0 var(--fb-spacing-xs);
+}
+
+.enrollment-error__text {
+    color: var(--fb-text-muted);
+    font-size: 0.9rem;
+    margin: 0 0 var(--fb-spacing-sm);
+    line-height: 1.5;
+}
+
+.enrollment-error ul {
+    margin: 0;
+    padding-left: var(--fb-spacing-md);
+    color: var(--fb-text-muted);
+    font-size: 0.85rem;
+}
+
+.enrollment-error li {
+    margin-bottom: var(--fb-spacing-xs);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Design
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+    .enrollment-page {
+        padding: var(--fb-spacing-sm);
+        align-items: flex-start;
+        padding-top: var(--fb-spacing-lg);
+    }
+    
+    .enrollment-card {
+        border-radius: var(--fb-radius-md);
+    }
+    
+    .enrollment-card__header {
+        padding: var(--fb-spacing-lg) var(--fb-spacing-md) var(--fb-spacing-md);
+    }
+    
+    .enrollment-card__title {
+        font-size: 1.75rem;
+    }
+    
+    .enrollment-card__body {
+        padding: var(--fb-spacing-md);
+    }
+    
+    .enrollment-card__footer {
+        padding: 0 var(--fb-spacing-md) var(--fb-spacing-lg);
+    }
+    
+    .enrollment-card__icon {
+        width: 72px;
+        height: 72px;
+    }
+    
+    .enrollment-card__icon svg {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .enrollment-details dl {
+        grid-template-columns: 1fr;
+        gap: var(--fb-spacing-xs);
+    }
+    
+    .enrollment-details dd {
+        text-align: left;
+        padding-left: var(--fb-spacing-sm);
+        margin-bottom: var(--fb-spacing-xs);
+    }
+    
+    .enrollment-status {
+        margin: 0 var(--fb-spacing-md);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Enrollment Button Shortcode Styles
+   -------------------------------------------------------------------------- */
+.enrollment-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fb-spacing-sm);
+    align-items: flex-start;
+}
+
+.enrollment-pricing-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fb-spacing-xs);
+}
+
+.enrollment-pricing-options label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--fb-text-muted);
+}
+
+.enrollment-pricing-select {
+    padding: var(--fb-spacing-xs) var(--fb-spacing-sm);
+    border: 2px solid var(--fb-border);
+    border-radius: var(--fb-radius-sm);
+    font-family: var(--fb-font-body);
+    font-size: 0.9rem;
+    background: var(--fb-white);
+    color: var(--fb-text);
+    min-width: 200px;
+}
+
+.enrollment-pricing-select:focus {
+    outline: none;
+    border-color: var(--fb-accent);
+}
+
+.enrollment-capacity-info {
+    font-size: 0.85rem;
+    color: var(--fb-text-muted);
+    margin: 0;
+    padding: var(--fb-spacing-xs) var(--fb-spacing-sm);
+    background: var(--fb-warning-bg);
+    border-radius: var(--fb-radius-sm);
+}
+
+.enrollment-sold-out {
+    display: inline-block;
+    padding: var(--fb-spacing-sm) var(--fb-spacing-md);
+    background: var(--fb-border-light);
+    color: var(--fb-text-light);
+    border-radius: var(--fb-radius-md);
+    font-weight: 600;
+}
+
+.enrollment-waitlist-button {
+    background: var(--fb-secondary) !important;
+    color: var(--fb-white) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Multi-Workshop Enrollment Display (Cart Checkout)
+   -------------------------------------------------------------------------- */
+.enrollment-workshops-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fb-spacing-md);
+    margin-top: var(--fb-spacing-sm);
+}
+
+.enrollment-workshop-item {
+    padding: var(--fb-spacing-md);
+    background: var(--fb-gray-50);
+    border-radius: var(--fb-radius-md);
+    border: 1px solid var(--fb-border-light);
+}
+
+.enrollment-workshop-item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--fb-spacing-sm);
+    margin-bottom: var(--fb-spacing-xs);
+}
+
+.enrollment-workshop-item__header strong {
+    flex: 1;
+    font-size: 1.05rem;
+    color: var(--fb-primary);
+    line-height: 1.4;
+}
+
+.enrollment-workshop-item__price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fb-primary);
+    white-space: nowrap;
+}
+
+.enrollment-workshop-item__details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--fb-spacing-xs) var(--fb-spacing-sm);
+    margin-bottom: var(--fb-spacing-xs);
+    font-size: 0.9rem;
+    color: var(--fb-text-muted);
+}
+
+.enrollment-workshop-item__option {
+    padding: 2px 8px;
+    background: var(--fb-white);
+    border-radius: var(--fb-radius-sm);
+    font-weight: 500;
+}
+
+.enrollment-workshop-item__schedule,
+.enrollment-workshop-item__date,
+.enrollment-workshop-item__location {
+    display: inline-block;
+}
+
+.enrollment-workshop-item__link {
+    display: inline-block;
+    margin-top: var(--fb-spacing-xs);
+    font-size: 0.9rem;
+    color: var(--fb-accent);
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.enrollment-workshop-item__link:hover {
+    color: var(--fb-primary);
+}
+
+@media (max-width: 640px) {
+    .enrollment-workshop-item__header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .enrollment-workshop-item__price {
+        align-self: flex-end;
+    }
+    
+    .enrollment-workshop-item__details {
+        flex-direction: column;
+        gap: var(--fb-spacing-xs);
+    }
+}

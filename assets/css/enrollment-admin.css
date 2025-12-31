@@ -1,0 +1,367 @@
+/**
+ * Enrollment Admin Styles
+ *
+ * Styles for the enrollment system admin interface.
+ *
+ * @package FieldsBright\Enrollment
+ * @since   1.0.0
+ */
+
+/* =============================================================================
+   Enrollment Status Badges
+   ============================================================================= */
+
+.enrollment-status {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.enrollment-status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.enrollment-status-completed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.enrollment-status-refunded {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.enrollment-status-failed {
+    background-color: #f5c6cb;
+    color: #721c24;
+}
+
+/* =============================================================================
+   Enrollment List Table
+   ============================================================================= */
+
+.post-type-enrollment .wp-list-table .column-title {
+    width: 20%;
+}
+
+.post-type-enrollment .wp-list-table .column-workshop {
+    width: 18%;
+}
+
+.post-type-enrollment .wp-list-table .column-customer_name {
+    width: 15%;
+}
+
+.post-type-enrollment .wp-list-table .column-customer_email {
+    width: 18%;
+}
+
+.post-type-enrollment .wp-list-table .column-amount {
+    width: 10%;
+}
+
+.post-type-enrollment .wp-list-table .column-enrollment_status {
+    width: 10%;
+}
+
+.post-type-enrollment .wp-list-table .column-enrollment_date {
+    width: 12%;
+}
+
+/* =============================================================================
+   Enrollment Edit Screen
+   ============================================================================= */
+
+.enrollment-details-table th {
+    width: 150px;
+    padding-right: 20px;
+}
+
+.enrollment-stripe-table th {
+    width: 150px;
+    padding-right: 20px;
+}
+
+.enrollment-stripe-table code {
+    background: #f0f0f0;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    word-break: break-all;
+}
+
+/* =============================================================================
+   Workshop Checkout Settings Meta Box
+   ============================================================================= */
+
+.workshop-checkout-settings {
+    padding: 10px 0;
+}
+
+.workshop-checkout-settings .form-field {
+    margin-bottom: 20px;
+}
+
+.workshop-checkout-settings .form-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.workshop-checkout-settings .form-field .description {
+    color: #666;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.workshop-checkout-settings .checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.workshop-checkout-settings .checkbox-field label {
+    font-weight: 600;
+    margin: 0;
+}
+
+.workshop-checkout-settings .pricing-options-container {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.workshop-checkout-settings .pricing-option-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.workshop-checkout-settings .pricing-option-row input {
+    flex: 1;
+}
+
+.workshop-checkout-settings .pricing-option-row .price-input {
+    max-width: 100px;
+}
+
+.workshop-checkout-settings .add-option-btn {
+    margin-top: 10px;
+}
+
+.workshop-checkout-settings .remove-option-btn {
+    color: #dc3232;
+    cursor: pointer;
+}
+
+.workshop-checkout-settings .remove-option-btn:hover {
+    color: #a00;
+}
+
+.workshop-checkout-settings .conditional-fields {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.workshop-checkout-settings .info-box {
+    background: #e7f6ff;
+    border-left: 4px solid #0073aa;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+
+/* =============================================================================
+   Admin Settings Page
+   ============================================================================= */
+
+.enrollment-settings-status,
+.enrollment-settings-help {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    padding: 15px 20px;
+    margin: 20px 0;
+}
+
+.enrollment-settings-status h3,
+.enrollment-settings-help h3 {
+    margin-top: 0;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-test {
+    background: #fcf9e8;
+    color: #856404;
+}
+
+.status-live {
+    background: #e7f6ff;
+    color: #0073aa;
+}
+
+.status-ok {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.enrollment-settings-help ol,
+.enrollment-settings-help ul {
+    margin-left: 20px;
+}
+
+.enrollment-settings-help li {
+    margin-bottom: 8px;
+}
+
+.api-keys-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.api-key-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.api-key-row label {
+    min-width: 120px;
+}
+
+/* =============================================================================
+   Workshop Enrollments Meta Box
+   ============================================================================= */
+
+.workshop-enrollments-summary {
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.workshop-enrollments-summary .stat {
+    text-align: center;
+}
+
+.workshop-enrollments-summary .stat-number {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    display: block;
+}
+
+.workshop-enrollments-summary .stat-label {
+    font-size: 12px;
+    color: #666;
+}
+
+.workshop-enrollments-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.workshop-enrollments-table th,
+.workshop-enrollments-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.workshop-enrollments-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.enrollment-status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.workshop-enrollments-actions {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.workshop-enrollments-actions .button {
+    margin-right: 10px;
+}
+
+/* =============================================================================
+   Admin Notices
+   ============================================================================= */
+
+.enrollment-admin-notice {
+    padding: 12px;
+    border-left-width: 4px;
+    border-left-style: solid;
+    margin: 5px 0 15px;
+}
+
+.enrollment-admin-notice.notice-success {
+    border-left-color: #46b450;
+    background: #ecf7ed;
+}
+
+.enrollment-admin-notice.notice-warning {
+    border-left-color: #ffb900;
+    background: #fff8e5;
+}
+
+.enrollment-admin-notice.notice-error {
+    border-left-color: #dc3232;
+    background: #fef7f7;
+}
+
+/* =============================================================================
+   Responsive Adjustments
+   ============================================================================= */
+
+@media screen and (max-width: 782px) {
+    .workshop-enrollments-summary {
+        flex-wrap: wrap;
+    }
+    
+    .workshop-enrollments-summary .stat {
+        flex: 1 0 33%;
+    }
+    
+    .api-key-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .api-key-row label {
+        min-width: auto;
+    }
+    
+    .workshop-checkout-settings .pricing-option-row {
+        flex-wrap: wrap;
+    }
+}
+

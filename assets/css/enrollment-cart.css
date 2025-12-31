@@ -1,0 +1,628 @@
+/**
+ * Enrollment Cart Styles
+ *
+ * Styles for cart icon, cart summary, add to cart buttons,
+ * and cart notifications.
+ *
+ * @package FieldsBright\Enrollment
+ * @since   1.1.0
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    --fb-cart-primary: var(--fb-primary, #271C1A);
+    --fb-cart-accent: var(--fb-accent, #F9DB5E);
+    --fb-cart-accent-hover: #FAE075;
+    --fb-cart-success: #28a745;
+    --fb-cart-error: #dc3545;
+    --fb-cart-warning: #ffc107;
+    --fb-cart-gray-100: #f8f9fa;
+    --fb-cart-gray-200: #e9ecef;
+    --fb-cart-gray-300: #dee2e6;
+    --fb-cart-gray-500: #6c757d;
+    --fb-cart-gray-700: #495057;
+    --fb-cart-border-radius: 8px;
+    --fb-cart-transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   Cart Icon (Header)
+   ========================================================================== */
+
+.fb-cart-icon {
+    display: inline-flex;
+    position: relative;
+}
+
+.fb-cart-icon__link {
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+}
+
+.fb-cart-icon__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.fb-cart-icon__icon svg {
+    width: 24px;
+    height: 24px;
+    transition: var(--fb-cart-transition);
+}
+
+.fb-cart-icon__link:hover .fb-cart-icon__icon svg {
+    transform: scale(1.1);
+}
+
+.fb-cart-icon__count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: var(--fb-cart-accent);
+    color: var(--fb-cart-primary);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 10px;
+    transition: var(--fb-cart-transition);
+}
+
+.fb-cart-icon:not(.has-items) .fb-cart-icon__count {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.fb-cart-icon.has-items .fb-cart-icon__count {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ==========================================================================
+   Add to Cart Button
+   ========================================================================== */
+
+.fb-add-to-cart-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fb-add-to-cart__capacity {
+    margin-bottom: 4px;
+}
+
+.fb-capacity-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 4px;
+    background: var(--fb-cart-gray-100);
+    color: var(--fb-cart-gray-700);
+}
+
+.fb-capacity-badge.urgent {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.fb-capacity-badge.sold-out {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.fb-add-to-cart__options {
+    width: 100%;
+}
+
+.fb-pricing-select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    border: 2px solid var(--fb-cart-gray-300);
+    border-radius: var(--fb-cart-border-radius);
+    background: #fff;
+    color: var(--fb-cart-primary);
+    cursor: pointer;
+    transition: var(--fb-cart-transition);
+}
+
+.fb-pricing-select:focus {
+    outline: none;
+    border-color: var(--fb-cart-accent);
+    box-shadow: 0 0 0 3px rgba(249, 219, 94, 0.2);
+}
+
+.fb-add-to-cart__price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--fb-cart-primary);
+}
+
+.fb-add-to-cart-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--fb-cart-primary);
+    background: var(--fb-cart-accent);
+    border: none;
+    border-radius: var(--fb-cart-border-radius);
+    cursor: pointer;
+    transition: var(--fb-cart-transition);
+}
+
+.fb-add-to-cart-btn:hover:not(:disabled) {
+    background: var(--fb-cart-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.fb-add-to-cart-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.fb-add-to-cart-btn.in-cart {
+    background: var(--fb-cart-success);
+    color: #fff;
+}
+
+.fb-add-to-cart-btn.sold-out {
+    background: var(--fb-cart-gray-300);
+    color: var(--fb-cart-gray-500);
+}
+
+.fb-add-to-cart-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.fb-view-cart-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--fb-cart-primary);
+    text-decoration: underline;
+    text-align: center;
+}
+
+.fb-view-cart-link:hover {
+    color: var(--fb-cart-accent);
+}
+
+/* ==========================================================================
+   Cart Summary Page
+   ========================================================================== */
+
+.fb-cart-summary {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Empty Cart State */
+.fb-cart-empty {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.fb-cart-empty__icon {
+    margin-bottom: 20px;
+}
+
+.fb-cart-empty__icon svg {
+    width: 64px;
+    height: 64px;
+    color: var(--fb-cart-gray-300);
+}
+
+.fb-cart-empty__message {
+    font-size: 18px;
+    color: var(--fb-cart-gray-500);
+    margin-bottom: 24px;
+}
+
+/* Cart Items */
+.fb-cart-items {
+    border: 1px solid var(--fb-cart-gray-200);
+    border-radius: var(--fb-cart-border-radius);
+    overflow: hidden;
+}
+
+.fb-cart-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: #fff;
+    border-bottom: 1px solid var(--fb-cart-gray-200);
+    transition: var(--fb-cart-transition);
+}
+
+.fb-cart-item:last-child {
+    border-bottom: none;
+}
+
+.fb-cart-item.removing {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.fb-cart-item__image {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.fb-cart-item__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fb-cart-item__details {
+    flex: 1;
+    min-width: 0;
+}
+
+.fb-cart-item__title {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--fb-cart-primary);
+}
+
+.fb-cart-item__title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.fb-cart-item__title a:hover {
+    color: var(--fb-cart-accent);
+}
+
+.fb-cart-item__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    font-size: 13px;
+    color: var(--fb-cart-gray-500);
+}
+
+.fb-cart-item__option {
+    padding: 2px 8px;
+    background: var(--fb-cart-gray-100);
+    border-radius: 4px;
+}
+
+.fb-cart-item__price {
+    flex-shrink: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--fb-cart-primary);
+}
+
+.fb-cart-item__remove {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--fb-cart-gray-500);
+    cursor: pointer;
+    transition: var(--fb-cart-transition);
+}
+
+.fb-cart-item__remove:hover {
+    background: #f8d7da;
+    color: var(--fb-cart-error);
+}
+
+/* Cart Totals */
+.fb-cart-totals {
+    margin-top: 24px;
+    padding: 20px;
+    background: var(--fb-cart-gray-100);
+    border-radius: var(--fb-cart-border-radius);
+}
+
+.fb-cart-totals__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.fb-cart-totals__row--total {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--fb-cart-primary);
+}
+
+.fb-cart-totals__row--total .fb-cart-totals__value {
+    font-size: 24px;
+}
+
+/* Cart Actions */
+.fb-cart-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.fb-cart-actions .fb-btn {
+    flex: 1;
+}
+
+.fb-cart-checkout-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 18px 32px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--fb-cart-primary);
+    background: var(--fb-cart-accent);
+    border: none;
+    border-radius: var(--fb-cart-border-radius);
+    cursor: pointer;
+    transition: var(--fb-cart-transition);
+}
+
+.fb-cart-checkout-btn:hover:not(:disabled) {
+    background: var(--fb-cart-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.fb-cart-checkout-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.fb-cart-secondary-actions {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.fb-cart-clear-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    color: var(--fb-cart-gray-500);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.fb-cart-clear-btn:hover {
+    color: var(--fb-cart-error);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.fb-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--fb-cart-border-radius);
+    cursor: pointer;
+    transition: var(--fb-cart-transition);
+}
+
+.fb-btn--primary {
+    color: var(--fb-cart-primary);
+    background: var(--fb-cart-accent);
+}
+
+.fb-btn--primary:hover {
+    background: var(--fb-cart-accent-hover);
+}
+
+.fb-btn--secondary {
+    color: var(--fb-cart-primary);
+    background: transparent;
+    border: 2px solid var(--fb-cart-gray-300);
+}
+
+.fb-btn--secondary:hover {
+    border-color: var(--fb-cart-primary);
+}
+
+/* ==========================================================================
+   Notifications
+   ========================================================================== */
+
+.fb-cart-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 400px;
+    padding: 16px 20px;
+    background: #fff;
+    border-radius: var(--fb-cart-border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+}
+
+.fb-cart-notification.visible {
+    transform: translateX(0);
+}
+
+.fb-cart-notification--success {
+    border-left: 4px solid var(--fb-cart-success);
+}
+
+.fb-cart-notification--error {
+    border-left: 4px solid var(--fb-cart-error);
+}
+
+.fb-cart-notification__message {
+    flex: 1;
+    font-size: 14px;
+    color: var(--fb-cart-primary);
+}
+
+.fb-cart-notification__close {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--fb-cart-gray-500);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.fb-cart-notification__close:hover {
+    color: var(--fb-cart-primary);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .fb-cart-item {
+        flex-wrap: wrap;
+    }
+    
+    .fb-cart-item__image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .fb-cart-item__details {
+        order: 1;
+        width: calc(100% - 76px);
+    }
+    
+    .fb-cart-item__price {
+        order: 2;
+    }
+    
+    .fb-cart-item__remove {
+        order: 3;
+        margin-left: auto;
+    }
+    
+    .fb-cart-actions {
+        flex-direction: column;
+    }
+    
+    .fb-cart-notification {
+        left: 20px;
+        right: 20px;
+        max-width: none;
+    }
+}
+
+/* ==========================================================================
+   Already Enrolled Notice
+   ========================================================================== */
+
+.fb-enrollment-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: var(--fb-cart-border-radius);
+}
+
+.fb-enrollment-notice--already-enrolled {
+    background: #d1ecf1;
+    border: 1px solid #bee5eb;
+    color: #0c5460;
+}
+
+.fb-enrollment-notice__icon {
+    font-size: 24px;
+    color: #17a2b8;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.fb-enrollment-notice__content {
+    flex: 1;
+}
+
+.fb-enrollment-notice__content strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #0c5460;
+}
+
+.fb-enrollment-notice__content p {
+    margin: 0;
+    font-size: 14px;
+    color: #0c5460;
+    line-height: 1.5;
+}
+
+.fb-enrollment-notice__content a {
+    color: #0c5460;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.fb-enrollment-notice__content a:hover {
+    color: #17a2b8;
+}
+
+/* ==========================================================================
+   Elementor Integration
+   ========================================================================== */
+
+/* Ensure proper display in Elementor widgets */
+.elementor-widget-shortcode .fb-add-to-cart-wrapper,
+.elementor-widget-shortcode .fb-cart-summary {
+    font-family: var(--fb-font-body, 'Poppins', sans-serif);
+}
+
+/* Override Elementor button styles if needed */
+.elementor-widget-shortcode .fb-btn,
+.elementor-widget-shortcode .fb-add-to-cart-btn,
+.elementor-widget-shortcode .fb-cart-checkout-btn {
+    font-family: var(--fb-font-body, 'Poppins', sans-serif);
+}
+

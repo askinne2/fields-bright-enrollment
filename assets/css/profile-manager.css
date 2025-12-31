@@ -1,0 +1,256 @@
+/**
+ * Profile Manager Styles
+ *
+ * Styles for the user profile management interface.
+ *
+ * @package FieldsBright\Enrollment
+ * @since   1.2.0
+ */
+
+.fb-profile-manager {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Messages */
+.fb-profile-messages {
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    border-radius: 4px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fb-message-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.fb-message-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.fb-profile-messages p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Forms */
+.fb-form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.fb-form h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #271C1A;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.fb-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.fb-form-group {
+    margin-bottom: 20px;
+}
+
+.fb-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.fb-form-group label .required {
+    color: #dc3545;
+}
+
+.fb-form-group input[type="text"],
+.fb-form-group input[type="email"],
+.fb-form-group input[type="tel"],
+.fb-form-group input[type="password"],
+.fb-form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.fb-form-group input:focus,
+.fb-form-group textarea:focus {
+    outline: none;
+    border-color: #F9DB5E;
+    box-shadow: 0 0 0 3px rgba(249, 219, 94, 0.1);
+}
+
+.fb-form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.fb-form-help {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 13px;
+}
+
+/* Password Strength Indicator */
+.fb-password-strength {
+    margin-top: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.fb-strength-weak {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.fb-strength-medium {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.fb-strength-strong {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Buttons */
+.fb-button {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    font-family: inherit;
+}
+
+.fb-button-primary {
+    background-color: #F9DB5E;
+    color: #271C1A;
+}
+
+.fb-button-primary:hover {
+    background-color: #e6c84d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.fb-button-secondary {
+    background-color: #271C1A;
+    color: #F9DB5E;
+}
+
+.fb-button-secondary:hover {
+    background-color: #1a1311;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.fb-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Account Actions */
+.fb-account-actions {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fb-account-actions h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #271C1A;
+    font-size: 20px;
+}
+
+.fb-link {
+    color: #271C1A;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.fb-link:hover {
+    color: #F9DB5E;
+}
+
+/* Password Form Spacing */
+.fb-form-password {
+    margin-top: 30px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .fb-profile-manager {
+        padding: 0 15px;
+    }
+
+    .fb-form {
+        padding: 20px;
+    }
+
+    .fb-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .fb-form h3 {
+        font-size: 20px;
+    }
+
+    .fb-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .fb-form {
+        padding: 15px;
+    }
+
+    .fb-form-group input,
+    .fb-form-group textarea {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+}
+

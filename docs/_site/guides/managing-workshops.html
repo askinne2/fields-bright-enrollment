@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing Workshops | Enrollment System</title>
+    <meta name="description" content="Learn how to create, edit, duplicate, and organize your workshops in the Fields Bright Enrollment System.">
+    
+    <link rel="stylesheet" href="/fields-bright-enrollment/assets/css/style.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Managing Workshops | Enrollment System</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Managing Workshops" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how to create, edit, duplicate, and organize your workshops in the Fields Bright Enrollment System." />
+<meta property="og:description" content="Learn how to create, edit, duplicate, and organize your workshops in the Fields Bright Enrollment System." />
+<link rel="canonical" href="http://localhost:4000/fields-bright-enrollment/guides/managing-workshops.html" />
+<meta property="og:url" content="http://localhost:4000/fields-bright-enrollment/guides/managing-workshops.html" />
+<meta property="og:site_name" content="Enrollment System" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Managing Workshops" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Learn how to create, edit, duplicate, and organize your workshops in the Fields Bright Enrollment System.","headline":"Managing Workshops","url":"http://localhost:4000/fields-bright-enrollment/guides/managing-workshops.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/fields-bright-enrollment/feed.xml" title="Enrollment System" />
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/fields-bright-enrollment/" class="site-title">Enrollment System</a>
+                <button class="sidebar-close" aria-label="Close sidebar" id="sidebar-close">×</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="/fields-bright-enrollment/" class="nav-link ">
+                            <span class="nav-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Guides</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/getting-started" class="nav-sublink ">
+                                    Get Started
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-workshops" class="nav-sublink ">
+                                    Managing Workshops
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-enrollments" class="nav-sublink ">
+                                    Managing Enrollments
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/processing-refunds" class="nav-sublink ">
+                                    Processing Refunds
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/email-templates" class="nav-sublink ">
+                                    Email Templates
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/troubleshooting" class="nav-sublink ">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Reference</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/api-reference" class="nav-sublink ">
+                                    API Reference
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/security" class="nav-sublink ">
+                                    Security Guide
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/deployment" class="nav-sublink ">
+                                    Deployment
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="site-header">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar" id="sidebar-toggle">☰</button>
+            </header>
+
+            <main class="main-content">
+                <h1 id="managing-workshops">Managing Workshops</h1>
+
+<p>This guide covers everything you need to know about creating and managing workshops. You’ll learn how to set up various types of workshops, manage capacity, and handle special situations.</p>
+
+<h2 id="accessing-your-workshops">Accessing Your Workshops</h2>
+
+<p>To see all your workshops:</p>
+
+<ol>
+  <li>Log into WordPress</li>
+  <li>Click <strong>Workshops</strong> in the left sidebar</li>
+  <li>You’ll see a list of all workshops, organized by date</li>
+</ol>
+
+<h3 id="understanding-the-workshop-list">Understanding the Workshop List</h3>
+
+<p>The workshop list shows you at a glance:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>What It Means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Title</strong></td>
+      <td>The name of your workshop</td>
+    </tr>
+    <tr>
+      <td><strong>Date</strong></td>
+      <td>When the workshop takes place</td>
+    </tr>
+    <tr>
+      <td><strong>Capacity</strong></td>
+      <td>How many spots are filled (e.g., “12/15” means 12 enrolled out of 15 spots)</td>
+    </tr>
+    <tr>
+      <td><strong>Status</strong></td>
+      <td>Published, Draft, or Past</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="tip">
+Click on any column header to sort your workshops by that column. Click again to reverse the order.
+</div>
+
+<hr />
+
+<h2 id="creating-a-new-workshop">Creating a New Workshop</h2>
+
+<ol class="steps">
+<li>
+<strong>Go to Workshops → Add New</strong>
+</li>
+
+<li>
+<strong>Enter Basic Information</strong>
+<ul>
+<li><strong>Title</strong> - A clear, descriptive name</li>
+<li><strong>Description</strong> - What participants will experience and learn</li>
+<li><strong>Featured Image</strong> - An attractive photo to represent the workshop</li>
+</ul>
+</li>
+
+<li>
+<strong>Set Date and Time</strong><br />
+Scroll to the <strong>Workshop Details</strong> section:
+<ul>
+<li><strong>Start Date/Time</strong> - When it begins</li>
+<li><strong>End Date/Time</strong> - When it ends</li>
+<li><strong>Recurring Info</strong> (optional) - For multi-session workshops</li>
+</ul>
+</li>
+
+<li>
+<strong>Set Location</strong>
+<ul>
+<li>Enter the full address or location name</li>
+<li>Be specific so participants can find you!</li>
+</ul>
+</li>
+
+<li>
+<strong>Configure Pricing</strong><br />
+See the <a href="#setting-up-pricing">Setting Up Pricing</a> section below.
+</li>
+
+<li>
+<strong>Set Capacity</strong>
+<ul>
+<li><strong>Maximum Capacity</strong> - Total spots available</li>
+<li><strong>Enable Waitlist</strong> - Let people join a waitlist when full</li>
+</ul>
+</li>
+
+<li>
+<strong>Publish or Save Draft</strong>
+<ul>
+<li><strong>Publish</strong> - Makes the workshop visible and available for enrollment</li>
+<li><strong>Save Draft</strong> - Saves your work without making it public</li>
+</ul>
+</li>
+</ol>
+
+<hr />
+
+<h2 id="setting-up-pricing">Setting Up Pricing</h2>
+
+<p>The pricing section lets you create flexible payment options for your workshops.</p>
+
+<h3 id="basic-pricing">Basic Pricing</h3>
+
+<p>For a simple, single-price workshop:</p>
+
+<ol>
+  <li>Find the <strong>Pricing Options</strong> section</li>
+  <li>Enter your price (e.g., <code class="language-plaintext highlighter-rouge">75.00</code> for $75)</li>
+  <li>That’s it! Customers will see this price when enrolling</li>
+</ol>
+
+<h3 id="multiple-pricing-options">Multiple Pricing Options</h3>
+
+<p>You can offer different pricing tiers. Common examples:</p>
+
+<ul>
+  <li><strong>Adult vs. Child</strong> pricing</li>
+  <li><strong>Member vs. Non-Member</strong> rates</li>
+  <li><strong>Single Session vs. Full Series</strong> options</li>
+</ul>
+
+<p>To add multiple options:</p>
+
+<ol>
+  <li>Click <strong>Add Pricing Option</strong></li>
+  <li>Enter:
+    <ul>
+      <li><strong>Option Name</strong> (e.g., “Adult Registration”)</li>
+      <li><strong>Price</strong> (e.g., 75.00)</li>
+    </ul>
+  </li>
+  <li>Repeat for each option you want to offer</li>
+</ol>
+
+<div class="note">
+Customers will choose from these options during checkout. Make the names clear so they know which to pick.
+</div>
+
+<h3 id="setting-a-default-price">Setting a Default Price</h3>
+
+<p>If you have multiple pricing options:</p>
+
+<ol>
+  <li>Click the star icon next to the option you want as the default</li>
+  <li>This option will be pre-selected for customers</li>
+</ol>
+
+<hr />
+
+<h2 id="managing-workshop-capacity">Managing Workshop Capacity</h2>
+
+<h3 id="setting-maximum-capacity">Setting Maximum Capacity</h3>
+
+<p>The <strong>Maximum Capacity</strong> determines how many people can enroll:</p>
+
+<ul>
+  <li>Set a number that works for your space and teaching style</li>
+  <li>When this number is reached, enrollment automatically closes</li>
+  <li>The website shows “Sold Out” or enables the waitlist</li>
+</ul>
+
+<h3 id="enabling-the-waitlist">Enabling the Waitlist</h3>
+
+<p>When a workshop fills up, you can let interested people join a waitlist:</p>
+
+<ol>
+  <li>Check the <strong>Enable Waitlist</strong> option</li>
+  <li>When the workshop is full, visitors can add themselves to the waitlist</li>
+  <li>If someone cancels, waitlist members are notified automatically</li>
+</ol>
+
+<div class="tip">
+Waitlists are a great way to gauge interest. If your waitlist is often full, consider adding more sessions!
+</div>
+
+<h3 id="checking-remaining-spots">Checking Remaining Spots</h3>
+
+<p>On any workshop, you can see:</p>
+
+<ul>
+  <li><strong>Enrolled:</strong> Number of confirmed participants</li>
+  <li><strong>Capacity:</strong> Maximum spots available</li>
+  <li><strong>Remaining:</strong> How many spots are left</li>
+  <li><strong>Waitlist:</strong> Number of people waiting (if enabled)</li>
+</ul>
+
+<hr />
+
+<h2 id="editing-a-workshop">Editing a Workshop</h2>
+
+<p>To make changes to an existing workshop:</p>
+
+<ol>
+  <li>Go to <strong>Workshops</strong> and find your workshop</li>
+  <li>Click on the title or hover and click <strong>Edit</strong></li>
+  <li>Make your changes</li>
+  <li>Click <strong>Update</strong> to save</li>
+</ol>
+
+<h3 id="what-you-can-change">What You Can Change</h3>
+
+<p>You can update almost anything:</p>
+
+<ul>
+  <li>✅ Title and description</li>
+  <li>✅ Date and time</li>
+  <li>✅ Location</li>
+  <li>✅ Pricing (be careful - see warning below)</li>
+  <li>✅ Capacity</li>
+  <li>✅ Featured image</li>
+</ul>
+
+<div class="warning">
+<strong>Changing Prices After People Enroll:</strong> If you change the price, people who already enrolled keep their original price. Only new enrollments will see the new price. Consider creating a new workshop instead if the change is significant.
+</div>
+
+<hr />
+
+<h2 id="workshop-status">Workshop Status</h2>
+
+<p>Workshops can have different statuses:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>What It Means</th>
+      <th>Visible to Public?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Published</strong></td>
+      <td>Active and accepting enrollments</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Draft</strong></td>
+      <td>Work in progress</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><strong>Pending</strong></td>
+      <td>Awaiting review</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><strong>Private</strong></td>
+      <td>Only visible to logged-in users</td>
+      <td>Limited</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="changing-status">Changing Status</h3>
+
+<ul>
+  <li>To <strong>unpublish</strong>: Click “Switch to Draft” in the Publish box</li>
+  <li>To <strong>publish</strong>: Click the “Publish” button</li>
+  <li>To <strong>delete</strong>: Move to Trash (can be recovered for 30 days)</li>
+</ul>
+
+<hr />
+
+<h2 id="best-practices">Best Practices</h2>
+
+<h3 id="writing-great-workshop-descriptions">Writing Great Workshop Descriptions</h3>
+
+<p>Your description should answer:</p>
+
+<ul>
+  <li><strong>What</strong> will participants learn or create?</li>
+  <li><strong>Who</strong> is this workshop for? (skill level, age, etc.)</li>
+  <li><strong>What</strong> should they bring or wear?</li>
+  <li><strong>What’s</strong> included? (materials, refreshments, etc.)</li>
+</ul>
+
+<h3 id="setting-good-capacity-limits">Setting Good Capacity Limits</h3>
+
+<p>Consider:</p>
+
+<ul>
+  <li>Physical space limitations</li>
+  <li>Your ability to give individual attention</li>
+  <li>Equipment or material availability</li>
+  <li>Safety requirements</li>
+</ul>
+
+<h3 id="planning-ahead">Planning Ahead</h3>
+
+<ul>
+  <li>Create workshops at least 2-3 weeks before the date</li>
+  <li>This gives you time to promote and fill spots</li>
+  <li>Set calendar reminders to create recurring workshops</li>
+</ul>
+
+<hr />
+
+<h2 id="common-questions">Common Questions</h2>
+
+<p><strong>Q: Can I change the date of a workshop that has enrollments?</strong></p>
+
+<p>A: Yes, but enrolled customers won’t be automatically notified. You should email them about the change. Consider if the new date works for everyone or if you need to offer refunds.</p>
+
+<p><strong>Q: What happens when a workshop sells out?</strong></p>
+
+<p>A: The “Enroll” button changes to “Sold Out” (or “Join Waitlist” if enabled). No more enrollments are accepted unless you increase capacity or someone cancels.</p>
+
+<p><strong>Q: Can I hide a workshop without deleting it?</strong></p>
+
+<p>A: Yes! Change its status to “Draft” and it will no longer appear on your website but all information is preserved.</p>
+
+<p><strong>Q: How far in advance can I create workshops?</strong></p>
+
+<p>A: As far as you like! Many people create their workshops months ahead and publish them as needed.</p>
+
+<hr />
+
+<h2 id="next-steps">Next Steps</h2>
+
+<ul>
+  <li><a href="/fields-bright-enrollment/guides/managing-enrollments">Managing Enrollments</a> - Handle participant information</li>
+  <li><a href="/fields-bright-enrollment/guides/processing-refunds">Processing Refunds</a> - Manage cancellations</li>
+  <li><a href="/fields-bright-enrollment/guides/email-templates">Email Templates</a> - Customize your communications</li>
+</ul>
+
+
+            </main>
+
+            <footer class="site-footer">
+                <div class="footer-content">
+                    <p><small>Version 1.2.0 | © Fields Bright</small></p>
+                    <p><small>Easy-to-use workshop enrollment system with Stripe payments</small></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        sidebarToggle.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+        
+        // Nav group toggle
+        document.querySelectorAll('.nav-group-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.parentElement.classList.toggle('expanded');
+            });
+        });
+        
+        // Auto-expand active nav groups on page load
+        function expandActiveNavGroups() {
+            const currentPath = window.location.pathname;
+            const baseUrl = '/fields-bright-enrollment';
+            const fullCurrentPath = baseUrl ? currentPath.replace(baseUrl, '') : currentPath;
+            
+            document.querySelectorAll('.nav-group').forEach(function(group) {
+                const subLinks = group.querySelectorAll('.nav-sublink');
+                let shouldExpand = false;
+                
+                // Check if any child link matches current page
+                subLinks.forEach(function(link) {
+                    const linkPath = link.getAttribute('href');
+                    if (linkPath) {
+                        // Normalize paths for comparison
+                        const normalizedLink = linkPath.replace(/\/$/, '');
+                        const normalizedCurrent = fullCurrentPath.replace(/\/$/, '');
+                        
+                        if (normalizedCurrent === normalizedLink || 
+                            normalizedCurrent.endsWith(normalizedLink) ||
+                            normalizedLink.endsWith(normalizedCurrent)) {
+                            shouldExpand = true;
+                        }
+                    }
+                });
+                
+                // Also check if the group toggle itself is active (set by template)
+                const groupToggle = group.querySelector('.nav-group-toggle');
+                if (groupToggle && (groupToggle.classList.contains('active') || 
+                    groupToggle.getAttribute('aria-expanded') === 'true')) {
+                    shouldExpand = true;
+                }
+                
+                if (shouldExpand) {
+                    group.classList.add('expanded');
+                    if (groupToggle) {
+                        groupToggle.setAttribute('aria-expanded', 'true');
+                        groupToggle.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Run immediately and also on DOMContentLoaded
+        expandActiveNavGroups();
+        document.addEventListener('DOMContentLoaded', expandActiveNavGroups);
+    </script>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script>
+        // Convert Rouge highlights to Prism.js format
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all Rouge highlight blocks
+            document.querySelectorAll('.highlight').forEach(function(highlight) {
+                const pre = highlight.querySelector('pre');
+                const code = highlight.querySelector('code');
+                
+                if (pre && code) {
+                    // Get the language from Rouge's class (e.g., 'highlight json' -> 'json')
+                    const classes = highlight.className.split(' ');
+                    let language = 'plain';
+                    
+                    // Try to find language in highlight classes
+                    classes.forEach(function(cls) {
+                        if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                            language = cls;
+                        }
+                    });
+                    
+                    // If not found, try code element classes
+                    if (language === 'plain' && code.className) {
+                        const codeClasses = code.className.split(' ');
+                        codeClasses.forEach(function(cls) {
+                            if (cls.startsWith('language-')) {
+                                language = cls.replace('language-', '');
+                            } else if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                                language = cls;
+                            }
+                        });
+                    }
+                    
+                    // Create new Prism.js structure
+                    const newPre = document.createElement('pre');
+                    newPre.className = 'line-numbers language-' + language;
+                    const newCode = document.createElement('code');
+                    newCode.className = 'language-' + language;
+                    newCode.textContent = code.textContent;
+                    newPre.appendChild(newCode);
+                    
+                    // Replace the highlight div with new structure
+                    highlight.parentNode.replaceChild(newPre, highlight);
+                }
+            });
+            
+            // Initialize Prism.js after conversion
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Refunds | Enrollment System</title>
+    <meta name="description" content="Learn how to handle cancellations and process refunds in the Fields Bright Enrollment System.">
+    
+    <link rel="stylesheet" href="/fields-bright-enrollment/assets/css/style.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Processing Refunds | Enrollment System</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Processing Refunds" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how to handle cancellations and process refunds in the Fields Bright Enrollment System." />
+<meta property="og:description" content="Learn how to handle cancellations and process refunds in the Fields Bright Enrollment System." />
+<link rel="canonical" href="http://localhost:4000/fields-bright-enrollment/guides/processing-refunds.html" />
+<meta property="og:url" content="http://localhost:4000/fields-bright-enrollment/guides/processing-refunds.html" />
+<meta property="og:site_name" content="Enrollment System" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Processing Refunds" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Learn how to handle cancellations and process refunds in the Fields Bright Enrollment System.","headline":"Processing Refunds","url":"http://localhost:4000/fields-bright-enrollment/guides/processing-refunds.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/fields-bright-enrollment/feed.xml" title="Enrollment System" />
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/fields-bright-enrollment/" class="site-title">Enrollment System</a>
+                <button class="sidebar-close" aria-label="Close sidebar" id="sidebar-close">×</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="/fields-bright-enrollment/" class="nav-link ">
+                            <span class="nav-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Guides</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/getting-started" class="nav-sublink ">
+                                    Get Started
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-workshops" class="nav-sublink ">
+                                    Managing Workshops
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-enrollments" class="nav-sublink ">
+                                    Managing Enrollments
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/processing-refunds" class="nav-sublink ">
+                                    Processing Refunds
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/email-templates" class="nav-sublink ">
+                                    Email Templates
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/troubleshooting" class="nav-sublink ">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Reference</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/api-reference" class="nav-sublink ">
+                                    API Reference
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/security" class="nav-sublink ">
+                                    Security Guide
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/deployment" class="nav-sublink ">
+                                    Deployment
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="site-header">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar" id="sidebar-toggle">☰</button>
+            </header>
+
+            <main class="main-content">
+                <h1 id="processing-refunds">Processing Refunds</h1>
+
+<p>Sometimes participants need to cancel their enrollment. This guide shows you how to handle cancellations professionally and process refunds through the system.</p>
+
+<h2 id="understanding-refunds">Understanding Refunds</h2>
+
+<p>When you issue a refund:</p>
+
+<ol>
+  <li><strong>Money goes back</strong> to the customer’s original payment method</li>
+  <li><strong>Enrollment status</strong> changes to “Refunded” or “Cancelled”</li>
+  <li><strong>The spot</strong> becomes available again for someone else</li>
+  <li><strong>Customer receives</strong> an email confirmation</li>
+</ol>
+
+<div class="note">
+Refunds typically take 5-10 business days to appear on the customer's statement, depending on their bank.
+</div>
+
+<hr />
+
+<h2 id="before-processing-a-refund">Before Processing a Refund</h2>
+
+<h3 id="consider-your-refund-policy">Consider Your Refund Policy</h3>
+
+<p>Before processing any refund, consider:</p>
+
+<ul>
+  <li>How far in advance is the cancellation?</li>
+  <li>What’s your stated refund policy?</li>
+  <li>Are there extenuating circumstances?</li>
+  <li>Would a credit/transfer to another workshop work better?</li>
+</ul>
+
+<div class="tip">
+Having a clear refund policy on your website prevents misunderstandings. Link to it from your workshop pages!
+</div>
+
+<h3 id="types-of-refunds">Types of Refunds</h3>
+
+<p>You can issue:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>When to Use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Full Refund</strong></td>
+      <td>Customer cancels well in advance</td>
+    </tr>
+    <tr>
+      <td><strong>Partial Refund</strong></td>
+      <td>Late cancellation or after deducting a fee</td>
+    </tr>
+    <tr>
+      <td><strong>No Refund</strong></td>
+      <td>Per your policy (but still cancel their enrollment)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="how-to-process-a-full-refund">How to Process a Full Refund</h2>
+
+<ol class="steps">
+<li>
+<strong>Find the Enrollment</strong><br />
+Go to <strong>Enrollments</strong> and find the person who wants a refund. Click on their name.
+</li>
+
+<li>
+<strong>Review the Details</strong><br />
+Make sure you have the right enrollment:
+<ul>
+<li>Correct person?</li>
+<li>Correct workshop?</li>
+<li>Status shows "Completed" (meaning they paid)?</li>
+</ul>
+</li>
+
+<li>
+<strong>Click the Refund Button</strong><br />
+In the enrollment details, find and click the <strong>Process Refund</strong> button.
+</li>
+
+<li>
+<strong>Confirm the Amount</strong><br />
+The full payment amount will be shown. Confirm this is correct.
+</li>
+
+<li>
+<strong>Add a Reason (Optional)</strong><br />
+Add a note about why the refund was issued (for your records).
+</li>
+
+<li>
+<strong>Click "Process Refund"</strong><br />
+The refund will be submitted to Stripe.
+</li>
+
+<li>
+<strong>Verify Success</strong><br />
+You should see a success message. The enrollment status will update to "Refunded."
+</li>
+</ol>
+
+<div class="important">
+Once a refund is processed, it cannot be reversed. Double-check before clicking!
+</div>
+
+<hr />
+
+<h2 id="how-to-process-a-partial-refund">How to Process a Partial Refund</h2>
+
+<p>For partial refunds (like keeping a cancellation fee):</p>
+
+<ol class="steps">
+<li>
+<strong>Find the Enrollment</strong><br />
+Navigate to the enrollment you need to partially refund.
+</li>
+
+<li>
+<strong>Click Process Refund</strong><br />
+Open the refund dialog.
+</li>
+
+<li>
+<strong>Change the Amount</strong><br />
+Edit the refund amount to the partial amount. For example:
+<ul>
+<li>Original payment: $75.00</li>
+<li>Keeping $20 cancellation fee</li>
+<li>Refund amount: $55.00</li>
+</ul>
+</li>
+
+<li>
+<strong>Add a Note</strong><br />
+Document the partial refund reason (e.g., "Refund minus $20 cancellation fee per policy").
+</li>
+
+<li>
+<strong>Process the Refund</strong><br />
+Click to confirm and process.
+</li>
+</ol>
+
+<div class="note">
+When you process a partial refund, the enrollment status will show as "Partially Refunded" with the amount noted.
+</div>
+
+<hr />
+
+<h2 id="cancelling-without-a-refund">Cancelling Without a Refund</h2>
+
+<p>If you need to cancel someone’s enrollment but they’re not entitled to a refund:</p>
+
+<ol class="steps">
+<li>
+<strong>Find the Enrollment</strong>
+</li>
+
+<li>
+<strong>Change the Status</strong><br />
+Update the status from "Completed" to "Cancelled".
+</li>
+
+<li>
+<strong>Add a Note</strong><br />
+Document why no refund was issued.
+</li>
+
+<li>
+<strong>Update the Record</strong><br />
+Save your changes.
+</li>
+</ol>
+
+<div class="warning">
+Be sure to communicate clearly with the customer about why they're not receiving a refund. Reference your refund policy.
+</div>
+
+<hr />
+
+<h2 id="what-the-customer-sees">What the Customer Sees</h2>
+
+<p>When you process a refund, the customer:</p>
+
+<ol>
+  <li><strong>Receives an email</strong> confirming the cancellation</li>
+  <li><strong>Sees the refund</strong> on their credit card statement (5-10 days)</li>
+  <li><strong>Statement shows</strong> the refund from your business name</li>
+</ol>
+
+<h3 id="email-confirmation">Email Confirmation</h3>
+
+<p>The refund confirmation email includes:</p>
+
+<ul>
+  <li>Workshop name</li>
+  <li>Original amount paid</li>
+  <li>Refund amount</li>
+  <li>Approximate time to receive funds</li>
+</ul>
+
+<hr />
+
+<h2 id="handling-special-situations">Handling Special Situations</h2>
+
+<h3 id="customer-disputes-the-charge-with-their-bank">Customer Disputes the Charge with Their Bank</h3>
+
+<p>If a customer disputes (files a “chargeback”) instead of asking you for a refund:</p>
+
+<ol>
+  <li>You’ll receive a notification from Stripe</li>
+  <li>You have a limited time to respond</li>
+  <li>Provide evidence (enrollment confirmation, your refund policy, any communications)</li>
+  <li>Stripe makes the final decision</li>
+</ol>
+
+<div class="tip">
+To prevent disputes, have a clear refund policy and respond quickly to cancellation requests. Most customers prefer asking you over filing a dispute.
+</div>
+
+<h3 id="refund-request-after-workshop-already-happened">Refund Request After Workshop Already Happened</h3>
+
+<p>Generally:</p>
+
+<ul>
+  <li>No-shows are not entitled to refunds</li>
+  <li>If they contacted you before the workshop about not attending, consider your policy</li>
+  <li>Document your decision and reasoning</li>
+</ul>
+
+<h3 id="refunding-a-different-amount-than-paid">Refunding a Different Amount Than Paid</h3>
+
+<p>If you need to refund more than was paid (rare situations):</p>
+
+<ul>
+  <li>You cannot refund more than the original payment through this system</li>
+  <li>You would need to issue the difference through another method</li>
+  <li>Document everything carefully</li>
+</ul>
+
+<hr />
+
+<h2 id="refund-timeline">Refund Timeline</h2>
+
+<p>Here’s what happens after you process a refund:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>What Happens</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Day 1</td>
+      <td>Refund submitted to Stripe</td>
+    </tr>
+    <tr>
+      <td>Day 1-2</td>
+      <td>Stripe processes the refund</td>
+    </tr>
+    <tr>
+      <td>Day 2-3</td>
+      <td>Customer’s bank receives the refund</td>
+    </tr>
+    <tr>
+      <td>Day 5-10</td>
+      <td>Refund appears on customer’s statement</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note">
+Some banks are faster than others. If a customer hasn't received their refund after 10 business days, ask them to check with their bank.
+</div>
+
+<hr />
+
+<h2 id="keeping-records">Keeping Records</h2>
+
+<h3 id="why-documentation-matters">Why Documentation Matters</h3>
+
+<p>Good records protect you:</p>
+
+<ul>
+  <li>Customer claims they didn’t receive a refund</li>
+  <li>Tax time / accounting needs</li>
+  <li>Disputes with banks</li>
+  <li>Learning patterns (frequent cancellations?)</li>
+</ul>
+
+<h3 id="what-to-document">What to Document</h3>
+
+<p>For every refund, keep track of:</p>
+
+<ul>
+  <li>✅ Who requested the refund and when</li>
+  <li>✅ Why the refund was issued</li>
+  <li>✅ Full or partial amount</li>
+  <li>✅ Date processed</li>
+  <li>✅ Any communications with the customer</li>
+</ul>
+
+<p>The enrollment system keeps this automatically, but adding notes helps with context.</p>
+
+<hr />
+
+<h2 id="viewing-refund-history">Viewing Refund History</h2>
+
+<h3 id="all-refunds">All Refunds</h3>
+
+<p>To see all refunds you’ve processed:</p>
+
+<ol>
+  <li>Go to <strong>Enrollments</strong></li>
+  <li>Filter by status: <strong>Refunded</strong> or <strong>Partially Refunded</strong></li>
+  <li>You’ll see all refunded enrollments</li>
+</ol>
+
+<h3 id="refunds-for-a-specific-period">Refunds for a Specific Period</h3>
+
+<p>To see refunds for tax or accounting purposes:</p>
+
+<ol>
+  <li>Filter by date range</li>
+  <li>Filter by status: Refunded</li>
+  <li>Export the results</li>
+</ol>
+
+<hr />
+
+<h2 id="common-questions">Common Questions</h2>
+
+<p><strong>Q: Can I undo a refund?</strong></p>
+
+<p>A: No, once processed, refunds cannot be reversed. If you need to re-charge the customer, they would need to enroll again.</p>
+
+<p><strong>Q: The refund failed. What do I do?</strong></p>
+
+<p>A: Check the error message. Common issues:</p>
+<ul>
+  <li>Payment was made too long ago (some cards expire refund windows)</li>
+  <li>Original payment was disputed/already refunded</li>
+  <li>Contact Stripe support if the error persists</li>
+</ul>
+
+<p><strong>Q: How long do I have to issue a refund?</strong></p>
+
+<p>A: Generally, refunds can be issued within 90-180 days of the original payment. After that, the customer’s bank may reject it.</p>
+
+<p><strong>Q: Do I get my Stripe fees back when I refund?</strong></p>
+
+<p>A: Stripe’s policy varies by region. In the US, you typically do NOT get the original processing fee back, only the payment amount.</p>
+
+<hr />
+
+<h2 id="creating-a-refund-policy">Creating a Refund Policy</h2>
+
+<p>If you don’t have a refund policy yet, consider:</p>
+
+<p><strong>Example Policy:</strong></p>
+
+<blockquote>
+  <p><strong>Cancellation Policy</strong></p>
+  <ul>
+    <li>Full refund if cancelled 14+ days before workshop</li>
+    <li>50% refund if cancelled 7-13 days before</li>
+    <li>No refund if cancelled less than 7 days before</li>
+    <li>No-shows will not receive a refund</li>
+    <li>We reserve the right to cancel and fully refund any workshop</li>
+  </ul>
+</blockquote>
+
+<p>Post this clearly on your workshop pages and registration forms!</p>
+
+<hr />
+
+<h2 id="next-steps">Next Steps</h2>
+
+<ul>
+  <li><a href="/fields-bright-enrollment/guides/managing-enrollments">Managing Enrollments</a> - Return to enrollment management</li>
+  <li><a href="/fields-bright-enrollment/guides/email-templates">Email Templates</a> - Customize your refund emails</li>
+  <li><a href="/fields-bright-enrollment/guides/troubleshooting">Troubleshooting</a> - Solve common problems</li>
+</ul>
+
+
+            </main>
+
+            <footer class="site-footer">
+                <div class="footer-content">
+                    <p><small>Version 1.2.0 | © Fields Bright</small></p>
+                    <p><small>Easy-to-use workshop enrollment system with Stripe payments</small></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        sidebarToggle.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+        
+        // Nav group toggle
+        document.querySelectorAll('.nav-group-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.parentElement.classList.toggle('expanded');
+            });
+        });
+        
+        // Auto-expand active nav groups on page load
+        function expandActiveNavGroups() {
+            const currentPath = window.location.pathname;
+            const baseUrl = '/fields-bright-enrollment';
+            const fullCurrentPath = baseUrl ? currentPath.replace(baseUrl, '') : currentPath;
+            
+            document.querySelectorAll('.nav-group').forEach(function(group) {
+                const subLinks = group.querySelectorAll('.nav-sublink');
+                let shouldExpand = false;
+                
+                // Check if any child link matches current page
+                subLinks.forEach(function(link) {
+                    const linkPath = link.getAttribute('href');
+                    if (linkPath) {
+                        // Normalize paths for comparison
+                        const normalizedLink = linkPath.replace(/\/$/, '');
+                        const normalizedCurrent = fullCurrentPath.replace(/\/$/, '');
+                        
+                        if (normalizedCurrent === normalizedLink || 
+                            normalizedCurrent.endsWith(normalizedLink) ||
+                            normalizedLink.endsWith(normalizedCurrent)) {
+                            shouldExpand = true;
+                        }
+                    }
+                });
+                
+                // Also check if the group toggle itself is active (set by template)
+                const groupToggle = group.querySelector('.nav-group-toggle');
+                if (groupToggle && (groupToggle.classList.contains('active') || 
+                    groupToggle.getAttribute('aria-expanded') === 'true')) {
+                    shouldExpand = true;
+                }
+                
+                if (shouldExpand) {
+                    group.classList.add('expanded');
+                    if (groupToggle) {
+                        groupToggle.setAttribute('aria-expanded', 'true');
+                        groupToggle.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Run immediately and also on DOMContentLoaded
+        expandActiveNavGroups();
+        document.addEventListener('DOMContentLoaded', expandActiveNavGroups);
+    </script>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script>
+        // Convert Rouge highlights to Prism.js format
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all Rouge highlight blocks
+            document.querySelectorAll('.highlight').forEach(function(highlight) {
+                const pre = highlight.querySelector('pre');
+                const code = highlight.querySelector('code');
+                
+                if (pre && code) {
+                    // Get the language from Rouge's class (e.g., 'highlight json' -> 'json')
+                    const classes = highlight.className.split(' ');
+                    let language = 'plain';
+                    
+                    // Try to find language in highlight classes
+                    classes.forEach(function(cls) {
+                        if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                            language = cls;
+                        }
+                    });
+                    
+                    // If not found, try code element classes
+                    if (language === 'plain' && code.className) {
+                        const codeClasses = code.className.split(' ');
+                        codeClasses.forEach(function(cls) {
+                            if (cls.startsWith('language-')) {
+                                language = cls.replace('language-', '');
+                            } else if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                                language = cls;
+                            }
+                        });
+                    }
+                    
+                    // Create new Prism.js structure
+                    const newPre = document.createElement('pre');
+                    newPre.className = 'line-numbers language-' + language;
+                    const newCode = document.createElement('code');
+                    newCode.className = 'language-' + language;
+                    newCode.textContent = code.textContent;
+                    newPre.appendChild(newCode);
+                    
+                    // Replace the highlight div with new structure
+                    highlight.parentNode.replaceChild(newPre, highlight);
+                }
+            });
+            
+            // Initialize Prism.js after conversion
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html>
+

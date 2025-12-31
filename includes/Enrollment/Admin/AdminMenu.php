@@ -177,7 +177,19 @@ class AdminMenu
             );
         }
 
-        // 6. Logs
+        // 6. Email Templates
+        if ($this->admin_settings) {
+            add_submenu_page(
+                self::MENU_SLUG,
+                __('Email Templates', 'fields-bright-enrollment'),
+                __('Email Templates', 'fields-bright-enrollment'),
+                'manage_options',
+                self::MENU_SLUG . '-email-templates',
+                [$this->admin_settings, 'render_email_templates_page']
+            );
+        }
+
+        // 7. Logs
         if ($this->log_viewer) {
             add_submenu_page(
                 self::MENU_SLUG,
@@ -189,7 +201,7 @@ class AdminMenu
             );
         }
 
-        // 7. Exports
+        // 8. Exports
         if ($this->export_handler) {
             add_submenu_page(
                 self::MENU_SLUG,
@@ -227,6 +239,7 @@ class AdminMenu
             'edit.php?post_type=' . EnrollmentCPT::POST_TYPE,    // Enrollments
             'edit.php?post_type=waitlist',                      // Waitlist (if exists)
             self::MENU_SLUG . '-settings',                      // Settings
+            self::MENU_SLUG . '-email-templates',               // Email Templates
             'enrollment-logs',                                  // Logs
             'fields-bright-export',                            // Exports
         ];

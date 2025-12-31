@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Guide | Enrollment System</title>
+    <meta name="description" content="Production deployment and configuration guide for the Fields Bright Enrollment System.">
+    
+    <link rel="stylesheet" href="/fields-bright-enrollment/assets/css/style.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Deployment Guide | Enrollment System</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Deployment Guide" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Production deployment and configuration guide for the Fields Bright Enrollment System." />
+<meta property="og:description" content="Production deployment and configuration guide for the Fields Bright Enrollment System." />
+<link rel="canonical" href="http://localhost:4000/fields-bright-enrollment/reference/deployment.html" />
+<meta property="og:url" content="http://localhost:4000/fields-bright-enrollment/reference/deployment.html" />
+<meta property="og:site_name" content="Enrollment System" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Deployment Guide" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Production deployment and configuration guide for the Fields Bright Enrollment System.","headline":"Deployment Guide","url":"http://localhost:4000/fields-bright-enrollment/reference/deployment.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/fields-bright-enrollment/feed.xml" title="Enrollment System" />
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/fields-bright-enrollment/" class="site-title">Enrollment System</a>
+                <button class="sidebar-close" aria-label="Close sidebar" id="sidebar-close">×</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="/fields-bright-enrollment/" class="nav-link ">
+                            <span class="nav-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Guides</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/getting-started" class="nav-sublink ">
+                                    Get Started
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-workshops" class="nav-sublink ">
+                                    Managing Workshops
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-enrollments" class="nav-sublink ">
+                                    Managing Enrollments
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/processing-refunds" class="nav-sublink ">
+                                    Processing Refunds
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/email-templates" class="nav-sublink ">
+                                    Email Templates
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/troubleshooting" class="nav-sublink ">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Reference</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/api-reference" class="nav-sublink ">
+                                    API Reference
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/security" class="nav-sublink ">
+                                    Security Guide
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/deployment" class="nav-sublink ">
+                                    Deployment
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="site-header">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar" id="sidebar-toggle">☰</button>
+            </header>
+
+            <main class="main-content">
+                <h1 id="deployment-guide">Deployment Guide</h1>
+
+<p>This guide covers deploying the Fields Bright Enrollment System to a production environment.</p>
+
+<div class="warning">
+This documentation is for developers and system administrators. Improper deployment can cause payment failures or data loss.
+</div>
+
+<hr />
+
+<h2 id="pre-deployment-checklist">Pre-Deployment Checklist</h2>
+
+<p>Before deploying to production:</p>
+
+<h3 id="environment">Environment</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />PHP 8.0+ installed</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />WordPress 6.0+ running</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />SSL certificate installed and HTTPS enforced</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />MySQL 5.7+ or MariaDB 10.3+</li>
+</ul>
+
+<h3 id="configuration">Configuration</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Production Stripe API keys ready</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Stripe webhook endpoint configured</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Email delivery tested</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Backup system in place</li>
+</ul>
+
+<h3 id="code">Code</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />All debug settings disabled</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Error logging configured</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Assets minified (if applicable)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Version number updated</li>
+</ul>
+
+<hr />
+
+<h2 id="deployment-steps">Deployment Steps</h2>
+
+<h3 id="step-1-backup-current-site">Step 1: Backup Current Site</h3>
+
+<p>Always backup before deploying:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Database backup</span>
+wp db <span class="nb">export </span>backup-<span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span>.sql
+
+<span class="c"># Files backup</span>
+zip <span class="nt">-r</span> backup-files-<span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span>.zip wp-content/themes/fields-bright-child-theme
+</code></pre></div></div>
+
+<h3 id="step-2-upload-theme-files">Step 2: Upload Theme Files</h3>
+
+<p>Transfer theme files to your server:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Via rsync (recommended)</span>
+rsync <span class="nt">-avz</span> <span class="nt">--exclude</span><span class="o">=</span><span class="s1">'.git'</span> <span class="nt">--exclude</span><span class="o">=</span><span class="s1">'node_modules'</span> <span class="se">\</span>
+  ./fields-bright-child-theme/ <span class="se">\</span>
+  user@server:/path/to/wp-content/themes/fields-bright-child-theme/
+
+<span class="c"># Or via SFTP/FTP</span>
+<span class="c"># Upload the fields-bright-child-theme folder to wp-content/themes/</span>
+</code></pre></div></div>
+
+<h3 id="step-3-activate-theme">Step 3: Activate Theme</h3>
+
+<p>If not already active:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wp theme activate fields-bright-child-theme
+</code></pre></div></div>
+
+<h3 id="step-4-configure-stripe">Step 4: Configure Stripe</h3>
+
+<p>In WordPress Admin:</p>
+
+<ol>
+  <li>Go to <strong>Settings → Fields Bright Enrollment</strong></li>
+  <li>Enter <strong>Live Stripe API keys</strong>:
+    <ul>
+      <li>Publishable Key: <code class="language-plaintext highlighter-rouge">pk_live_...</code></li>
+      <li>Secret Key: <code class="language-plaintext highlighter-rouge">sk_live_...</code></li>
+      <li>Webhook Secret: <code class="language-plaintext highlighter-rouge">whsec_...</code></li>
+    </ul>
+  </li>
+  <li>Save settings</li>
+</ol>
+
+<div class="important">
+Double-check you're using LIVE keys, not test keys. Test keys start with `pk_test_` and `sk_test_`.
+</div>
+
+<h3 id="step-5-configure-stripe-webhook">Step 5: Configure Stripe Webhook</h3>
+
+<p>In your Stripe Dashboard:</p>
+
+<ol>
+  <li>Go to <strong>Developers → Webhooks</strong></li>
+  <li>Click <strong>Add endpoint</strong></li>
+  <li>Enter your endpoint URL:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://yoursite.com/wp-json/fields-bright/v1/webhook/stripe
+</code></pre></div>    </div>
+  </li>
+  <li>Select events to listen for:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">checkout.session.completed</code></li>
+      <li><code class="language-plaintext highlighter-rouge">payment_intent.succeeded</code></li>
+      <li><code class="language-plaintext highlighter-rouge">payment_intent.payment_failed</code></li>
+      <li><code class="language-plaintext highlighter-rouge">charge.refunded</code></li>
+    </ul>
+  </li>
+  <li>Copy the <strong>Webhook signing secret</strong> to your WordPress settings</li>
+</ol>
+
+<h3 id="step-6-verify-installation">Step 6: Verify Installation</h3>
+
+<p>Test the deployment:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check theme is active</span>
+wp theme status fields-bright-child-theme
+
+<span class="c"># Verify custom post types registered</span>
+wp post-type list <span class="nt">--fields</span><span class="o">=</span>name | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"workshop|enrollment"</span>
+
+<span class="c"># Test REST API</span>
+curl <span class="nt">-I</span> https://yoursite.com/wp-json/fields-bright/v1/
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="configuration-options">Configuration Options</h2>
+
+<h3 id="wordpress-options">WordPress Options</h3>
+
+<p>Key options stored in <code class="language-plaintext highlighter-rouge">wp_options</code>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Option Key</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fields_bright_stripe_publishable_key</code></td>
+      <td>Stripe public key</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fields_bright_stripe_secret_key</code></td>
+      <td>Stripe secret key</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fields_bright_stripe_webhook_secret</code></td>
+      <td>Webhook signing secret</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fields_bright_admin_email</code></td>
+      <td>Notification email</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fields_bright_test_mode</code></td>
+      <td>Enable/disable test mode</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="environment-based-configuration">Environment-Based Configuration</h3>
+
+<p>For different environments, consider using <code class="language-plaintext highlighter-rouge">wp-config.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In wp-config.php</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'FIELDS_BRIGHT_STRIPE_KEY'</span><span class="p">,</span> <span class="s1">'sk_live_...'</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'FIELDS_BRIGHT_DEBUG'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="performance-optimization">Performance Optimization</h2>
+
+<h3 id="caching">Caching</h3>
+
+<p>The system uses transients for caching. Ensure your cache backend is configured:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Object caching (recommended)</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'WP_CACHE'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="c1">// Transient expiration times</span>
+<span class="c1">// Workshop capacity: 5 minutes</span>
+<span class="c1">// Pricing options: 1 hour</span>
+<span class="c1">// Enrollment counts: 5 minutes</span>
+</code></pre></div></div>
+
+<h3 id="database-optimization">Database Optimization</h3>
+
+<p>Run periodic optimization:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Optimize database tables</span>
+wp db optimize
+
+<span class="c"># Check for missing indexes</span>
+wp db query <span class="s2">"SHOW INDEX FROM wp_posts"</span>
+</code></pre></div></div>
+
+<h3 id="asset-optimization">Asset Optimization</h3>
+
+<p>Assets are versioned based on file modification time:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Version string changes when file changes</span>
+<span class="nf">wp_enqueue_style</span><span class="p">(</span><span class="s1">'enrollment'</span><span class="p">,</span> <span class="nv">$url</span><span class="p">,</span> <span class="p">[],</span> <span class="nb">filemtime</span><span class="p">(</span><span class="nv">$path</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>For additional optimization:</p>
+
+<ol>
+  <li>Enable WordPress caching plugin</li>
+  <li>Configure CDN for static assets</li>
+  <li>Enable GZIP compression</li>
+</ol>
+
+<hr />
+
+<h2 id="email-configuration">Email Configuration</h2>
+
+<h3 id="smtp-setup">SMTP Setup</h3>
+
+<p>For reliable email delivery, configure SMTP:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Option 1: Use an SMTP plugin like WP Mail SMTP</span>
+
+<span class="c1">// Option 2: In wp-config.php or custom plugin</span>
+<span class="nf">add_action</span><span class="p">(</span><span class="s1">'phpmailer_init'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$phpmailer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$phpmailer</span><span class="o">-&gt;</span><span class="nf">isSMTP</span><span class="p">();</span>
+    <span class="nv">$phpmailer</span><span class="o">-&gt;</span><span class="nc">Host</span> <span class="o">=</span> <span class="s1">'smtp.example.com'</span><span class="p">;</span>
+    <span class="nv">$phpmailer</span><span class="o">-&gt;</span><span class="nc">SMTPAuth</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="nv">$phpmailer</span><span class="o">-&gt;</span><span class="nc">Port</span> <span class="o">=</span> <span class="mi">587</span><span class="p">;</span>
+    <span class="nv">$phpmailer</span><span class="o">-&gt;</span><span class="nc">Username</span> <span class="o">=</span> <span class="s1">'user@example.com'</span><span class="p">;</span>
+    <span class="nv">$phpmailer</span><span class="o">-&gt;</span><span class="nc">Password</span> <span class="o">=</span> <span class="s1">'password'</span><span class="p">;</span>
+    <span class="nv">$phpmailer</span><span class="o">-&gt;</span><span class="nc">SMTPSecure</span> <span class="o">=</span> <span class="s1">'tls'</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="testing-email-delivery">Testing Email Delivery</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Test WordPress email</span>
+wp <span class="nb">eval</span> <span class="s1">'wp_mail("test@example.com", "Test Subject", "Test body");'</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="security-configuration">Security Configuration</h2>
+
+<h3 id="file-permissions">File Permissions</h3>
+
+<p>Set correct permissions:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Directories</span>
+find /path/to/wp-content/themes/fields-bright-child-theme <span class="nt">-type</span> d <span class="nt">-exec</span> <span class="nb">chmod </span>755 <span class="o">{}</span> <span class="se">\;</span>
+
+<span class="c"># Files</span>
+find /path/to/wp-content/themes/fields-bright-child-theme <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">chmod </span>644 <span class="o">{}</span> <span class="se">\;</span>
+</code></pre></div></div>
+
+<h3 id="disable-debug-mode">Disable Debug Mode</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">wp-config.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">define</span><span class="p">(</span><span class="s1">'WP_DEBUG'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'WP_DEBUG_LOG'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'WP_DEBUG_DISPLAY'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'SCRIPT_DEBUG'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="secure-headers">Secure Headers</h3>
+
+<p>Add security headers via <code class="language-plaintext highlighter-rouge">.htaccess</code> or server config:</p>
+
+<div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Security headers</span>
+<span class="nc">Header</span> <span class="ss">set</span> X-Content-Type-Options "nosniff"
+<span class="nc">Header</span> <span class="ss">set</span> X-Frame-Options "SAMEORIGIN"
+<span class="nc">Header</span> <span class="ss">set</span> X-XSS-Protection "1; mode=block"
+<span class="nc">Header</span> <span class="ss">set</span> Referrer-Policy "strict-origin-when-cross-origin"
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="monitoring">Monitoring</h2>
+
+<h3 id="log-files">Log Files</h3>
+
+<p>Monitor these log locations:</p>
+
+<ul>
+  <li><strong>WordPress debug log:</strong> <code class="language-plaintext highlighter-rouge">wp-content/debug.log</code></li>
+  <li><strong>Enrollment system log:</strong> <code class="language-plaintext highlighter-rouge">wp-content/uploads/fields-bright-logs/</code></li>
+  <li><strong>Server error log:</strong> Check your hosting control panel</li>
+</ul>
+
+<h3 id="health-checks">Health Checks</h3>
+
+<p>Verify these periodically:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check Stripe connectivity</span>
+curl <span class="nt">-X</span> GET https://yoursite.com/wp-json/fields-bright/v1/health
+
+<span class="c"># Check recent enrollments</span>
+wp post list <span class="nt">--post_type</span><span class="o">=</span>enrollment <span class="nt">--posts_per_page</span><span class="o">=</span>5
+
+<span class="c"># Check for errors in log</span>
+<span class="nb">tail</span> <span class="nt">-100</span> wp-content/debug.log
+</code></pre></div></div>
+
+<h3 id="stripe-dashboard">Stripe Dashboard</h3>
+
+<p>Monitor in Stripe:</p>
+
+<ul>
+  <li>Payment success rate</li>
+  <li>Failed payment reasons</li>
+  <li>Webhook delivery status</li>
+  <li>Dispute rate</li>
+</ul>
+
+<hr />
+
+<h2 id="backup-strategy">Backup Strategy</h2>
+
+<h3 id="database-backups">Database Backups</h3>
+
+<p>Automate daily backups:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Cron job for daily backup</span>
+0 2 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="nb">cd</span> /path/to/wordpress <span class="o">&amp;&amp;</span> wp db <span class="nb">export</span> /backups/db-<span class="si">$(</span><span class="nb">date</span> +<span class="se">\%</span>Y<span class="se">\%</span>m<span class="se">\%</span>d<span class="si">)</span>.sql
+</code></pre></div></div>
+
+<h3 id="file-backups">File Backups</h3>
+
+<p>Include in your backup:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">wp-content/themes/fields-bright-child-theme/</code></li>
+  <li><code class="language-plaintext highlighter-rouge">wp-content/uploads/</code> (enrollment attachments)</li>
+  <li>Database export</li>
+</ul>
+
+<h3 id="backup-retention">Backup Retention</h3>
+
+<p>Keep backups for:</p>
+
+<ul>
+  <li>Daily backups: 7 days</li>
+  <li>Weekly backups: 4 weeks</li>
+  <li>Monthly backups: 12 months</li>
+</ul>
+
+<hr />
+
+<h2 id="updating">Updating</h2>
+
+<h3 id="update-process">Update Process</h3>
+
+<ol>
+  <li><strong>Backup first</strong> - Always backup before updating</li>
+  <li><strong>Test on staging</strong> - Apply updates to staging environment first</li>
+  <li><strong>Deploy to production</strong> - During low-traffic period</li>
+  <li><strong>Verify functionality</strong> - Test enrollment process after update</li>
+</ol>
+
+<h3 id="version-compatibility">Version Compatibility</h3>
+
+<p>Check compatibility before updating:</p>
+
+<ul>
+  <li>WordPress version requirements</li>
+  <li>PHP version requirements</li>
+  <li>Stripe API version changes</li>
+</ul>
+
+<hr />
+
+<h2 id="troubleshooting-deployment">Troubleshooting Deployment</h2>
+
+<h3 id="common-issues">Common Issues</h3>
+
+<p><strong>Theme not activating:</strong></p>
+<ul>
+  <li>Check PHP version compatibility</li>
+  <li>Look for syntax errors in debug log</li>
+  <li>Verify all required files are uploaded</li>
+</ul>
+
+<p><strong>Stripe not connecting:</strong></p>
+<ul>
+  <li>Verify API keys are correct</li>
+  <li>Check webhook URL is accessible</li>
+  <li>Test with Stripe CLI locally</li>
+</ul>
+
+<p><strong>Emails not sending:</strong></p>
+<ul>
+  <li>Check SMTP configuration</li>
+  <li>Verify sender email is allowed</li>
+  <li>Check spam folders</li>
+</ul>
+
+<p><strong>Enrollments not processing:</strong></p>
+<ul>
+  <li>Verify webhook is receiving events</li>
+  <li>Check webhook signing secret</li>
+  <li>Review Stripe dashboard for errors</li>
+</ul>
+
+<h3 id="getting-help">Getting Help</h3>
+
+<ol>
+  <li>Check the debug log first</li>
+  <li>Review Stripe webhook logs</li>
+  <li>Test components individually</li>
+  <li>Contact development support with detailed logs</li>
+</ol>
+
+<hr />
+
+<h2 id="rollback-procedure">Rollback Procedure</h2>
+
+<p>If deployment causes issues:</p>
+
+<h3 id="quick-rollback">Quick Rollback</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Restore database</span>
+wp db import backup-YYYYMMDD.sql
+
+<span class="c"># Restore files</span>
+unzip backup-files-YYYYMMDD.zip <span class="nt">-d</span> wp-content/themes/
+
+<span class="c"># Clear cache</span>
+wp cache flush
+</code></pre></div></div>
+
+<h3 id="verify-after-rollback">Verify After Rollback</h3>
+
+<ul>
+  <li>Test enrollment process</li>
+  <li>Check admin functionality</li>
+  <li>Verify existing enrollments are intact</li>
+</ul>
+
+<hr />
+
+<h2 id="post-deployment-checklist">Post-Deployment Checklist</h2>
+
+<p>After successful deployment:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Test a complete enrollment flow</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Verify confirmation emails arrive</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Check admin can view/manage enrollments</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Process a test refund (if in test mode)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Monitor for errors for 24 hours</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Inform stakeholders of successful deployment</li>
+</ul>
+
+
+            </main>
+
+            <footer class="site-footer">
+                <div class="footer-content">
+                    <p><small>Version 1.2.0 | © Fields Bright</small></p>
+                    <p><small>Easy-to-use workshop enrollment system with Stripe payments</small></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        sidebarToggle.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+        
+        // Nav group toggle
+        document.querySelectorAll('.nav-group-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.parentElement.classList.toggle('expanded');
+            });
+        });
+        
+        // Auto-expand active nav groups on page load
+        function expandActiveNavGroups() {
+            const currentPath = window.location.pathname;
+            const baseUrl = '/fields-bright-enrollment';
+            const fullCurrentPath = baseUrl ? currentPath.replace(baseUrl, '') : currentPath;
+            
+            document.querySelectorAll('.nav-group').forEach(function(group) {
+                const subLinks = group.querySelectorAll('.nav-sublink');
+                let shouldExpand = false;
+                
+                // Check if any child link matches current page
+                subLinks.forEach(function(link) {
+                    const linkPath = link.getAttribute('href');
+                    if (linkPath) {
+                        // Normalize paths for comparison
+                        const normalizedLink = linkPath.replace(/\/$/, '');
+                        const normalizedCurrent = fullCurrentPath.replace(/\/$/, '');
+                        
+                        if (normalizedCurrent === normalizedLink || 
+                            normalizedCurrent.endsWith(normalizedLink) ||
+                            normalizedLink.endsWith(normalizedCurrent)) {
+                            shouldExpand = true;
+                        }
+                    }
+                });
+                
+                // Also check if the group toggle itself is active (set by template)
+                const groupToggle = group.querySelector('.nav-group-toggle');
+                if (groupToggle && (groupToggle.classList.contains('active') || 
+                    groupToggle.getAttribute('aria-expanded') === 'true')) {
+                    shouldExpand = true;
+                }
+                
+                if (shouldExpand) {
+                    group.classList.add('expanded');
+                    if (groupToggle) {
+                        groupToggle.setAttribute('aria-expanded', 'true');
+                        groupToggle.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Run immediately and also on DOMContentLoaded
+        expandActiveNavGroups();
+        document.addEventListener('DOMContentLoaded', expandActiveNavGroups);
+    </script>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script>
+        // Convert Rouge highlights to Prism.js format
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all Rouge highlight blocks
+            document.querySelectorAll('.highlight').forEach(function(highlight) {
+                const pre = highlight.querySelector('pre');
+                const code = highlight.querySelector('code');
+                
+                if (pre && code) {
+                    // Get the language from Rouge's class (e.g., 'highlight json' -> 'json')
+                    const classes = highlight.className.split(' ');
+                    let language = 'plain';
+                    
+                    // Try to find language in highlight classes
+                    classes.forEach(function(cls) {
+                        if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                            language = cls;
+                        }
+                    });
+                    
+                    // If not found, try code element classes
+                    if (language === 'plain' && code.className) {
+                        const codeClasses = code.className.split(' ');
+                        codeClasses.forEach(function(cls) {
+                            if (cls.startsWith('language-')) {
+                                language = cls.replace('language-', '');
+                            } else if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                                language = cls;
+                            }
+                        });
+                    }
+                    
+                    // Create new Prism.js structure
+                    const newPre = document.createElement('pre');
+                    newPre.className = 'line-numbers language-' + language;
+                    const newCode = document.createElement('code');
+                    newCode.className = 'language-' + language;
+                    newCode.textContent = code.textContent;
+                    newPre.appendChild(newCode);
+                    
+                    // Replace the highlight div with new structure
+                    highlight.parentNode.replaceChild(newPre, highlight);
+                }
+            });
+            
+            // Initialize Prism.js after conversion
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -329,7 +329,7 @@ Post this clearly on your workshop pages and registration forms!
 
 ## Next Steps
 
-- [Managing Enrollments]({{ '/managing-enrollments' | relative_url }}) - Return to enrollment management
-- [Email Templates]({{ '/email-templates' | relative_url }}) - Customize your refund emails
-- [Troubleshooting]({{ '/troubleshooting' | relative_url }}) - Solve common problems
+- [Managing Enrollments]({{ '/guides/managing-enrollments' | relative_url }}) - Return to enrollment management
+- [Email Templates]({{ '/guides/email-templates' | relative_url }}) - Customize your refund emails
+- [Troubleshooting]({{ '/guides/troubleshooting' | relative_url }}) - Solve common problems
 

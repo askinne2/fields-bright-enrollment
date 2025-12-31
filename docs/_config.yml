@@ -2,7 +2,7 @@
 # Jekyll Configuration
 
 # Site settings
-title: "Fields Bright Enrollment System"
+title: "Enrollment System"
 description: "Easy-to-use workshop enrollment system with Stripe payments"
 baseurl: "/fields-bright-enrollment" # GitHub Pages repository name
 url: "" # Your GitHub Pages URL, e.g., https://yourusername.github.io
@@ -20,36 +20,37 @@ plugins:
 
 # Navigation (displayed in header)
 navigation:
-  - title: Home
-    url: /
-  - title: Getting Started
-    url: /getting-started
-  - title: Managing Workshops
-    url: /managing-workshops
-  - title: Managing Enrollments
-    url: /managing-enrollments
-  - title: Processing Refunds
-    url: /processing-refunds
-  - title: Email Templates
-    url: /email-templates
-  - title: Troubleshooting
-    url: /troubleshooting
+  - title: Guides
+    url: /guides/getting-started
+    children:
+      - title: Get Started
+        url: /guides/getting-started
+      - title: Managing Workshops
+        url: /guides/managing-workshops
+      - title: Managing Enrollments
+        url: /guides/managing-enrollments
+      - title: Processing Refunds
+        url: /guides/processing-refunds
+      - title: Email Templates
+        url: /guides/email-templates
+      - title: Troubleshooting
+        url: /guides/troubleshooting
+  - title: Reference
+    url: /reference/api-reference
+    children:
+      - title: API Reference
+        url: /reference/api-reference
+      - title: Security Guide
+        url: /reference/security
+      - title: Deployment
+        url: /reference/deployment
 
-# Technical navigation (for developers)
-technical_navigation:
-  - title: API Reference
-    url: /api-reference
-  - title: Security Guide
-    url: /security
-  - title: Deployment
-    url: /deployment
-
-# Code highlighting
+# Code highlighting - using Prism.js instead of Rouge for better line number support
 kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     block:
-      line_numbers: true
+      line_numbers: false
 
 # Exclude from processing
 exclude:

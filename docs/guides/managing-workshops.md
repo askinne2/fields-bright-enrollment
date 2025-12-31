@@ -191,23 +191,6 @@ You can update almost anything:
 
 ---
 
-## Duplicating a Workshop
-
-Running similar workshops regularly? Save time by duplicating:
-
-1. Go to your workshop list
-2. Hover over the workshop you want to copy
-3. Click **Duplicate**
-4. A copy is created as a draft
-5. Edit the copy with new dates/details
-6. Publish when ready
-
-<div class="tip">
-This is perfect for recurring monthly classes - duplicate, update the date, and publish!
-</div>
-
----
-
 ## Workshop Status
 
 Workshops can have different statuses:
@@ -218,7 +201,6 @@ Workshops can have different statuses:
 | **Draft** | Work in progress | No |
 | **Pending** | Awaiting review | No |
 | **Private** | Only visible to logged-in users | Limited |
-| **Past** | Date has passed | Archives only |
 
 ### Changing Status
 
@@ -278,7 +260,7 @@ A: As far as you like! Many people create their workshops months ahead and publi
 
 ## Next Steps
 
-- [Managing Enrollments]({{ '/managing-enrollments' | relative_url }}) - Handle participant information
-- [Processing Refunds]({{ '/processing-refunds' | relative_url }}) - Manage cancellations
-- [Email Templates]({{ '/email-templates' | relative_url }}) - Customize your communications
+- [Managing Enrollments]({{ '/guides/managing-enrollments' | relative_url }}) - Handle participant information
+- [Processing Refunds]({{ '/guides/processing-refunds' | relative_url }}) - Manage cancellations
+- [Email Templates]({{ '/guides/email-templates' | relative_url }}) - Customize your communications
 

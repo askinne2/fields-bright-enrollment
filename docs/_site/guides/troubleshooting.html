@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting | Enrollment System</title>
+    <meta name="description" content="Find solutions to common issues with the Fields Bright Enrollment System.">
+    
+    <link rel="stylesheet" href="/fields-bright-enrollment/assets/css/style.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Troubleshooting | Enrollment System</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Troubleshooting" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Find solutions to common issues with the Fields Bright Enrollment System." />
+<meta property="og:description" content="Find solutions to common issues with the Fields Bright Enrollment System." />
+<link rel="canonical" href="http://localhost:4000/fields-bright-enrollment/guides/troubleshooting.html" />
+<meta property="og:url" content="http://localhost:4000/fields-bright-enrollment/guides/troubleshooting.html" />
+<meta property="og:site_name" content="Enrollment System" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Troubleshooting" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Find solutions to common issues with the Fields Bright Enrollment System.","headline":"Troubleshooting","url":"http://localhost:4000/fields-bright-enrollment/guides/troubleshooting.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/fields-bright-enrollment/feed.xml" title="Enrollment System" />
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/fields-bright-enrollment/" class="site-title">Enrollment System</a>
+                <button class="sidebar-close" aria-label="Close sidebar" id="sidebar-close">×</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="/fields-bright-enrollment/" class="nav-link ">
+                            <span class="nav-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Guides</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/getting-started" class="nav-sublink ">
+                                    Get Started
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-workshops" class="nav-sublink ">
+                                    Managing Workshops
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-enrollments" class="nav-sublink ">
+                                    Managing Enrollments
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/processing-refunds" class="nav-sublink ">
+                                    Processing Refunds
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/email-templates" class="nav-sublink ">
+                                    Email Templates
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/troubleshooting" class="nav-sublink ">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Reference</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/api-reference" class="nav-sublink ">
+                                    API Reference
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/security" class="nav-sublink ">
+                                    Security Guide
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/deployment" class="nav-sublink ">
+                                    Deployment
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="site-header">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar" id="sidebar-toggle">☰</button>
+            </header>
+
+            <main class="main-content">
+                <h1 id="troubleshooting">Troubleshooting</h1>
+
+<p>Having an issue? This guide covers the most common problems and how to solve them.</p>
+
+<h2 id="quick-diagnosis">Quick Diagnosis</h2>
+
+<p><strong>Before diving into specific issues, try these steps:</strong></p>
+
+<ol>
+  <li><strong>Refresh the page</strong> (Ctrl+F5 or Cmd+Shift+R)</li>
+  <li><strong>Clear your browser cache</strong></li>
+  <li><strong>Try a different browser</strong></li>
+  <li><strong>Log out and back in</strong> to WordPress</li>
+</ol>
+
+<p>If the problem persists, find your issue below.</p>
+
+<hr />
+
+<h2 id="enrollment-issues">Enrollment Issues</h2>
+
+<h3 id="customer-says-payment-went-through-but-theyre-not-enrolled">Customer says payment went through but they’re not enrolled</h3>
+
+<p><strong>Why this happens:</strong> The payment processed, but the confirmation didn’t complete (often due to closing the browser too soon).</p>
+
+<p><strong>How to fix:</strong></p>
+
+<ol>
+  <li>Check your Stripe dashboard for the payment</li>
+  <li>If the payment exists:
+    <ul>
+      <li>Find the enrollment in WordPress (it might be “Pending”)</li>
+      <li>Update the status to “Completed”</li>
+      <li>Manually send them a confirmation email</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="tip">
+To prevent this, remind customers to wait for the confirmation page to load completely.
+</div>
+
+<hr />
+
+<h3 id="customer-sees-payment-failed-error">Customer sees “Payment Failed” error</h3>
+
+<p><strong>Common causes:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cause</th>
+      <th>Solution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Insufficient funds</td>
+      <td>Customer needs to try a different card</td>
+    </tr>
+    <tr>
+      <td>Card declined by bank</td>
+      <td>Customer should contact their bank</td>
+    </tr>
+    <tr>
+      <td>Incorrect card details</td>
+      <td>Double-check numbers, expiry, CVC</td>
+    </tr>
+    <tr>
+      <td>3D Secure failed</td>
+      <td>Customer needs to complete bank verification</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>What to tell the customer:</strong></p>
+
+<p>“Your bank declined the payment. Please try a different payment method or contact your bank to authorize the transaction, then try again.”</p>
+
+<hr />
+
+<h3 id="customer-enrolled-twice-duplicate-enrollment">Customer enrolled twice (duplicate enrollment)</h3>
+
+<p><strong>Why this happens:</strong> Customer clicked “Pay” multiple times, or refreshed during processing.</p>
+
+<p><strong>How to fix:</strong></p>
+
+<ol>
+  <li>Check if both enrollments have payments in Stripe</li>
+  <li>If only one payment exists:
+    <ul>
+      <li>Delete the enrollment without a payment</li>
+    </ul>
+  </li>
+  <li>If two payments exist:
+    <ul>
+      <li>Refund one of the payments</li>
+      <li>Delete one enrollment</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="warning">
+Always verify in Stripe before deleting. You don't want to leave a paid customer without an enrollment!
+</div>
+
+<hr />
+
+<h3 id="workshop-is-full-but-the-count-seems-wrong">“Workshop is full” but the count seems wrong</h3>
+
+<p><strong>Why this happens:</strong> A “Pending” enrollment might be holding a spot.</p>
+
+<p><strong>How to check:</strong></p>
+
+<ol>
+  <li>Go to the workshop’s enrollments</li>
+  <li>Look for any “Pending” status enrollments</li>
+  <li>If they’re old (more than an hour) and no payment in Stripe, delete them</li>
+</ol>
+
+<p><strong>How to prevent:</strong></p>
+
+<p>Pending enrollments that don’t complete should automatically expire. If this isn’t happening, contact your developer.</p>
+
+<hr />
+
+<h2 id="payment-issues">Payment Issues</h2>
+
+<h3 id="i-cant-see-the-payment-in-stripe">I can’t see the payment in Stripe</h3>
+
+<p><strong>Check these things:</strong></p>
+
+<ol>
+  <li><strong>Test vs. Live mode</strong> - Are you looking at the right mode in Stripe?</li>
+  <li><strong>Correct account</strong> - Do you have multiple Stripe accounts?</li>
+  <li><strong>Date filter</strong> - Stripe defaults to recent payments; expand the date range</li>
+  <li><strong>Search properly</strong> - Try searching by email address instead of name</li>
+</ol>
+
+<hr />
+
+<h3 id="refund-wont-process">Refund won’t process</h3>
+
+<p><strong>Common causes and solutions:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Error Message</th>
+      <th>Solution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>“Original payment not found”</td>
+      <td>Payment too old or already refunded</td>
+    </tr>
+    <tr>
+      <td>“Insufficient funds”</td>
+      <td>Your Stripe balance is too low</td>
+    </tr>
+    <tr>
+      <td>“Card expired”</td>
+      <td>Can’t refund to expired cards; contact Stripe support</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="customer-charged-but-status-shows-pending">Customer charged but status shows “Pending”</h3>
+
+<p><strong>Why this happens:</strong> Stripe webhook didn’t reach your site.</p>
+
+<p><strong>How to fix:</strong></p>
+
+<ol>
+  <li>Verify payment in Stripe dashboard</li>
+  <li>Manually update enrollment status to “Completed”</li>
+  <li>Send customer their confirmation</li>
+</ol>
+
+<p><strong>To prevent recurring issues:</strong>
+Contact your developer to check webhook configuration.</p>
+
+<hr />
+
+<h2 id="workshop-display-issues">Workshop Display Issues</h2>
+
+<h3 id="workshop-isnt-showing-on-the-website">Workshop isn’t showing on the website</h3>
+
+<p><strong>Check these things:</strong></p>
+
+<ol>
+  <li><strong>Is it published?</strong> Draft workshops aren’t visible</li>
+  <li><strong>Has the date passed?</strong> Past workshops may be hidden</li>
+  <li><strong>Is enrollment enabled?</strong> Check the workshop settings</li>
+  <li><strong>Cache issue?</strong> Clear your website cache</li>
+</ol>
+
+<p><strong>How to test:</strong>
+Log out and view the page as a regular visitor.</p>
+
+<hr />
+
+<h3 id="wrong-price-is-displaying">Wrong price is displaying</h3>
+
+<p><strong>Possible causes:</strong></p>
+
+<ol>
+  <li><strong>Browser cache</strong> - Try a hard refresh</li>
+  <li><strong>Multiple pricing options</strong> - Is the correct default selected?</li>
+  <li><strong>Site cache</strong> - Clear any caching plugin’s cache</li>
+</ol>
+
+<hr />
+
+<h3 id="sold-out-showing-but-spots-are-available">“Sold Out” showing but spots are available</h3>
+
+<p><strong>Check:</strong></p>
+
+<ol>
+  <li>Actual enrollment count vs. capacity</li>
+  <li>Are there pending enrollments holding spots?</li>
+  <li>Clear cache and refresh</li>
+</ol>
+
+<hr />
+
+<h2 id="email-issues">Email Issues</h2>
+
+<h3 id="customers-arent-receiving-confirmation-emails">Customers aren’t receiving confirmation emails</h3>
+
+<p><strong>Most common causes:</strong></p>
+
+<ol>
+  <li><strong>Spam folder</strong> - Ask them to check spam/junk</li>
+  <li><strong>Email deliverability issues</strong> - See below</li>
+  <li><strong>Wrong email address</strong> - Typos happen</li>
+</ol>
+
+<p><strong>Improving email deliverability:</strong></p>
+
+<ul>
+  <li>Use a professional sending address</li>
+  <li>Set up proper email authentication (ask your developer)</li>
+  <li>Consider using an SMTP plugin</li>
+  <li>Avoid spam-trigger words</li>
+</ul>
+
+<div class="note">
+Gmail users: Check the "Promotions" and "Updates" tabs, not just the primary inbox.
+</div>
+
+<hr />
+
+<h3 id="emails-going-to-spam">Emails going to spam</h3>
+
+<p><strong>Quick fixes:</strong></p>
+
+<ol>
+  <li>Ask recipients to mark your email as “Not Spam”</li>
+  <li>Have them add your email to their contacts</li>
+  <li>Avoid spam-trigger words in subject lines</li>
+</ol>
+
+<p><strong>Long-term fixes (need developer help):</strong></p>
+
+<ul>
+  <li>Set up SPF records</li>
+  <li>Configure DKIM authentication</li>
+  <li>Implement DMARC</li>
+  <li>Use a dedicated email sending service</li>
+</ul>
+
+<hr />
+
+<h3 id="placeholders-showing-instead-of-actual-data">Placeholders showing instead of actual data</h3>
+
+<p><strong>Example:</strong> Email shows <code class="language-plaintext highlighter-rouge">{customer_name}</code> instead of “John Smith”</p>
+
+<p><strong>Fixes:</strong></p>
+
+<ol>
+  <li>Check placeholder spelling exactly</li>
+  <li>Save and re-save the email template</li>
+  <li>Contact developer if it persists</li>
+</ol>
+
+<hr />
+
+<h2 id="admin-access-issues">Admin Access Issues</h2>
+
+<h3 id="you-do-not-have-permission-error">“You do not have permission” error</h3>
+
+<p><strong>Possible causes:</strong></p>
+
+<ol>
+  <li><strong>Wrong user role</strong> - You need Administrator or Editor role</li>
+  <li><strong>Session expired</strong> - Log out and back in</li>
+  <li><strong>Plugin conflict</strong> - Ask developer to check</li>
+</ol>
+
+<hr />
+
+<h3 id="workshop-or-enrollment-menus-missing">Workshop or Enrollment menus missing</h3>
+
+<p><strong>Check:</strong></p>
+
+<ol>
+  <li>Are you logged in as an Administrator?</li>
+  <li>Is the enrollment system plugin activated?</li>
+  <li>Check with your developer</li>
+</ol>
+
+<hr />
+
+<h2 id="performance-issues">Performance Issues</h2>
+
+<h3 id="pages-loading-slowly">Pages loading slowly</h3>
+
+<p><strong>Common causes:</strong></p>
+
+<ol>
+  <li><strong>Too many workshops loading</strong> - Archive pages with many workshops</li>
+  <li><strong>Large images</strong> - Optimize workshop images</li>
+  <li><strong>Server issues</strong> - Contact your host</li>
+</ol>
+
+<p><strong>Quick fixes:</strong></p>
+
+<ol>
+  <li>Reduce number of workshops per page</li>
+  <li>Compress images before uploading</li>
+  <li>Clear caching plugins</li>
+</ol>
+
+<hr />
+
+<h3 id="admin-area-is-slow">Admin area is slow</h3>
+
+<p><strong>Try:</strong></p>
+
+<ol>
+  <li>Disable other plugins temporarily to test</li>
+  <li>Check for plugin updates</li>
+  <li>Contact your host about server performance</li>
+</ol>
+
+<hr />
+
+<h2 id="error-messages-explained">Error Messages Explained</h2>
+
+<h3 id="invalid-nonce">“Invalid nonce”</h3>
+
+<p><strong>What it means:</strong> Your session expired or there’s a security mismatch.</p>
+
+<p><strong>Fix:</strong> Refresh the page and try again. If it persists, log out and back in.</p>
+
+<hr />
+
+<h3 id="workshop-not-found">“Workshop not found”</h3>
+
+<p><strong>What it means:</strong> The workshop ID doesn’t exist or was deleted.</p>
+
+<p><strong>Check:</strong> Was the workshop accidentally deleted? Check trash.</p>
+
+<hr />
+
+<h3 id="stripe-connection-error">“Stripe connection error”</h3>
+
+<p><strong>What it means:</strong> Can’t connect to Stripe.</p>
+
+<p><strong>Causes:</strong></p>
+<ul>
+  <li>Stripe is down (rare)</li>
+  <li>API keys are wrong</li>
+  <li>Server can’t reach Stripe</li>
+</ul>
+
+<p><strong>Fix:</strong> Contact your developer to verify Stripe configuration.</p>
+
+<hr />
+
+<h3 id="database-error">“Database error”</h3>
+
+<p><strong>What it means:</strong> Something went wrong saving or reading data.</p>
+
+<p><strong>First steps:</strong></p>
+<ol>
+  <li>Refresh and try again</li>
+  <li>If persistent, note the exact error message</li>
+  <li>Contact your developer with the details</li>
+</ol>
+
+<hr />
+
+<h2 id="getting-more-help">Getting More Help</h2>
+
+<h3 id="information-to-gather">Information to Gather</h3>
+
+<p>Before contacting support, collect:</p>
+
+<ol>
+  <li><strong>What you were trying to do</strong></li>
+  <li><strong>What happened instead</strong></li>
+  <li><strong>Any error messages</strong> (exact wording or screenshot)</li>
+  <li><strong>When it started happening</strong></li>
+  <li><strong>Does it affect all workshops or just one?</strong></li>
+  <li><strong>Browser and device you’re using</strong></li>
+</ol>
+
+<h3 id="where-to-get-help">Where to Get Help</h3>
+
+<ol>
+  <li><strong>This documentation</strong> - Search for your specific issue</li>
+  <li><strong>Your website administrator</strong> - For technical problems</li>
+  <li><strong>Developer support</strong> - For bugs or feature issues</li>
+</ol>
+
+<hr />
+
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+<p><strong>Q: How do I test the system without real payments?</strong></p>
+
+<p>A: Ask your developer to enable Stripe “Test Mode.” Then use test card number: 4242 4242 4242 4242</p>
+
+<p><strong>Q: Can I edit an enrollment after it’s created?</strong></p>
+
+<p>A: Yes, you can change most fields. Be careful changing status - it doesn’t automatically process refunds.</p>
+
+<p><strong>Q: What happens to enrollments if I delete a workshop?</strong></p>
+
+<p>A: Enrollments stay in the system but become “orphaned.” It’s better to unpublish a workshop rather than delete it.</p>
+
+<p><strong>Q: How do I export all my data?</strong></p>
+
+<p>A: Go to Enrollments → Export. You can filter by date range, workshop, or status.</p>
+
+<p><strong>Q: Can customers edit their own enrollment?</strong></p>
+
+<p>A: Not directly. They need to contact you to make changes.</p>
+
+<hr />
+
+<h2 id="still-stuck">Still Stuck?</h2>
+
+<p>If you’ve tried the solutions above and still have issues:</p>
+
+<ol>
+  <li><strong>Document the problem</strong> - Screenshots, error messages, steps to reproduce</li>
+  <li><strong>Note what you’ve already tried</strong></li>
+  <li><strong>Contact your website administrator</strong> with all this information</li>
+</ol>
+
+<p>Most issues can be resolved quickly with the right information!</p>
+
+
+            </main>
+
+            <footer class="site-footer">
+                <div class="footer-content">
+                    <p><small>Version 1.2.0 | © Fields Bright</small></p>
+                    <p><small>Easy-to-use workshop enrollment system with Stripe payments</small></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        sidebarToggle.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+        
+        // Nav group toggle
+        document.querySelectorAll('.nav-group-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.parentElement.classList.toggle('expanded');
+            });
+        });
+        
+        // Auto-expand active nav groups on page load
+        function expandActiveNavGroups() {
+            const currentPath = window.location.pathname;
+            const baseUrl = '/fields-bright-enrollment';
+            const fullCurrentPath = baseUrl ? currentPath.replace(baseUrl, '') : currentPath;
+            
+            document.querySelectorAll('.nav-group').forEach(function(group) {
+                const subLinks = group.querySelectorAll('.nav-sublink');
+                let shouldExpand = false;
+                
+                // Check if any child link matches current page
+                subLinks.forEach(function(link) {
+                    const linkPath = link.getAttribute('href');
+                    if (linkPath) {
+                        // Normalize paths for comparison
+                        const normalizedLink = linkPath.replace(/\/$/, '');
+                        const normalizedCurrent = fullCurrentPath.replace(/\/$/, '');
+                        
+                        if (normalizedCurrent === normalizedLink || 
+                            normalizedCurrent.endsWith(normalizedLink) ||
+                            normalizedLink.endsWith(normalizedCurrent)) {
+                            shouldExpand = true;
+                        }
+                    }
+                });
+                
+                // Also check if the group toggle itself is active (set by template)
+                const groupToggle = group.querySelector('.nav-group-toggle');
+                if (groupToggle && (groupToggle.classList.contains('active') || 
+                    groupToggle.getAttribute('aria-expanded') === 'true')) {
+                    shouldExpand = true;
+                }
+                
+                if (shouldExpand) {
+                    group.classList.add('expanded');
+                    if (groupToggle) {
+                        groupToggle.setAttribute('aria-expanded', 'true');
+                        groupToggle.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Run immediately and also on DOMContentLoaded
+        expandActiveNavGroups();
+        document.addEventListener('DOMContentLoaded', expandActiveNavGroups);
+    </script>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script>
+        // Convert Rouge highlights to Prism.js format
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all Rouge highlight blocks
+            document.querySelectorAll('.highlight').forEach(function(highlight) {
+                const pre = highlight.querySelector('pre');
+                const code = highlight.querySelector('code');
+                
+                if (pre && code) {
+                    // Get the language from Rouge's class (e.g., 'highlight json' -> 'json')
+                    const classes = highlight.className.split(' ');
+                    let language = 'plain';
+                    
+                    // Try to find language in highlight classes
+                    classes.forEach(function(cls) {
+                        if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                            language = cls;
+                        }
+                    });
+                    
+                    // If not found, try code element classes
+                    if (language === 'plain' && code.className) {
+                        const codeClasses = code.className.split(' ');
+                        codeClasses.forEach(function(cls) {
+                            if (cls.startsWith('language-')) {
+                                language = cls.replace('language-', '');
+                            } else if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                                language = cls;
+                            }
+                        });
+                    }
+                    
+                    // Create new Prism.js structure
+                    const newPre = document.createElement('pre');
+                    newPre.className = 'line-numbers language-' + language;
+                    const newCode = document.createElement('code');
+                    newCode.className = 'language-' + language;
+                    newCode.textContent = code.textContent;
+                    newPre.appendChild(newCode);
+                    
+                    // Replace the highlight div with new structure
+                    highlight.parentNode.replaceChild(newPre, highlight);
+                }
+            });
+            
+            // Initialize Prism.js after conversion
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing Enrollments | Enrollment System</title>
+    <meta name="description" content="Learn how to view, manage, and export enrollment data in the Fields Bright Enrollment System.">
+    
+    <link rel="stylesheet" href="/fields-bright-enrollment/assets/css/style.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Managing Enrollments | Enrollment System</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Managing Enrollments" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how to view, manage, and export enrollment data in the Fields Bright Enrollment System." />
+<meta property="og:description" content="Learn how to view, manage, and export enrollment data in the Fields Bright Enrollment System." />
+<link rel="canonical" href="http://localhost:4000/fields-bright-enrollment/guides/managing-enrollments.html" />
+<meta property="og:url" content="http://localhost:4000/fields-bright-enrollment/guides/managing-enrollments.html" />
+<meta property="og:site_name" content="Enrollment System" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Managing Enrollments" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Learn how to view, manage, and export enrollment data in the Fields Bright Enrollment System.","headline":"Managing Enrollments","url":"http://localhost:4000/fields-bright-enrollment/guides/managing-enrollments.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/fields-bright-enrollment/feed.xml" title="Enrollment System" />
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/fields-bright-enrollment/" class="site-title">Enrollment System</a>
+                <button class="sidebar-close" aria-label="Close sidebar" id="sidebar-close">×</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="/fields-bright-enrollment/" class="nav-link ">
+                            <span class="nav-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Guides</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/getting-started" class="nav-sublink ">
+                                    Get Started
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-workshops" class="nav-sublink ">
+                                    Managing Workshops
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-enrollments" class="nav-sublink ">
+                                    Managing Enrollments
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/processing-refunds" class="nav-sublink ">
+                                    Processing Refunds
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/email-templates" class="nav-sublink ">
+                                    Email Templates
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/troubleshooting" class="nav-sublink ">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Reference</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/api-reference" class="nav-sublink ">
+                                    API Reference
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/security" class="nav-sublink ">
+                                    Security Guide
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/deployment" class="nav-sublink ">
+                                    Deployment
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="site-header">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar" id="sidebar-toggle">☰</button>
+            </header>
+
+            <main class="main-content">
+                <h1 id="managing-enrollments">Managing Enrollments</h1>
+
+<p>Once people start enrolling in your workshops, you’ll need to manage their information. This guide shows you how to view enrollments, update statuses, and keep track of who’s attending.</p>
+
+<h2 id="viewing-all-enrollments">Viewing All Enrollments</h2>
+
+<p>To see everyone who has enrolled:</p>
+
+<ol>
+  <li>Log into WordPress</li>
+  <li>Click <strong>Enrollments</strong> in the left sidebar</li>
+  <li>You’ll see a list of all enrollments across all workshops</li>
+</ol>
+
+<h3 id="understanding-the-enrollment-list">Understanding the Enrollment List</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>What It Means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Name</strong></td>
+      <td>The participant’s name</td>
+    </tr>
+    <tr>
+      <td><strong>Workshop</strong></td>
+      <td>Which workshop they enrolled in</td>
+    </tr>
+    <tr>
+      <td><strong>Status</strong></td>
+      <td>Current enrollment status (see below)</td>
+    </tr>
+    <tr>
+      <td><strong>Date</strong></td>
+      <td>When they enrolled</td>
+    </tr>
+    <tr>
+      <td><strong>Amount</strong></td>
+      <td>How much they paid</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="enrollment-statuses">Enrollment Statuses</h2>
+
+<p>Every enrollment has a status that tells you where it is in the process:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>What It Means</th>
+      <th>What You Should Do</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Pending</strong></td>
+      <td>Started enrollment but hasn’t paid</td>
+      <td>Wait for payment or follow up</td>
+    </tr>
+    <tr>
+      <td><strong>Completed</strong></td>
+      <td>Paid and confirmed</td>
+      <td>They’re ready to attend!</td>
+    </tr>
+    <tr>
+      <td><strong>Cancelled</strong></td>
+      <td>Enrollment was cancelled</td>
+      <td>Check if refund was processed</td>
+    </tr>
+    <tr>
+      <td><strong>Refunded</strong></td>
+      <td>Full refund was issued</td>
+      <td>No further action needed</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="tip">
+You can filter the enrollment list by status using the dropdown at the top of the page.
+</div>
+
+<hr />
+
+<h2 id="viewing-a-single-enrollment">Viewing a Single Enrollment</h2>
+
+<p>To see all details for one enrollment:</p>
+
+<ol>
+  <li>Click on the participant’s name in the list</li>
+  <li>You’ll see their full enrollment record</li>
+</ol>
+
+<h3 id="enrollment-details-include">Enrollment Details Include:</h3>
+
+<p><strong>Participant Information:</strong></p>
+<ul>
+  <li>Full name</li>
+  <li>Email address</li>
+  <li>Phone number (if collected)</li>
+</ul>
+
+<p><strong>Workshop Details:</strong></p>
+<ul>
+  <li>Which workshop they enrolled in</li>
+  <li>The date and time</li>
+  <li>Which pricing option they selected</li>
+</ul>
+
+<p><strong>Payment Information:</strong></p>
+<ul>
+  <li>Amount paid</li>
+  <li>Payment date</li>
+  <li>Stripe transaction ID</li>
+  <li>Payment status</li>
+</ul>
+
+<div class="note">
+The Stripe transaction ID is useful if you need to look up the payment in your Stripe dashboard.
+</div>
+
+<hr />
+
+<h2 id="finding-enrollments-for-a-specific-workshop">Finding Enrollments for a Specific Workshop</h2>
+
+<p>To see who’s enrolled in a particular workshop:</p>
+
+<h3 id="method-1-filter-the-list">Method 1: Filter the List</h3>
+<ol>
+  <li>Go to <strong>Enrollments</strong></li>
+  <li>Use the <strong>Workshop</strong> filter dropdown</li>
+  <li>Select the workshop you want to see</li>
+</ol>
+
+<h3 id="method-2-from-the-workshop">Method 2: From the Workshop</h3>
+<ol>
+  <li>Go to <strong>Workshops</strong> and click on the workshop</li>
+  <li>Scroll down to the <strong>Enrollments</strong> section</li>
+  <li>You’ll see everyone enrolled in that workshop</li>
+</ol>
+
+<hr />
+
+<h2 id="changing-enrollment-status">Changing Enrollment Status</h2>
+
+<p>Sometimes you need to manually update an enrollment’s status:</p>
+
+<ol class="steps">
+<li>
+<strong>Find the Enrollment</strong><br />
+Go to <strong>Enrollments</strong> and click on the enrollment you need to update.
+</li>
+
+<li>
+<strong>Find the Status Field</strong><br />
+Look for the <strong>Enrollment Status</strong> dropdown in the enrollment details.
+</li>
+
+<li>
+<strong>Select the New Status</strong><br />
+Choose from: Pending, Completed, Cancelled, or Refunded.
+</li>
+
+<li>
+<strong>Update the Record</strong><br />
+Click <strong>Update</strong> to save your changes.
+</li>
+</ol>
+
+<div class="warning">
+<strong>Changing to "Cancelled" doesn't automatically refund the payment.</strong> If the customer paid, you'll need to process a refund separately. See <a href="/fields-bright-enrollment/guides/processing-refunds">Processing Refunds</a>.
+</div>
+
+<hr />
+
+<h2 id="exporting-enrollment-data">Exporting Enrollment Data</h2>
+
+<p>You can download enrollment information for:</p>
+
+<ul>
+  <li>Creating attendance sheets</li>
+  <li>Importing into other systems</li>
+  <li>Keeping records</li>
+  <li>Sharing with instructors</li>
+</ul>
+
+<h3 id="how-to-export">How to Export</h3>
+
+<ol class="steps">
+<li>
+<strong>Go to Enrollments</strong>
+</li>
+
+<li>
+<strong>Set Your Filters</strong><br />
+Filter by workshop, date range, or status to export only what you need.
+</li>
+
+<li>
+<strong>Click Export</strong><br />
+Click the <strong>Export</strong> button at the top of the page.
+</li>
+
+<li>
+<strong>Choose Your Format</strong>
+<ul>
+<li><strong>CSV</strong> - Opens in Excel, Google Sheets, etc.</li>
+<li><strong>PDF</strong> - Ready to print</li>
+</ul>
+</li>
+</ol>
+
+<h3 id="whats-included-in-exports">What’s Included in Exports</h3>
+
+<p>The export includes:</p>
+
+<ul>
+  <li>Participant name and contact info</li>
+  <li>Workshop name and date</li>
+  <li>Enrollment status</li>
+  <li>Amount paid</li>
+  <li>Enrollment date</li>
+</ul>
+
+<div class="tip">
+Export a list the day before your workshop to have a printed attendance sheet ready!
+</div>
+
+<hr />
+
+<h2 id="handling-common-situations">Handling Common Situations</h2>
+
+<h3 id="i-need-to-add-someone-manually">“I need to add someone manually”</h3>
+
+<p>If someone paid in person or needs to be added manually:</p>
+
+<ol>
+  <li>Go to <strong>Enrollments → Add New</strong></li>
+  <li>Select the workshop</li>
+  <li>Enter the participant’s information</li>
+  <li>Set the status (usually “Completed” for in-person payments)</li>
+  <li>Note the payment method in the notes field</li>
+  <li>Click <strong>Publish</strong></li>
+</ol>
+
+<div class="note">
+Manual enrollments don't process through Stripe, so no payment will be collected online.
+</div>
+
+<h3 id="someone-says-they-enrolled-but-i-dont-see-them">“Someone says they enrolled but I don’t see them”</h3>
+
+<p>Check these things:</p>
+
+<ol>
+  <li><strong>Check all statuses</strong> - They might be “Pending” if payment didn’t complete</li>
+  <li><strong>Search by email</strong> - Use the search box with their email address</li>
+  <li><strong>Check the right workshop</strong> - Make sure you’re looking at the correct one</li>
+  <li><strong>Check their spam folder</strong> - Their confirmation email might be there</li>
+  <li><strong>Ask for details</strong> - Ask them when they enrolled and what email they used</li>
+</ol>
+
+<h3 id="the-enrollment-shows-pending-but-they-say-they-paid">“The enrollment shows Pending but they say they paid”</h3>
+
+<p>This can happen if:</p>
+
+<ul>
+  <li>Payment was processing when they closed the browser</li>
+  <li>Their bank flagged the payment</li>
+  <li>The webhook didn’t arrive (technical issue)</li>
+</ul>
+
+<p><strong>What to do:</strong></p>
+
+<ol>
+  <li>Check your Stripe dashboard for the payment</li>
+  <li>If payment is there, manually update the status to “Completed”</li>
+  <li>If no payment, ask them to try enrolling again</li>
+</ol>
+
+<h3 id="i-need-to-move-someone-to-a-different-workshop">“I need to move someone to a different workshop”</h3>
+
+<p>The easiest approach:</p>
+
+<ol>
+  <li>Cancel their current enrollment (refund if needed)</li>
+  <li>Have them enroll in the new workshop</li>
+  <li>Or manually create an enrollment in the new workshop</li>
+</ol>
+
+<hr />
+
+<h2 id="communicating-with-participants">Communicating with Participants</h2>
+
+<h3 id="emailing-individual-participants">Emailing Individual Participants</h3>
+
+<p>From an enrollment record:</p>
+
+<ol>
+  <li>Click on their email address</li>
+  <li>Your default email app will open</li>
+  <li>Write your message and send</li>
+</ol>
+
+<h3 id="emailing-all-participants-in-a-workshop">Emailing All Participants in a Workshop</h3>
+
+<p>Currently, you’ll need to:</p>
+
+<ol>
+  <li>Export the workshop enrollments</li>
+  <li>Open the CSV in Excel/Sheets</li>
+  <li>Copy the email addresses</li>
+  <li>Use your email program to send to all</li>
+</ol>
+
+<div class="tip">
+Consider using the BCC field when emailing multiple participants to protect everyone's privacy.
+</div>
+
+<hr />
+
+<h2 id="understanding-payment-information">Understanding Payment Information</h2>
+
+<p>Each completed enrollment shows:</p>
+
+<p><strong>Amount Paid</strong></p>
+<ul>
+  <li>The total amount charged to the customer</li>
+</ul>
+
+<p><strong>Stripe Payment ID</strong></p>
+<ul>
+  <li>A unique identifier for the transaction</li>
+  <li>Use this if you need to find it in Stripe’s dashboard</li>
+</ul>
+
+<p><strong>Payment Date</strong></p>
+<ul>
+  <li>When the payment was processed</li>
+</ul>
+
+<h3 id="finding-a-payment-in-stripe">Finding a Payment in Stripe</h3>
+
+<ol>
+  <li>Copy the Stripe Payment ID from the enrollment</li>
+  <li>Log into your <a href="https://dashboard.stripe.com">Stripe Dashboard</a></li>
+  <li>Go to Payments</li>
+  <li>Paste the ID in the search box</li>
+</ol>
+
+<hr />
+
+<h2 id="enrollment-reports">Enrollment Reports</h2>
+
+<h3 id="quick-stats">Quick Stats</h3>
+
+<p>At the top of the Enrollments page, you’ll see:</p>
+
+<ul>
+  <li><strong>Total Enrollments</strong> - All-time enrollment count</li>
+  <li><strong>This Month</strong> - Enrollments this month</li>
+  <li><strong>Revenue</strong> - Total revenue from enrollments</li>
+</ul>
+
+<h3 id="viewing-revenue-by-workshop">Viewing Revenue by Workshop</h3>
+
+<p>On each workshop’s edit page, you can see:</p>
+
+<ul>
+  <li>Total revenue for that workshop</li>
+  <li>Number of enrollments</li>
+  <li>Capacity vs. filled spots</li>
+</ul>
+
+<hr />
+
+<h2 id="privacy-and-data">Privacy and Data</h2>
+
+<h3 id="what-data-is-collected">What Data is Collected</h3>
+
+<p>When someone enrolls, we collect:</p>
+
+<ul>
+  <li>Name</li>
+  <li>Email address</li>
+  <li>Phone (if required)</li>
+  <li>Payment information (stored securely by Stripe, not on your site)</li>
+</ul>
+
+<h3 id="handling-data-requests">Handling Data Requests</h3>
+
+<p>If a customer asks what data you have:</p>
+
+<ol>
+  <li>Search for their enrollments</li>
+  <li>Export their enrollment records</li>
+  <li>Provide them the information</li>
+</ol>
+
+<p>If they ask you to delete their data:</p>
+
+<ol>
+  <li>Export their records first (for your records)</li>
+  <li>Delete their enrollment records</li>
+  <li>Note: Some data may need to be kept for tax/legal purposes</li>
+</ol>
+
+<hr />
+
+<h2 id="next-steps">Next Steps</h2>
+
+<ul>
+  <li><a href="/fields-bright-enrollment/guides/processing-refunds">Processing Refunds</a> - Handle cancellations and refunds</li>
+  <li><a href="/fields-bright-enrollment/guides/email-templates">Email Templates</a> - Customize confirmation emails</li>
+  <li><a href="/fields-bright-enrollment/guides/troubleshooting">Troubleshooting</a> - Solve common problems</li>
+</ul>
+
+
+            </main>
+
+            <footer class="site-footer">
+                <div class="footer-content">
+                    <p><small>Version 1.2.0 | © Fields Bright</small></p>
+                    <p><small>Easy-to-use workshop enrollment system with Stripe payments</small></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        sidebarToggle.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+        
+        // Nav group toggle
+        document.querySelectorAll('.nav-group-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.parentElement.classList.toggle('expanded');
+            });
+        });
+        
+        // Auto-expand active nav groups on page load
+        function expandActiveNavGroups() {
+            const currentPath = window.location.pathname;
+            const baseUrl = '/fields-bright-enrollment';
+            const fullCurrentPath = baseUrl ? currentPath.replace(baseUrl, '') : currentPath;
+            
+            document.querySelectorAll('.nav-group').forEach(function(group) {
+                const subLinks = group.querySelectorAll('.nav-sublink');
+                let shouldExpand = false;
+                
+                // Check if any child link matches current page
+                subLinks.forEach(function(link) {
+                    const linkPath = link.getAttribute('href');
+                    if (linkPath) {
+                        // Normalize paths for comparison
+                        const normalizedLink = linkPath.replace(/\/$/, '');
+                        const normalizedCurrent = fullCurrentPath.replace(/\/$/, '');
+                        
+                        if (normalizedCurrent === normalizedLink || 
+                            normalizedCurrent.endsWith(normalizedLink) ||
+                            normalizedLink.endsWith(normalizedCurrent)) {
+                            shouldExpand = true;
+                        }
+                    }
+                });
+                
+                // Also check if the group toggle itself is active (set by template)
+                const groupToggle = group.querySelector('.nav-group-toggle');
+                if (groupToggle && (groupToggle.classList.contains('active') || 
+                    groupToggle.getAttribute('aria-expanded') === 'true')) {
+                    shouldExpand = true;
+                }
+                
+                if (shouldExpand) {
+                    group.classList.add('expanded');
+                    if (groupToggle) {
+                        groupToggle.setAttribute('aria-expanded', 'true');
+                        groupToggle.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Run immediately and also on DOMContentLoaded
+        expandActiveNavGroups();
+        document.addEventListener('DOMContentLoaded', expandActiveNavGroups);
+    </script>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script>
+        // Convert Rouge highlights to Prism.js format
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all Rouge highlight blocks
+            document.querySelectorAll('.highlight').forEach(function(highlight) {
+                const pre = highlight.querySelector('pre');
+                const code = highlight.querySelector('code');
+                
+                if (pre && code) {
+                    // Get the language from Rouge's class (e.g., 'highlight json' -> 'json')
+                    const classes = highlight.className.split(' ');
+                    let language = 'plain';
+                    
+                    // Try to find language in highlight classes
+                    classes.forEach(function(cls) {
+                        if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                            language = cls;
+                        }
+                    });
+                    
+                    // If not found, try code element classes
+                    if (language === 'plain' && code.className) {
+                        const codeClasses = code.className.split(' ');
+                        codeClasses.forEach(function(cls) {
+                            if (cls.startsWith('language-')) {
+                                language = cls.replace('language-', '');
+                            } else if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                                language = cls;
+                            }
+                        });
+                    }
+                    
+                    // Create new Prism.js structure
+                    const newPre = document.createElement('pre');
+                    newPre.className = 'line-numbers language-' + language;
+                    const newCode = document.createElement('code');
+                    newCode.className = 'language-' + language;
+                    newCode.textContent = code.textContent;
+                    newPre.appendChild(newCode);
+                    
+                    // Replace the highlight div with new structure
+                    highlight.parentNode.replaceChild(newPre, highlight);
+                }
+            });
+            
+            // Initialize Prism.js after conversion
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html>
+

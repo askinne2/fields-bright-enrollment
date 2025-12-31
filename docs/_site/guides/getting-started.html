@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started | Enrollment System</title>
+    <meta name="description" content="Learn how to set up and start using the Fields Bright Enrollment System for your workshops.">
+    
+    <link rel="stylesheet" href="/fields-bright-enrollment/assets/css/style.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Getting Started | Enrollment System</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Getting Started" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how to set up and start using the Fields Bright Enrollment System for your workshops." />
+<meta property="og:description" content="Learn how to set up and start using the Fields Bright Enrollment System for your workshops." />
+<link rel="canonical" href="http://localhost:4000/fields-bright-enrollment/guides/getting-started.html" />
+<meta property="og:url" content="http://localhost:4000/fields-bright-enrollment/guides/getting-started.html" />
+<meta property="og:site_name" content="Enrollment System" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Getting Started" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Learn how to set up and start using the Fields Bright Enrollment System for your workshops.","headline":"Getting Started","url":"http://localhost:4000/fields-bright-enrollment/guides/getting-started.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/fields-bright-enrollment/feed.xml" title="Enrollment System" />
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/fields-bright-enrollment/" class="site-title">Enrollment System</a>
+                <button class="sidebar-close" aria-label="Close sidebar" id="sidebar-close">×</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="/fields-bright-enrollment/" class="nav-link ">
+                            <span class="nav-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Guides</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/getting-started" class="nav-sublink ">
+                                    Get Started
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-workshops" class="nav-sublink ">
+                                    Managing Workshops
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-enrollments" class="nav-sublink ">
+                                    Managing Enrollments
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/processing-refunds" class="nav-sublink ">
+                                    Processing Refunds
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/email-templates" class="nav-sublink ">
+                                    Email Templates
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/troubleshooting" class="nav-sublink ">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Reference</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/api-reference" class="nav-sublink ">
+                                    API Reference
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/security" class="nav-sublink ">
+                                    Security Guide
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/deployment" class="nav-sublink ">
+                                    Deployment
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="site-header">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar" id="sidebar-toggle">☰</button>
+            </header>
+
+            <main class="main-content">
+                <p>This guide will walk you through everything you need to know to start using your workshop enrollment system. By the end, you’ll have created your first workshop and be ready to accept enrollments!</p>
+
+<h2 id="what-youll-learn">What You’ll Learn</h2>
+
+<ul>
+  <li>How to access the enrollment system in WordPress</li>
+  <li>Setting up your Stripe payment connection</li>
+  <li>Creating your first workshop</li>
+  <li>Adding the enrollment form to your website</li>
+</ul>
+
+<hr />
+
+<h2 id="step-1-accessing-the-enrollment-system">Step 1: Accessing the Enrollment System</h2>
+
+<p>The enrollment system is built into your WordPress website. Here’s how to find it:</p>
+
+<ol class="steps">
+<li>
+<strong>Log into WordPress</strong><br />
+Go to your website's admin area (Login URL <a href="https://fields-bright.com/21ads-login" target="blank">fields-bright.com/21ads-login</a>) and sign in with your administrator account.
+</li>
+
+<li>
+<strong>Find the Enrollment Menu</strong><br />
+In the left sidebar, look for <strong>Enrollments</strong>. These are where you'll manage everything.
+</li>
+
+<li>
+<strong>Explore the Dashboard</strong><br />
+Click on <strong>Workshops</strong> to see any existing workshops, or create new ones.
+</li>
+</ol>
+
+<div class="tip">
+If you don't see the Workshops or Enrollments menus, contact your website administrator to check your user permissions.
+</div>
+
+<hr />
+
+<h2 id="step-2-understanding-stripe-your-payment-processor">Step 2: Understanding Stripe (Your Payment Processor)</h2>
+
+<p>Before customers can pay for workshops, you need to have Stripe connected. Stripe is the secure payment service that handles all credit card transactions.</p>
+
+<h3 id="what-is-stripe">What is Stripe?</h3>
+
+<p>Stripe is like a digital cash register for your website. When someone enrolls in a workshop:</p>
+
+<ol>
+  <li>They enter their payment information on a secure Stripe page</li>
+  <li>Stripe processes the payment</li>
+  <li>The money goes to your bank account (usually within 2-3 business days)</li>
+  <li>The customer gets a receipt, and you get notified</li>
+</ol>
+
+<h3 id="checking-your-stripe-connection">Checking Your Stripe Connection</h3>
+
+<p>Your Stripe account should already be connected by your website administrator. To verify:</p>
+
+<ol>
+  <li>Go to <strong>Settings → Fields Bright Enrollment</strong> in WordPress</li>
+  <li>Look for the <strong>Stripe Connection</strong> section</li>
+  <li>You should see a green checkmark or “Connected” status</li>
+</ol>
+
+<div class="warning">
+If Stripe shows as "Not Connected" or you see error messages, do not try to accept payments. Contact your website administrator to fix the connection first.
+</div>
+
+<hr />
+
+<h2 id="step-3-creating-your-first-workshop">Step 3: Creating Your First Workshop</h2>
+
+<p>Now for the fun part! Let’s create a workshop that people can enroll in.</p>
+
+<ol class="steps">
+<li>
+<strong>Go to Workshops → Add New</strong><br />
+Click "Add New" to start creating your workshop.
+</li>
+
+<li>
+<strong>Enter the Workshop Title</strong><br />
+Give your workshop a clear, descriptive name. This is what customers will see.<br />
+<em>Example: "Beginner Pottery Class - February 2024"</em>
+</li>
+
+<li>
+<strong>Write a Description</strong><br />
+Use the main editor to describe what the workshop includes, what participants will learn, what to bring, etc. Make it inviting!
+</li>
+
+<li>
+<strong>Set the Date and Time</strong><br />
+Scroll down to find the <strong>Workshop Details</strong> section. Fill in:
+<ul>
+<li><strong>Start Date/Time</strong> - When the workshop begins</li>
+<li><strong>End Date/Time</strong> - When it ends</li>
+</ul>
+</li>
+
+<li>
+<strong>Set the Location</strong><br />
+Enter the address or location name where the workshop will be held.
+</li>
+
+<li>
+<strong>Configure Pricing</strong><br />
+In the <strong>Pricing Options</strong> section:
+<ul>
+<li><strong>Price</strong> - The amount to charge (e.g., $75.00)</li>
+<li><strong>Early Bird Price</strong> (optional) - A discounted price for early registrations</li>
+</ul>
+</li>
+
+<li>
+<strong>Set Capacity</strong><br />
+Enter the <strong>Maximum Capacity</strong> - how many people can enroll before the workshop is full.
+</li>
+
+<li>
+<strong>Publish!</strong><br />
+When everything looks good, click the blue <strong>Publish</strong> button.
+</li>
+</ol>
+
+<div class="note">
+You can always come back and edit a workshop later. Unpublish it first if you need to make major changes.
+</div>
+
+<hr />
+
+<h2 id="step-4-test-your-first-enrollment">Step 4: Test Your First Enrollment</h2>
+
+<p>Before announcing your workshop, test the enrollment process yourself:</p>
+
+<ol class="steps">
+<li>
+<strong>View Your Workshop</strong><br />
+Go to the workshop page on your website (not in the admin area).
+</li>
+
+<li>
+<strong>Click Enroll</strong><br />
+Go through the enrollment process as if you were a customer.
+</li>
+
+<li>
+<strong>Use Stripe Test Mode</strong><br />
+If Stripe is in test mode, use these test card numbers:
+<ul>
+<li><strong>Card that works:</strong> 4242 4242 4242 4242</li>
+<li>Use any future date for expiry and any 3 digits for CVC</li>
+</ul>
+</li>
+
+<li>
+<strong>Complete the Enrollment</strong><br />
+Fill in your information and complete the payment.
+</li>
+
+<li>
+<strong>Check the Results</strong><br />
+You should:
+<ul>
+<li>Receive a confirmation email</li>
+<li>See the enrollment in <strong>Enrollments</strong> in WordPress</li>
+<li>See the available spots decrease on the workshop</li>
+</ul>
+</li>
+</ol>
+
+<div class="important">
+Remember to switch Stripe from "Test Mode" to "Live Mode" before accepting real payments! Your website administrator can help with this.
+</div>
+
+<hr />
+
+<h2 id="youre-ready">You’re Ready!</h2>
+
+<p>Congratulations! You now know how to:</p>
+
+<ul>
+  <li>✅ Access the enrollment system</li>
+  <li>✅ Create workshops</li>
+  <li>✅ Add them to your website</li>
+  <li>✅ Test the enrollment process</li>
+</ul>
+
+<h3 id="whats-next">What’s Next?</h3>
+
+<ul>
+  <li><a href="/fields-bright-enrollment/guides/managing-workshops">Managing Workshops</a> - Learn about editing, duplicating, and organizing workshops</li>
+  <li><a href="/fields-bright-enrollment/guides/managing-enrollments">Managing Enrollments</a> - See who’s enrolled and manage participants</li>
+  <li><a href="/fields-bright-enrollment/guides/email-templates">Email Templates</a> - Customize your confirmation emails</li>
+</ul>
+
+
+            </main>
+
+            <footer class="site-footer">
+                <div class="footer-content">
+                    <p><small>Version 1.2.0 | © Fields Bright</small></p>
+                    <p><small>Easy-to-use workshop enrollment system with Stripe payments</small></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        sidebarToggle.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+        
+        // Nav group toggle
+        document.querySelectorAll('.nav-group-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.parentElement.classList.toggle('expanded');
+            });
+        });
+        
+        // Auto-expand active nav groups on page load
+        function expandActiveNavGroups() {
+            const currentPath = window.location.pathname;
+            const baseUrl = '/fields-bright-enrollment';
+            const fullCurrentPath = baseUrl ? currentPath.replace(baseUrl, '') : currentPath;
+            
+            document.querySelectorAll('.nav-group').forEach(function(group) {
+                const subLinks = group.querySelectorAll('.nav-sublink');
+                let shouldExpand = false;
+                
+                // Check if any child link matches current page
+                subLinks.forEach(function(link) {
+                    const linkPath = link.getAttribute('href');
+                    if (linkPath) {
+                        // Normalize paths for comparison
+                        const normalizedLink = linkPath.replace(/\/$/, '');
+                        const normalizedCurrent = fullCurrentPath.replace(/\/$/, '');
+                        
+                        if (normalizedCurrent === normalizedLink || 
+                            normalizedCurrent.endsWith(normalizedLink) ||
+                            normalizedLink.endsWith(normalizedCurrent)) {
+                            shouldExpand = true;
+                        }
+                    }
+                });
+                
+                // Also check if the group toggle itself is active (set by template)
+                const groupToggle = group.querySelector('.nav-group-toggle');
+                if (groupToggle && (groupToggle.classList.contains('active') || 
+                    groupToggle.getAttribute('aria-expanded') === 'true')) {
+                    shouldExpand = true;
+                }
+                
+                if (shouldExpand) {
+                    group.classList.add('expanded');
+                    if (groupToggle) {
+                        groupToggle.setAttribute('aria-expanded', 'true');
+                        groupToggle.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Run immediately and also on DOMContentLoaded
+        expandActiveNavGroups();
+        document.addEventListener('DOMContentLoaded', expandActiveNavGroups);
+    </script>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script>
+        // Convert Rouge highlights to Prism.js format
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all Rouge highlight blocks
+            document.querySelectorAll('.highlight').forEach(function(highlight) {
+                const pre = highlight.querySelector('pre');
+                const code = highlight.querySelector('code');
+                
+                if (pre && code) {
+                    // Get the language from Rouge's class (e.g., 'highlight json' -> 'json')
+                    const classes = highlight.className.split(' ');
+                    let language = 'plain';
+                    
+                    // Try to find language in highlight classes
+                    classes.forEach(function(cls) {
+                        if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                            language = cls;
+                        }
+                    });
+                    
+                    // If not found, try code element classes
+                    if (language === 'plain' && code.className) {
+                        const codeClasses = code.className.split(' ');
+                        codeClasses.forEach(function(cls) {
+                            if (cls.startsWith('language-')) {
+                                language = cls.replace('language-', '');
+                            } else if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                                language = cls;
+                            }
+                        });
+                    }
+                    
+                    // Create new Prism.js structure
+                    const newPre = document.createElement('pre');
+                    newPre.className = 'line-numbers language-' + language;
+                    const newCode = document.createElement('code');
+                    newCode.className = 'language-' + language;
+                    newCode.textContent = code.textContent;
+                    newPre.appendChild(newCode);
+                    
+                    // Replace the highlight div with new structure
+                    highlight.parentNode.replaceChild(newPre, highlight);
+                }
+            });
+            
+            // Initialize Prism.js after conversion
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html>
+

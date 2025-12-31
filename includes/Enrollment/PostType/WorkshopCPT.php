@@ -197,12 +197,16 @@ class WorkshopCPT
                 'show_in_rest'      => true,
             ],
             // === Enrollment Settings ===
+            // Note: show_in_rest is FALSE for enrollment fields because they are managed
+            // by the Workshop Settings meta box via traditional POST (meta-box-loader).
+            // This prevents Block Editor from trying to save these via REST API, which
+            // causes type validation issues.
             'checkout_enabled' => [
                 'type'              => 'boolean',
                 'description'       => 'Whether online enrollment is enabled',
                 'single'            => true,
                 'sanitize_callback' => 'rest_sanitize_boolean',
-                'show_in_rest'      => true,
+                'show_in_rest'      => false,
                 'default'           => false,
             ],
             'checkout_price' => [
@@ -210,7 +214,7 @@ class WorkshopCPT
                 'description'       => 'Base checkout price in dollars',
                 'single'            => true,
                 'sanitize_callback' => [$this, 'sanitize_price'],
-                'show_in_rest'      => true,
+                'show_in_rest'      => false,
                 'default'           => 0,
             ],
             'pricing_options' => [
@@ -218,14 +222,14 @@ class WorkshopCPT
                 'description'       => 'JSON array of pricing options',
                 'single'            => true,
                 'sanitize_callback' => [$this, 'sanitize_pricing_options'],
-                'show_in_rest'      => true,
+                'show_in_rest'      => false,
             ],
             'capacity' => [
                 'type'              => 'integer',
                 'description'       => 'Maximum enrollments (0 = unlimited)',
                 'single'            => true,
                 'sanitize_callback' => 'absint',
-                'show_in_rest'      => true,
+                'show_in_rest'      => false,
                 'default'           => 0,
             ],
             'waitlist_enabled' => [
@@ -233,7 +237,7 @@ class WorkshopCPT
                 'description'       => 'Whether waitlist is enabled when full',
                 'single'            => true,
                 'sanitize_callback' => 'rest_sanitize_boolean',
-                'show_in_rest'      => true,
+                'show_in_rest'      => false,
                 'default'           => false,
             ],
         ];

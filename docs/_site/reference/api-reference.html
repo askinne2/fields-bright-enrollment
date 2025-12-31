@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference | Enrollment System</title>
+    <meta name="description" content="REST API documentation for the Fields Bright Enrollment System.">
+    
+    <link rel="stylesheet" href="/fields-bright-enrollment/assets/css/style.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>API Reference | Enrollment System</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="API Reference" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="REST API documentation for the Fields Bright Enrollment System." />
+<meta property="og:description" content="REST API documentation for the Fields Bright Enrollment System." />
+<link rel="canonical" href="http://localhost:4000/fields-bright-enrollment/reference/api-reference.html" />
+<meta property="og:url" content="http://localhost:4000/fields-bright-enrollment/reference/api-reference.html" />
+<meta property="og:site_name" content="Enrollment System" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="API Reference" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"REST API documentation for the Fields Bright Enrollment System.","headline":"API Reference","url":"http://localhost:4000/fields-bright-enrollment/reference/api-reference.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/fields-bright-enrollment/feed.xml" title="Enrollment System" />
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/fields-bright-enrollment/" class="site-title">Enrollment System</a>
+                <button class="sidebar-close" aria-label="Close sidebar" id="sidebar-close">×</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="/fields-bright-enrollment/" class="nav-link ">
+                            <span class="nav-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Guides</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/getting-started" class="nav-sublink ">
+                                    Get Started
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-workshops" class="nav-sublink ">
+                                    Managing Workshops
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-enrollments" class="nav-sublink ">
+                                    Managing Enrollments
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/processing-refunds" class="nav-sublink ">
+                                    Processing Refunds
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/email-templates" class="nav-sublink ">
+                                    Email Templates
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/troubleshooting" class="nav-sublink ">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Reference</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/api-reference" class="nav-sublink ">
+                                    API Reference
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/security" class="nav-sublink ">
+                                    Security Guide
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/deployment" class="nav-sublink ">
+                                    Deployment
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="site-header">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar" id="sidebar-toggle">☰</button>
+            </header>
+
+            <main class="main-content">
+                <h1 id="api-reference">API Reference</h1>
+
+<p>This document covers the REST API endpoints available in the Fields Bright Enrollment System. These endpoints are used internally by the system and can be used for integrations.</p>
+
+<div class="warning">
+This documentation is for developers. If you're a non-technical user, you don't need to use these APIs - the WordPress admin interface handles everything.
+</div>
+
+<hr />
+
+<h2 id="authentication">Authentication</h2>
+
+<p>All API endpoints require authentication unless otherwise noted.</p>
+
+<h3 id="wordpress-authentication">WordPress Authentication</h3>
+
+<p>Most endpoints use WordPress cookie-based authentication (for logged-in admin users) or nonces for public-facing operations.</p>
+
+<h3 id="webhook-authentication">Webhook Authentication</h3>
+
+<p>The Stripe webhook endpoint uses Stripe’s signature verification instead of WordPress authentication.</p>
+
+<hr />
+
+<h2 id="base-url">Base URL</h2>
+
+<p>All endpoints are prefixed with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/wp-json/fields-bright/v1/
+</code></pre></div></div>
+
+<p>Full URL example:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://yoursite.com/wp-json/fields-bright/v1/cart
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="cart-endpoints">Cart Endpoints</h2>
+
+<h3 id="get-cart">Get Cart</h3>
+
+<p>Retrieve the current user’s cart contents.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">GET /cart</code></p>
+
+<p><strong>Authentication:</strong> None (uses session/cookie)</p>
+
+<p><strong>Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"workshop_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"workshop_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pottery Workshop"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pricing_option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adult"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">75.00</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00 AM"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">75.00</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"item_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="add-to-cart">Add to Cart</h3>
+
+<p>Add a workshop to the cart.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">POST /cart/add</code></p>
+
+<p><strong>Authentication:</strong> None (uses session/cookie)</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">workshop_id</code></td>
+      <td>integer</td>
+      <td>Yes</td>
+      <td>Workshop post ID</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">pricing_option</code></td>
+      <td>string</td>
+      <td>No</td>
+      <td>Selected pricing option key</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Request Body:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"workshop_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"pricing_option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adult"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Added to cart"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"cart_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">75.00</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Error Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Workshop is full"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"workshop_full"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="remove-from-cart">Remove from Cart</h3>
+
+<p>Remove an item from the cart.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">DELETE /cart/remove</code></p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">workshop_id</code></td>
+      <td>integer</td>
+      <td>Yes</td>
+      <td>Workshop to remove</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Removed from cart"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"cart_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="clear-cart">Clear Cart</h3>
+
+<p>Remove all items from the cart.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">DELETE /cart/clear</code></p>
+
+<p><strong>Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cart cleared"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="enrollment-endpoints">Enrollment Endpoints</h2>
+
+<h3 id="create-checkout-session">Create Checkout Session</h3>
+
+<p>Initiate a Stripe Checkout session for enrollment.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">POST /enrollment/checkout</code></p>
+
+<p><strong>Authentication:</strong> None (public)</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">workshop_id</code></td>
+      <td>integer</td>
+      <td>Yes</td>
+      <td>Workshop to enroll in</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">pricing_option</code></td>
+      <td>string</td>
+      <td>No</td>
+      <td>Selected pricing option</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">customer_email</code></td>
+      <td>string</td>
+      <td>No</td>
+      <td>Pre-fill customer email</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"checkout_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://checkout.stripe.com/..."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cs_test_..."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="get-user-enrollments">Get User Enrollments</h3>
+
+<p>Get enrollments for the current logged-in user.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">GET /enrollments/user</code></p>
+
+<p><strong>Authentication:</strong> Required (logged-in user)</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">status</code></td>
+      <td>string</td>
+      <td>No</td>
+      <td>Filter by status (completed, pending, cancelled)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"enrollments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"workshop_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"workshop_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pottery Workshop"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"date_enrolled"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-15T14:30:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_paid"</span><span class="p">:</span><span class="w"> </span><span class="mf">75.00</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="workshop-endpoints">Workshop Endpoints</h2>
+
+<h3 id="get-workshop">Get Workshop</h3>
+
+<p>Get details for a specific workshop.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">GET /workshops/{id}</code></p>
+
+<p><strong>Authentication:</strong> None</p>
+
+<p><strong>Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pottery Workshop"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn the basics of pottery..."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-15"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Art Street"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"enrolled"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"remaining"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"is_full"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"pricing_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adult"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adult"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">75.00</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"child"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Child (under 12)"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.00</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="list-workshops">List Workshops</h3>
+
+<p>Get a list of available workshops.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">GET /workshops</code></p>
+
+<p><strong>Authentication:</strong> None</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">upcoming</code></td>
+      <td>boolean</td>
+      <td>No</td>
+      <td>Only return future workshops</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">has_spots</code></td>
+      <td>boolean</td>
+      <td>No</td>
+      <td>Only return workshops with availability</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">per_page</code></td>
+      <td>integer</td>
+      <td>No</td>
+      <td>Results per page (default: 10, max: 100)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">page</code></td>
+      <td>integer</td>
+      <td>No</td>
+      <td>Page number</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"workshops"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="waitlist-endpoints">Waitlist Endpoints</h2>
+
+<h3 id="join-waitlist">Join Waitlist</h3>
+
+<p>Add someone to a workshop’s waitlist.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">POST /waitlist/join</code></p>
+
+<p><strong>Authentication:</strong> None (nonce protected)</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">workshop_id</code></td>
+      <td>integer</td>
+      <td>Yes</td>
+      <td>Workshop ID</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">email</code></td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>Customer email</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">name</code></td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>Customer name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">phone</code></td>
+      <td>string</td>
+      <td>No</td>
+      <td>Customer phone</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">nonce</code></td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>Security nonce</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You've been added to the waitlist"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="claim-waitlist-spot">Claim Waitlist Spot</h3>
+
+<p>Claim a spot when notified from waitlist.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">GET /waitlist/claim</code></p>
+
+<p><strong>Authentication:</strong> Token-based</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">token</code></td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>Magic link token</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">entry_id</code></td>
+      <td>integer</td>
+      <td>Yes</td>
+      <td>Waitlist entry ID</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Response:</strong> Redirects to checkout or shows error page.</p>
+
+<hr />
+
+<h2 id="webhook-endpoint">Webhook Endpoint</h2>
+
+<h3 id="stripe-webhook">Stripe Webhook</h3>
+
+<p>Receives events from Stripe.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">POST /webhook/stripe</code></p>
+
+<p><strong>Authentication:</strong> Stripe signature verification</p>
+
+<p><strong>Headers Required:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Stripe-Signature: t=...,v1=...
+</code></pre></div></div>
+
+<p><strong>Handled Events:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">checkout.session.completed</code></td>
+      <td>Creates enrollment, sends confirmation</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">payment_intent.succeeded</code></td>
+      <td>Marks payment as complete</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">payment_intent.payment_failed</code></td>
+      <td>Logs failure</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">charge.refunded</code></td>
+      <td>Updates enrollment status</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"received"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="admin-endpoints">Admin Endpoints</h2>
+
+<p>These endpoints require administrator capabilities.</p>
+
+<h3 id="process-refund">Process Refund</h3>
+
+<p>Process a refund for an enrollment.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">POST /admin/refund</code></p>
+
+<p><strong>Authentication:</strong> Administrator + nonce</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">enrollment_id</code></td>
+      <td>integer</td>
+      <td>Yes</td>
+      <td>Enrollment to refund</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amount</code></td>
+      <td>float</td>
+      <td>No</td>
+      <td>Partial amount (full if omitted)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">reason</code></td>
+      <td>string</td>
+      <td>No</td>
+      <td>Refund reason</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">nonce</code></td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>Admin nonce</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Response:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Refund processed"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"refund_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"re_..."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">75.00</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="export-enrollments">Export Enrollments</h3>
+
+<p>Export enrollment data.</p>
+
+<p><strong>Endpoint:</strong> <code class="language-plaintext highlighter-rouge">GET /admin/export</code></p>
+
+<p><strong>Authentication:</strong> Administrator</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">format</code></td>
+      <td>string</td>
+      <td>No</td>
+      <td>csv or pdf (default: csv)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">workshop_id</code></td>
+      <td>integer</td>
+      <td>No</td>
+      <td>Filter by workshop</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">date_from</code></td>
+      <td>string</td>
+      <td>No</td>
+      <td>Start date (Y-m-d)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">date_to</code></td>
+      <td>string</td>
+      <td>No</td>
+      <td>End date (Y-m-d)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">status</code></td>
+      <td>string</td>
+      <td>No</td>
+      <td>Filter by status</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Response:</strong> File download (CSV or PDF)</p>
+
+<hr />
+
+<h2 id="error-codes">Error Codes</h2>
+
+<p>Standard error responses follow this format:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error_code"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Human readable message"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="common-error-codes">Common Error Codes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>HTTP Status</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">invalid_workshop</code></td>
+      <td>404</td>
+      <td>Workshop not found</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">workshop_full</code></td>
+      <td>400</td>
+      <td>No spots available</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">already_enrolled</code></td>
+      <td>400</td>
+      <td>User already enrolled</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">invalid_nonce</code></td>
+      <td>403</td>
+      <td>Security validation failed</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">unauthorized</code></td>
+      <td>401</td>
+      <td>Authentication required</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">forbidden</code></td>
+      <td>403</td>
+      <td>Insufficient permissions</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">stripe_error</code></td>
+      <td>500</td>
+      <td>Stripe API error</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">server_error</code></td>
+      <td>500</td>
+      <td>Unexpected server error</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="rate-limiting">Rate Limiting</h2>
+
+<p>Currently, no strict rate limiting is enforced, but:</p>
+
+<ul>
+  <li>Stripe webhook processing has idempotency checks</li>
+  <li>Cart operations use session-based throttling</li>
+  <li>Abuse may result in IP-level blocks</li>
+</ul>
+
+<hr />
+
+<h2 id="testing">Testing</h2>
+
+<h3 id="test-mode">Test Mode</h3>
+
+<p>When Stripe is in test mode, use test card numbers:</p>
+
+<ul>
+  <li><strong>Success:</strong> <code class="language-plaintext highlighter-rouge">4242 4242 4242 4242</code></li>
+  <li><strong>Decline:</strong> <code class="language-plaintext highlighter-rouge">4000 0000 0000 0002</code></li>
+  <li><strong>Requires Auth:</strong> <code class="language-plaintext highlighter-rouge">4000 0025 0000 3155</code></li>
+</ul>
+
+<h3 id="local-testing">Local Testing</h3>
+
+<p>For webhook testing locally, use Stripe CLI:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stripe listen <span class="nt">--forward-to</span> localhost/wp-json/fields-bright/v1/webhook/stripe
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="changelog">Changelog</h2>
+
+<h3 id="v120">v1.2.0</h3>
+<ul>
+  <li>Added waitlist endpoints</li>
+  <li>Improved error responses</li>
+  <li>Added export functionality</li>
+</ul>
+
+<h3 id="v110">v1.1.0</h3>
+<ul>
+  <li>Added cart multi-item support</li>
+  <li>Improved authentication</li>
+</ul>
+
+<h3 id="v100">v1.0.0</h3>
+<ul>
+  <li>Initial release</li>
+</ul>
+
+
+            </main>
+
+            <footer class="site-footer">
+                <div class="footer-content">
+                    <p><small>Version 1.2.0 | © Fields Bright</small></p>
+                    <p><small>Easy-to-use workshop enrollment system with Stripe payments</small></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        sidebarToggle.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+        
+        // Nav group toggle
+        document.querySelectorAll('.nav-group-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.parentElement.classList.toggle('expanded');
+            });
+        });
+        
+        // Auto-expand active nav groups on page load
+        function expandActiveNavGroups() {
+            const currentPath = window.location.pathname;
+            const baseUrl = '/fields-bright-enrollment';
+            const fullCurrentPath = baseUrl ? currentPath.replace(baseUrl, '') : currentPath;
+            
+            document.querySelectorAll('.nav-group').forEach(function(group) {
+                const subLinks = group.querySelectorAll('.nav-sublink');
+                let shouldExpand = false;
+                
+                // Check if any child link matches current page
+                subLinks.forEach(function(link) {
+                    const linkPath = link.getAttribute('href');
+                    if (linkPath) {
+                        // Normalize paths for comparison
+                        const normalizedLink = linkPath.replace(/\/$/, '');
+                        const normalizedCurrent = fullCurrentPath.replace(/\/$/, '');
+                        
+                        if (normalizedCurrent === normalizedLink || 
+                            normalizedCurrent.endsWith(normalizedLink) ||
+                            normalizedLink.endsWith(normalizedCurrent)) {
+                            shouldExpand = true;
+                        }
+                    }
+                });
+                
+                // Also check if the group toggle itself is active (set by template)
+                const groupToggle = group.querySelector('.nav-group-toggle');
+                if (groupToggle && (groupToggle.classList.contains('active') || 
+                    groupToggle.getAttribute('aria-expanded') === 'true')) {
+                    shouldExpand = true;
+                }
+                
+                if (shouldExpand) {
+                    group.classList.add('expanded');
+                    if (groupToggle) {
+                        groupToggle.setAttribute('aria-expanded', 'true');
+                        groupToggle.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Run immediately and also on DOMContentLoaded
+        expandActiveNavGroups();
+        document.addEventListener('DOMContentLoaded', expandActiveNavGroups);
+    </script>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script>
+        // Convert Rouge highlights to Prism.js format
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all Rouge highlight blocks
+            document.querySelectorAll('.highlight').forEach(function(highlight) {
+                const pre = highlight.querySelector('pre');
+                const code = highlight.querySelector('code');
+                
+                if (pre && code) {
+                    // Get the language from Rouge's class (e.g., 'highlight json' -> 'json')
+                    const classes = highlight.className.split(' ');
+                    let language = 'plain';
+                    
+                    // Try to find language in highlight classes
+                    classes.forEach(function(cls) {
+                        if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                            language = cls;
+                        }
+                    });
+                    
+                    // If not found, try code element classes
+                    if (language === 'plain' && code.className) {
+                        const codeClasses = code.className.split(' ');
+                        codeClasses.forEach(function(cls) {
+                            if (cls.startsWith('language-')) {
+                                language = cls.replace('language-', '');
+                            } else if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                                language = cls;
+                            }
+                        });
+                    }
+                    
+                    // Create new Prism.js structure
+                    const newPre = document.createElement('pre');
+                    newPre.className = 'line-numbers language-' + language;
+                    const newCode = document.createElement('code');
+                    newCode.className = 'language-' + language;
+                    newCode.textContent = code.textContent;
+                    newPre.appendChild(newCode);
+                    
+                    // Replace the highlight div with new structure
+                    highlight.parentNode.replaceChild(newPre, highlight);
+                }
+            });
+            
+            // Initialize Prism.js after conversion
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html>
+

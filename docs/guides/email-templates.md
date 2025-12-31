@@ -341,7 +341,7 @@ A: The confirmation email cannot be disabled (customers need it!). Other notific
 
 ## Next Steps
 
-- [Managing Enrollments]({{ '/managing-enrollments' | relative_url }}) - See enrollment details
-- [Processing Refunds]({{ '/processing-refunds' | relative_url }}) - Refund confirmation emails
-- [Troubleshooting]({{ '/troubleshooting' | relative_url }}) - Solve common problems
+- [Managing Enrollments]({{ '/guides/managing-enrollments' | relative_url }}) - See enrollment details
+- [Processing Refunds]({{ '/guides/processing-refunds' | relative_url }}) - Refund confirmation emails
+- [Troubleshooting]({{ '/guides/troubleshooting' | relative_url }}) - Solve common problems
 

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Templates | Enrollment System</title>
+    <meta name="description" content="Learn how to customize the automatic emails sent by the Fields Bright Enrollment System.">
+    
+    <link rel="stylesheet" href="/fields-bright-enrollment/assets/css/style.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Email Templates | Enrollment System</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Email Templates" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how to customize the automatic emails sent by the Fields Bright Enrollment System." />
+<meta property="og:description" content="Learn how to customize the automatic emails sent by the Fields Bright Enrollment System." />
+<link rel="canonical" href="http://localhost:4000/fields-bright-enrollment/guides/email-templates.html" />
+<meta property="og:url" content="http://localhost:4000/fields-bright-enrollment/guides/email-templates.html" />
+<meta property="og:site_name" content="Enrollment System" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Email Templates" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Learn how to customize the automatic emails sent by the Fields Bright Enrollment System.","headline":"Email Templates","url":"http://localhost:4000/fields-bright-enrollment/guides/email-templates.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/fields-bright-enrollment/feed.xml" title="Enrollment System" />
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/fields-bright-enrollment/" class="site-title">Enrollment System</a>
+                <button class="sidebar-close" aria-label="Close sidebar" id="sidebar-close">×</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="/fields-bright-enrollment/" class="nav-link ">
+                            <span class="nav-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Guides</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/getting-started" class="nav-sublink ">
+                                    Get Started
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-workshops" class="nav-sublink ">
+                                    Managing Workshops
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-enrollments" class="nav-sublink ">
+                                    Managing Enrollments
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/processing-refunds" class="nav-sublink ">
+                                    Processing Refunds
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/email-templates" class="nav-sublink ">
+                                    Email Templates
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/troubleshooting" class="nav-sublink ">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Reference</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/api-reference" class="nav-sublink ">
+                                    API Reference
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/security" class="nav-sublink ">
+                                    Security Guide
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/deployment" class="nav-sublink ">
+                                    Deployment
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="site-header">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar" id="sidebar-toggle">☰</button>
+            </header>
+
+            <main class="main-content">
+                <h1 id="email-templates">Email Templates</h1>
+
+<p>Your enrollment system automatically sends emails to customers at key moments. This guide shows you what emails are sent, when they go out, and how to customize them.</p>
+
+<h2 id="emails-that-are-sent-automatically">Emails That Are Sent Automatically</h2>
+
+<p>The system sends these emails without you having to do anything:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>When It’s Sent</th>
+      <th>Who Receives It</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Enrollment Confirmation</strong></td>
+      <td>After successful payment</td>
+      <td>Customer</td>
+    </tr>
+    <tr>
+      <td><strong>Waitlist Confirmation</strong></td>
+      <td>When joining waitlist</td>
+      <td>Customer</td>
+    </tr>
+    <tr>
+      <td><strong>Spot Available</strong></td>
+      <td>When a waitlist spot opens</td>
+      <td>Waitlist customer</td>
+    </tr>
+    <tr>
+      <td><strong>Refund Confirmation</strong></td>
+      <td>After you process a refund</td>
+      <td>Customer</td>
+    </tr>
+    <tr>
+      <td><strong>Admin Notification</strong></td>
+      <td>After each enrollment</td>
+      <td>You (the admin)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="enrollment-confirmation-email">Enrollment Confirmation Email</h2>
+
+<p>This is the most important email - it confirms the customer’s registration.</p>
+
+<h3 id="whats-included">What’s Included</h3>
+
+<ul>
+  <li>✅ Workshop name</li>
+  <li>✅ Date and time</li>
+  <li>✅ Location/address</li>
+  <li>✅ Amount paid</li>
+  <li>✅ Receipt/invoice link</li>
+  <li>✅ Your contact information</li>
+</ul>
+
+<h3 id="when-its-sent">When It’s Sent</h3>
+
+<p>Immediately after the payment is successfully processed.</p>
+
+<div class="tip">
+This email serves as the customer's "ticket" - they may save or print it to bring to your workshop!
+</div>
+
+<hr />
+
+<h2 id="customizing-email-content">Customizing Email Content</h2>
+
+<p>To customize your emails:</p>
+
+<ol class="steps">
+<li>
+<strong>Go to Settings</strong><br />
+Navigate to <strong>Settings → Fields Bright Enrollment</strong>.
+</li>
+
+<li>
+<strong>Find Email Settings</strong><br />
+Look for the <strong>Email Templates</strong> tab.
+</li>
+
+<li>
+<strong>Select an Email to Edit</strong><br />
+Choose which email template you want to customize.
+</li>
+
+<li>
+<strong>Make Your Changes</strong><br />
+Edit the subject line and content.
+</li>
+
+<li>
+<strong>Save Changes</strong><br />
+Click <strong>Save</strong> when done.
+</li>
+</ol>
+
+<hr />
+
+<h2 id="using-placeholders">Using Placeholders</h2>
+
+<p>Placeholders are special codes that automatically insert information. Use these in your email templates:</p>
+
+<h3 id="customer-placeholders">Customer Placeholders</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Placeholder</th>
+      <th>What It Inserts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{customer_name}</code></td>
+      <td>Customer’s full name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{customer_first_name}</code></td>
+      <td>Customer’s first name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{customer_email}</code></td>
+      <td>Customer’s email address</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="workshop-placeholders">Workshop Placeholders</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Placeholder</th>
+      <th>What It Inserts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{workshop_title}</code></td>
+      <td>Name of the workshop</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{workshop_date}</code></td>
+      <td>Workshop date</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{workshop_time}</code></td>
+      <td>Start time</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{workshop_location}</code></td>
+      <td>Location/address</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="payment-placeholders">Payment Placeholders</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Placeholder</th>
+      <th>What It Inserts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{amount_paid}</code></td>
+      <td>Total amount charged</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{receipt_url}</code></td>
+      <td>Link to Stripe receipt</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="other-placeholders">Other Placeholders</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Placeholder</th>
+      <th>What It Inserts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{site_name}</code></td>
+      <td>Your website name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{admin_email}</code></td>
+      <td>Your admin email address</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="example-email-templates">Example Email Templates</h2>
+
+<h3 id="enrollment-confirmation-template">Enrollment Confirmation Template</h3>
+
+<p><strong>Subject:</strong> You’re Enrolled! {workshop_title} Confirmation</p>
+
+<p><strong>Body:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hi {customer_first_name},
+
+Great news! You're all set for {workshop_title}.
+
+📅 WORKSHOP DETAILS
+Date: {workshop_date}
+Time: {workshop_time}
+Location: {workshop_location}
+
+💳 PAYMENT CONFIRMED
+Amount: {amount_paid}
+View Receipt: {receipt_url}
+
+📝 WHAT TO BRING
+[Add your specific instructions here]
+
+❓ QUESTIONS?
+Reply to this email or contact us at {admin_email}.
+
+We can't wait to see you there!
+
+{site_name}
+</code></pre></div></div>
+
+<h3 id="waitlist-confirmation-template">Waitlist Confirmation Template</h3>
+
+<p><strong>Subject:</strong> You’re on the Waitlist for {workshop_title}</p>
+
+<p><strong>Body:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hi {customer_first_name},
+
+You've been added to the waitlist for {workshop_title}.
+
+📅 Workshop Date: {workshop_date}
+
+WHAT HAPPENS NEXT
+If a spot opens up, you'll receive an email right away 
+with a link to complete your registration.
+
+Spots are offered in the order people joined the waitlist, 
+so you'll have 48 hours to claim your spot before it goes 
+to the next person.
+
+Questions? Reply to this email.
+
+{site_name}
+</code></pre></div></div>
+
+<h3 id="spot-available-template">Spot Available Template</h3>
+
+<p><strong>Subject:</strong> 🎉 A Spot Opened Up! {workshop_title}</p>
+
+<p><strong>Body:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hi {customer_first_name},
+
+Good news! A spot just opened up for {workshop_title}!
+
+📅 Date: {workshop_date}
+🕐 Time: {workshop_time}
+📍 Location: {workshop_location}
+
+⏰ CLAIM YOUR SPOT NOW
+Click here to complete your registration: {claim_link}
+
+IMPORTANT: This offer expires in 48 hours. If you don't 
+claim your spot by then, it will be offered to the next 
+person on the waitlist.
+
+Questions? Reply to this email.
+
+{site_name}
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="best-practices-for-emails">Best Practices for Emails</h2>
+
+<h3 id="keep-it-clear-and-scannable">Keep It Clear and Scannable</h3>
+
+<ul>
+  <li>Use short paragraphs</li>
+  <li>Use bullet points or lists</li>
+  <li>Bold important information</li>
+  <li>Include relevant emojis sparingly</li>
+</ul>
+
+<h3 id="include-all-essential-information">Include All Essential Information</h3>
+
+<p>Your confirmation email should answer:</p>
+
+<ul>
+  <li>What did they sign up for?</li>
+  <li>When and where is it?</li>
+  <li>How much did they pay?</li>
+  <li>How can they contact you?</li>
+</ul>
+
+<h3 id="make-important-info-easy-to-find">Make Important Info Easy to Find</h3>
+
+<p>People skim emails. Put the most important details:</p>
+
+<ul>
+  <li>Near the top</li>
+  <li>In bold or larger text</li>
+  <li>In easy-to-scan format</li>
+</ul>
+
+<h3 id="test-your-emails">Test Your Emails</h3>
+
+<p>After making changes:</p>
+
+<ol>
+  <li>Send yourself a test email</li>
+  <li>Check on desktop AND mobile</li>
+  <li>Make sure placeholders are replaced correctly</li>
+  <li>Click all links to verify they work</li>
+</ol>
+
+<div class="tip">
+Send a test enrollment to yourself periodically to make sure everything still looks right!
+</div>
+
+<hr />
+
+<h2 id="sender-information">Sender Information</h2>
+
+<h3 id="email-from-address">Email “From” Address</h3>
+
+<p>Emails are sent from your WordPress admin email. To change this:</p>
+
+<ol>
+  <li>Go to <strong>Settings → General</strong></li>
+  <li>Update the <strong>Admin Email Address</strong></li>
+</ol>
+
+<div class="warning">
+Make sure you can receive email at this address - customers may reply to it!
+</div>
+
+<h3 id="email-from-name">Email “From” Name</h3>
+
+<p>The sender name is your site name. To change:</p>
+
+<ol>
+  <li>Go to <strong>Settings → General</strong></li>
+  <li>Update the <strong>Site Title</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="troubleshooting-email-problems">Troubleshooting Email Problems</h2>
+
+<h3 id="customers-say-they-didnt-get-the-email">Customers Say They Didn’t Get the Email</h3>
+
+<p>Ask them to:</p>
+
+<ol>
+  <li><strong>Check spam/junk folder</strong> - Most common issue!</li>
+  <li><strong>Check promotions tab</strong> (Gmail) - Often lands there</li>
+  <li><strong>Search for the subject line</strong> - It might be in an unexpected folder</li>
+  <li><strong>Verify their email</strong> - Did they type it correctly?</li>
+</ol>
+
+<h3 id="emails-are-going-to-spam">Emails Are Going to Spam</h3>
+
+<p>To improve deliverability:</p>
+
+<ul>
+  <li>Use a professional “from” address (not @gmail.com)</li>
+  <li>Avoid spam-trigger words in subject lines</li>
+  <li>Don’t use ALL CAPS</li>
+  <li>Include a way to contact you</li>
+  <li>Consider using an SMTP plugin for better delivery</li>
+</ul>
+
+<div class="note">
+If email delivery is consistently problematic, ask your website administrator about setting up proper email authentication (SPF, DKIM records).
+</div>
+
+<h3 id="placeholders-arent-being-replaced">Placeholders Aren’t Being Replaced</h3>
+
+<p>If you see <code class="language-plaintext highlighter-rouge">{workshop_title}</code> instead of the actual title:</p>
+
+<ol>
+  <li>Check you used the exact placeholder format</li>
+  <li>Make sure there are no extra spaces</li>
+  <li>Save the template and try again</li>
+  <li>Contact support if it persists</li>
+</ol>
+
+<hr />
+
+<h2 id="admin-notification-emails">Admin Notification Emails</h2>
+
+<p>You receive an email each time someone enrolls. This includes:</p>
+
+<ul>
+  <li>Customer name and email</li>
+  <li>Workshop they enrolled in</li>
+  <li>Amount paid</li>
+  <li>Quick link to view the enrollment</li>
+</ul>
+
+<h3 id="managing-admin-notifications">Managing Admin Notifications</h3>
+
+<p>To change who receives admin notifications:</p>
+
+<ol>
+  <li>Go to <strong>Settings → Fields Bright Enrollment</strong></li>
+  <li>Find <strong>Admin Notifications</strong></li>
+  <li>Enter the email address(es) to receive notifications</li>
+  <li>Separate multiple addresses with commas</li>
+</ol>
+
+<hr />
+
+<h2 id="common-questions">Common Questions</h2>
+
+<p><strong>Q: Can I add attachments to emails?</strong></p>
+
+<p>A: Not directly through the template system. Consider including links to documents hosted on your website instead.</p>
+
+<p><strong>Q: Can I send custom emails to specific enrollees?</strong></p>
+
+<p>A: The template system is for automatic emails. For one-off messages, you can email customers directly from their enrollment record.</p>
+
+<p><strong>Q: Can I add my logo to emails?</strong></p>
+
+<p>A: Basic templates are text-based for best deliverability. Advanced customization may require developer assistance.</p>
+
+<p><strong>Q: Can I disable certain emails?</strong></p>
+
+<p>A: The confirmation email cannot be disabled (customers need it!). Other notifications may have enable/disable options in settings.</p>
+
+<hr />
+
+<h2 id="next-steps">Next Steps</h2>
+
+<ul>
+  <li><a href="/fields-bright-enrollment/guides/managing-enrollments">Managing Enrollments</a> - See enrollment details</li>
+  <li><a href="/fields-bright-enrollment/guides/processing-refunds">Processing Refunds</a> - Refund confirmation emails</li>
+  <li><a href="/fields-bright-enrollment/guides/troubleshooting">Troubleshooting</a> - Solve common problems</li>
+</ul>
+
+
+            </main>
+
+            <footer class="site-footer">
+                <div class="footer-content">
+                    <p><small>Version 1.2.0 | © Fields Bright</small></p>
+                    <p><small>Easy-to-use workshop enrollment system with Stripe payments</small></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        sidebarToggle.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+        
+        // Nav group toggle
+        document.querySelectorAll('.nav-group-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.parentElement.classList.toggle('expanded');
+            });
+        });
+        
+        // Auto-expand active nav groups on page load
+        function expandActiveNavGroups() {
+            const currentPath = window.location.pathname;
+            const baseUrl = '/fields-bright-enrollment';
+            const fullCurrentPath = baseUrl ? currentPath.replace(baseUrl, '') : currentPath;
+            
+            document.querySelectorAll('.nav-group').forEach(function(group) {
+                const subLinks = group.querySelectorAll('.nav-sublink');
+                let shouldExpand = false;
+                
+                // Check if any child link matches current page
+                subLinks.forEach(function(link) {
+                    const linkPath = link.getAttribute('href');
+                    if (linkPath) {
+                        // Normalize paths for comparison
+                        const normalizedLink = linkPath.replace(/\/$/, '');
+                        const normalizedCurrent = fullCurrentPath.replace(/\/$/, '');
+                        
+                        if (normalizedCurrent === normalizedLink || 
+                            normalizedCurrent.endsWith(normalizedLink) ||
+                            normalizedLink.endsWith(normalizedCurrent)) {
+                            shouldExpand = true;
+                        }
+                    }
+                });
+                
+                // Also check if the group toggle itself is active (set by template)
+                const groupToggle = group.querySelector('.nav-group-toggle');
+                if (groupToggle && (groupToggle.classList.contains('active') || 
+                    groupToggle.getAttribute('aria-expanded') === 'true')) {
+                    shouldExpand = true;
+                }
+                
+                if (shouldExpand) {
+                    group.classList.add('expanded');
+                    if (groupToggle) {
+                        groupToggle.setAttribute('aria-expanded', 'true');
+                        groupToggle.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Run immediately and also on DOMContentLoaded
+        expandActiveNavGroups();
+        document.addEventListener('DOMContentLoaded', expandActiveNavGroups);
+    </script>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script>
+        // Convert Rouge highlights to Prism.js format
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all Rouge highlight blocks
+            document.querySelectorAll('.highlight').forEach(function(highlight) {
+                const pre = highlight.querySelector('pre');
+                const code = highlight.querySelector('code');
+                
+                if (pre && code) {
+                    // Get the language from Rouge's class (e.g., 'highlight json' -> 'json')
+                    const classes = highlight.className.split(' ');
+                    let language = 'plain';
+                    
+                    // Try to find language in highlight classes
+                    classes.forEach(function(cls) {
+                        if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                            language = cls;
+                        }
+                    });
+                    
+                    // If not found, try code element classes
+                    if (language === 'plain' && code.className) {
+                        const codeClasses = code.className.split(' ');
+                        codeClasses.forEach(function(cls) {
+                            if (cls.startsWith('language-')) {
+                                language = cls.replace('language-', '');
+                            } else if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                                language = cls;
+                            }
+                        });
+                    }
+                    
+                    // Create new Prism.js structure
+                    const newPre = document.createElement('pre');
+                    newPre.className = 'line-numbers language-' + language;
+                    const newCode = document.createElement('code');
+                    newCode.className = 'language-' + language;
+                    newCode.textContent = code.textContent;
+                    newPre.appendChild(newCode);
+                    
+                    // Replace the highlight div with new structure
+                    highlight.parentNode.replaceChild(newPre, highlight);
+                }
+            });
+            
+            // Initialize Prism.js after conversion
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html>
+

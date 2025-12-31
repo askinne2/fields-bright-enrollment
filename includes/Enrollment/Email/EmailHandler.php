@@ -150,13 +150,11 @@ class EmailHandler
             'workshop_title' => $data['workshop_title'],
         ]);
 
-        $subject = sprintf(
-            /* translators: %s: Workshop title */
-            __('Enrollment Confirmed: %s', 'fields-bright-enrollment'),
-            $data['workshop_title']
-        );
-
-        $message = $this->render_template('enrollment-confirmation', $data);
+        // Get custom subject or use default
+        $subject = $this->get_email_subject('enrollment_confirmation', $data);
+        
+        // Get custom body or use default template
+        $message = $this->get_email_body('enrollment_confirmation', $data);
         
         $result = $this->send_email(
             $data['customer_email'],
@@ -182,14 +180,11 @@ class EmailHandler
     {
         $data = $this->get_enrollment_data($enrollment_id);
 
-        $subject = sprintf(
-            /* translators: %1$s: Customer name, %2$s: Workshop title */
-            __('New Enrollment: %1$s - %2$s', 'fields-bright-enrollment'),
-            $data['customer_name'] ?: __('Unknown', 'fields-bright-enrollment'),
-            $data['workshop_title']
-        );
+        // Get custom subject or use default
+        $subject = $this->get_email_subject('admin_notification', $data);
 
-        $message = $this->render_template('admin-notification', $data);
+        // Get custom body or use default template
+        $message = $this->get_email_body('admin_notification', $data);
         
         return $this->send_email(
             $this->admin_email,
@@ -214,19 +209,205 @@ class EmailHandler
             return false;
         }
 
-        $subject = sprintf(
-            /* translators: %s: Workshop title */
-            __('Refund Processed: %s', 'fields-bright-enrollment'),
-            $data['workshop_title']
-        );
+        // Get custom subject or use default
+        $subject = $this->get_email_subject('refund_confirmation', $data);
 
-        $message = $this->render_template('refund-confirmation', $data);
+        // Get custom body or use default template
+        $message = $this->get_email_body('refund_confirmation', $data);
         
         return $this->send_email(
             $data['customer_email'],
             $subject,
             $message
         );
+    }
+
+    /**
+     * Get email subject with placeholder replacement.
+     *
+     * @param string $template Template key.
+     * @param array  $data     Data for placeholder replacement.
+     *
+     * @return string Email subject.
+     */
+    private function get_email_subject(string $template, array $data): string
+    {
+        // Check for custom subject in database
+        // get_option returns false if option doesn't exist, empty string if it's been saved as empty
+        $custom_subject = get_option(EnrollmentSystem::OPTION_PREFIX . 'email_' . $template . '_subject');
+        
+        $this->logger->debug("Checking for custom email subject", [
+            'template' => $template,
+            'option_key' => EnrollmentSystem::OPTION_PREFIX . 'email_' . $template . '_subject',
+            'custom_subject' => $custom_subject,
+            'is_false' => $custom_subject === false,
+        ]);
+        
+        // If option exists in database (even if empty), use it
+        if ($custom_subject !== false) {
+            $this->logger->debug("Using custom email subject from database");
+            return $this->replace_placeholders($custom_subject, $data);
+        }
+        
+        // Fall back to default subjects
+        $defaults = [
+            'enrollment_confirmation' => sprintf(
+                /* translators: %s: Workshop title */
+                __('Enrollment Confirmed: %s', 'fields-bright-enrollment'),
+                $data['workshop_title']
+            ),
+            'admin_notification' => sprintf(
+                /* translators: %1$s: Customer name, %2$s: Workshop title */
+                __('New Enrollment: %1$s - %2$s', 'fields-bright-enrollment'),
+                $data['customer_name'] ?: __('Unknown', 'fields-bright-enrollment'),
+                $data['workshop_title']
+            ),
+            'refund_confirmation' => sprintf(
+                /* translators: %s: Workshop title */
+                __('Refund Processed: %s', 'fields-bright-enrollment'),
+                $data['workshop_title']
+            ),
+            'waitlist_confirmation' => sprintf(
+                /* translators: %s: Workshop title */
+                __('You\'re on the Waitlist: %s', 'fields-bright-enrollment'),
+                $data['workshop_title']
+            ),
+            'spot_available' => sprintf(
+                /* translators: %s: Workshop title */
+                __('A Spot Opened Up! %s', 'fields-bright-enrollment'),
+                $data['workshop_title']
+            ),
+        ];
+        
+        return isset($defaults[$template]) ? $defaults[$template] : __('Notification', 'fields-bright-enrollment');
+    }
+
+    /**
+     * Get email body with placeholder replacement.
+     *
+     * @param string $template Template key.
+     * @param array  $data     Data for placeholder replacement.
+     *
+     * @return string Email body (HTML).
+     */
+    private function get_email_body(string $template, array $data): string
+    {
+        // Check for custom body in database
+        // get_option returns false if option doesn't exist
+        $custom_body = get_option(EnrollmentSystem::OPTION_PREFIX . 'email_' . $template . '_body');
+        
+        $this->logger->debug("Checking for custom email body", [
+            'template' => $template,
+            'option_key' => EnrollmentSystem::OPTION_PREFIX . 'email_' . $template . '_body',
+            'custom_body_length' => $custom_body !== false ? strlen($custom_body) : 0,
+            'is_false' => $custom_body === false,
+        ]);
+        
+        // If option exists in database (even if empty), use it with placeholder replacement
+        if ($custom_body !== false) {
+            $this->logger->debug("Using custom email body from database");
+            return $this->replace_placeholders($custom_body, $data);
+        }
+        
+        // Fall back to PHP template with actual data (not placeholders)
+        $this->logger->debug("Falling back to PHP template file");
+        $php_template = str_replace('_', '-', $template);
+        return $this->render_template($php_template, $data);
+    }
+
+    /**
+     * Replace placeholders in content.
+     *
+     * @param string $content Content with placeholders.
+     * @param array  $data    Data to replace with.
+     *
+     * @return string Content with placeholders replaced.
+     */
+    private function replace_placeholders(string $content, array $data): string
+    {
+        // Prepare extended data with additional placeholders
+        $placeholders = [
+            'customer_name'       => $data['customer_name'] ?? '',
+            'customer_first_name' => $this->get_first_name($data['customer_name'] ?? ''),
+            'customer_email'      => $data['customer_email'] ?? '',
+            'customer_phone'      => $data['customer_phone'] ?? '',
+            'workshop_title'      => $data['workshop_title'] ?? '',
+            'workshop_date'       => $this->format_workshop_date($data),
+            'workshop_time'       => $this->format_workshop_time($data),
+            'workshop_location'   => $data['event_location'] ?? '',
+            'amount_paid'         => $this->format_amount($data['amount'] ?? 0, $data['currency'] ?? 'USD'),
+            'confirmation_number' => $data['confirmation_number'] ?? '',
+            'site_name'           => $data['site_name'] ?? get_bloginfo('name'),
+            'admin_email'         => $data['admin_email'] ?? get_option('admin_email'),
+        ];
+        
+        foreach ($placeholders as $key => $value) {
+            $content = str_replace('{' . $key . '}', $value, $content);
+        }
+        
+        return $content;
+    }
+
+    /**
+     * Get first name from full name.
+     *
+     * @param string $full_name Full name.
+     *
+     * @return string First name.
+     */
+    private function get_first_name(string $full_name): string
+    {
+        $parts = explode(' ', trim($full_name));
+        return ! empty($parts[0]) ? $parts[0] : $full_name;
+    }
+
+    /**
+     * Format workshop date.
+     *
+     * @param array $data Enrollment data.
+     *
+     * @return string Formatted date.
+     */
+    private function format_workshop_date(array $data): string
+    {
+        if (! empty($data['recurring_info'])) {
+            return $data['recurring_info'];
+        }
+        
+        if (! empty($data['event_start'])) {
+            return date_i18n(get_option('date_format'), strtotime($data['event_start']));
+        }
+        
+        return '';
+    }
+
+    /**
+     * Format workshop time.
+     *
+     * @param array $data Enrollment data.
+     *
+     * @return string Formatted time.
+     */
+    private function format_workshop_time(array $data): string
+    {
+        if (! empty($data['event_start'])) {
+            return date_i18n(get_option('time_format'), strtotime($data['event_start']));
+        }
+        
+        return '';
+    }
+
+    /**
+     * Format amount.
+     *
+     * @param float  $amount   Amount.
+     * @param string $currency Currency code.
+     *
+     * @return string Formatted amount.
+     */
+    private function format_amount(float $amount, string $currency): string
+    {
+        return '$' . number_format($amount, 2) . ' ' . strtoupper($currency);
     }
 
     /**

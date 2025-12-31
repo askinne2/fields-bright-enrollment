@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Guide | Enrollment System</title>
+    <meta name="description" content="Security best practices and implementation details for the Fields Bright Enrollment System.">
+    
+    <link rel="stylesheet" href="/fields-bright-enrollment/assets/css/style.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Security Guide | Enrollment System</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Security Guide" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Security best practices and implementation details for the Fields Bright Enrollment System." />
+<meta property="og:description" content="Security best practices and implementation details for the Fields Bright Enrollment System." />
+<link rel="canonical" href="http://localhost:4000/fields-bright-enrollment/reference/security.html" />
+<meta property="og:url" content="http://localhost:4000/fields-bright-enrollment/reference/security.html" />
+<meta property="og:site_name" content="Enrollment System" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Security Guide" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Security best practices and implementation details for the Fields Bright Enrollment System.","headline":"Security Guide","url":"http://localhost:4000/fields-bright-enrollment/reference/security.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/fields-bright-enrollment/feed.xml" title="Enrollment System" />
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/fields-bright-enrollment/" class="site-title">Enrollment System</a>
+                <button class="sidebar-close" aria-label="Close sidebar" id="sidebar-close">×</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="/fields-bright-enrollment/" class="nav-link ">
+                            <span class="nav-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Guides</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/getting-started" class="nav-sublink ">
+                                    Get Started
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-workshops" class="nav-sublink ">
+                                    Managing Workshops
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/managing-enrollments" class="nav-sublink ">
+                                    Managing Enrollments
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/processing-refunds" class="nav-sublink ">
+                                    Processing Refunds
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/email-templates" class="nav-sublink ">
+                                    Email Templates
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/guides/troubleshooting" class="nav-sublink ">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li class="nav-group ">
+                        <button class="nav-group-toggle " aria-expanded="false">
+                            <span class="nav-icon">📚</span>
+                            <span>Reference</span>
+                            <span class="nav-arrow">›</span>
+                        </button>
+                        <ul class="nav-sublist">
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/api-reference" class="nav-sublink ">
+                                    API Reference
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/security" class="nav-sublink ">
+                                    Security Guide
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/fields-bright-enrollment/reference/deployment" class="nav-sublink ">
+                                    Deployment
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="site-header">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar" id="sidebar-toggle">☰</button>
+            </header>
+
+            <main class="main-content">
+                <h1 id="security-guide">Security Guide</h1>
+
+<p>This document outlines the security measures implemented in the Fields Bright Enrollment System and provides guidelines for maintaining a secure installation.</p>
+
+<div class="note">
+This documentation is for developers and system administrators. Non-technical users should ensure they work with qualified professionals when handling security matters.
+</div>
+
+<hr />
+
+<h2 id="security-overview">Security Overview</h2>
+
+<p>The enrollment system implements multiple layers of security:</p>
+
+<ol>
+  <li><strong>Input Validation &amp; Sanitization</strong> - All user input is validated and sanitized</li>
+  <li><strong>Authentication &amp; Authorization</strong> - Proper access controls and capability checks</li>
+  <li><strong>CSRF Protection</strong> - Nonces on all forms and AJAX requests</li>
+  <li><strong>SQL Injection Prevention</strong> - Prepared statements for all database queries</li>
+  <li><strong>XSS Prevention</strong> - Output escaping on all displayed data</li>
+  <li><strong>Secure Payment Handling</strong> - PCI-compliant through Stripe</li>
+</ol>
+
+<hr />
+
+<h2 id="input-validation--sanitization">Input Validation &amp; Sanitization</h2>
+
+<h3 id="all-user-input-is-sanitized">All User Input is Sanitized</h3>
+
+<p>Every input from users (GET, POST, cookies) is sanitized before use:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Always use wp_unslash before sanitization</span>
+<span class="nv">$workshop_id</span> <span class="o">=</span> <span class="nf">absint</span><span class="p">(</span><span class="nf">wp_unslash</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">'workshop_id'</span><span class="p">]));</span>
+<span class="nv">$email</span> <span class="o">=</span> <span class="nf">sanitize_email</span><span class="p">(</span><span class="nf">wp_unslash</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">'email'</span><span class="p">]));</span>
+<span class="nv">$name</span> <span class="o">=</span> <span class="nf">sanitize_text_field</span><span class="p">(</span><span class="nf">wp_unslash</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]));</span>
+<span class="nv">$description</span> <span class="o">=</span> <span class="nf">sanitize_textarea_field</span><span class="p">(</span><span class="nf">wp_unslash</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">'description'</span><span class="p">]));</span>
+<span class="nv">$url</span> <span class="o">=</span> <span class="nf">esc_url_raw</span><span class="p">(</span><span class="nf">wp_unslash</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">'url'</span><span class="p">]));</span>
+</code></pre></div></div>
+
+<h3 id="sanitization-functions-used">Sanitization Functions Used</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data Type</th>
+      <th>Function</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Integer</td>
+      <td><code class="language-plaintext highlighter-rouge">absint()</code></td>
+      <td>IDs, counts, prices (cents)</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><code class="language-plaintext highlighter-rouge">sanitize_email()</code></td>
+      <td>Email addresses</td>
+    </tr>
+    <tr>
+      <td>Text (single line)</td>
+      <td><code class="language-plaintext highlighter-rouge">sanitize_text_field()</code></td>
+      <td>Names, titles</td>
+    </tr>
+    <tr>
+      <td>Text (multi-line)</td>
+      <td><code class="language-plaintext highlighter-rouge">sanitize_textarea_field()</code></td>
+      <td>Descriptions</td>
+    </tr>
+    <tr>
+      <td>URL</td>
+      <td><code class="language-plaintext highlighter-rouge">esc_url_raw()</code></td>
+      <td>URLs for database storage</td>
+    </tr>
+    <tr>
+      <td>Filename</td>
+      <td><code class="language-plaintext highlighter-rouge">sanitize_file_name()</code></td>
+      <td>File operations</td>
+    </tr>
+    <tr>
+      <td>HTML</td>
+      <td><code class="language-plaintext highlighter-rouge">wp_kses_post()</code></td>
+      <td>Rich text content</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="rest-api-validation">REST API Validation</h3>
+
+<p>REST endpoints define validation schemas:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'args'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'workshop_id'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'required'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'integer'</span><span class="p">,</span>
+        <span class="s1">'sanitize_callback'</span> <span class="o">=&gt;</span> <span class="s1">'absint'</span><span class="p">,</span>
+        <span class="s1">'validate_callback'</span> <span class="o">=&gt;</span> <span class="k">function</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'required'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'string'</span><span class="p">,</span>
+        <span class="s1">'sanitize_callback'</span> <span class="o">=&gt;</span> <span class="s1">'sanitize_email'</span><span class="p">,</span>
+        <span class="s1">'validate_callback'</span> <span class="o">=&gt;</span> <span class="s1">'is_email'</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="authentication--authorization">Authentication &amp; Authorization</h2>
+
+<h3 id="nonce-verification">Nonce Verification</h3>
+
+<p>All forms and AJAX requests use nonces:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Verify nonce before processing</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">wp_verify_nonce</span><span class="p">(</span>
+    <span class="nf">sanitize_text_field</span><span class="p">(</span><span class="nf">wp_unslash</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">'nonce'</span><span class="p">])),</span>
+    <span class="s1">'fields_bright_action'</span>
+<span class="p">))</span> <span class="p">{</span>
+    <span class="nf">wp_die</span><span class="p">(</span><span class="s1">'Security check failed'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// For AJAX</span>
+<span class="nf">check_ajax_referer</span><span class="p">(</span><span class="s1">'fields_bright_action'</span><span class="p">,</span> <span class="s1">'nonce'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="capability-checks">Capability Checks</h3>
+
+<p>Admin functions verify user capabilities:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Check user can manage enrollments</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">current_user_can</span><span class="p">(</span><span class="s1">'edit_posts'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nf">wp_die</span><span class="p">(</span><span class="s1">'Unauthorized access'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Check user can process refunds</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">current_user_can</span><span class="p">(</span><span class="s1">'manage_options'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nf">wp_die</span><span class="p">(</span><span class="s1">'Insufficient permissions'</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="rest-api-authentication">REST API Authentication</h3>
+
+<ul>
+  <li><strong>Public endpoints</strong> (cart, checkout): Session-based with nonces</li>
+  <li><strong>User endpoints</strong>: <code class="language-plaintext highlighter-rouge">is_user_logged_in()</code> check</li>
+  <li><strong>Admin endpoints</strong>: <code class="language-plaintext highlighter-rouge">current_user_can('manage_options')</code> check</li>
+  <li><strong>Webhook endpoint</strong>: Stripe signature verification</li>
+</ul>
+
+<hr />
+
+<h2 id="csrf-protection">CSRF Protection</h2>
+
+<h3 id="form-nonces">Form Nonces</h3>
+
+<p>All forms include nonce fields:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In form output</span>
+<span class="nf">wp_nonce_field</span><span class="p">(</span><span class="s1">'save_enrollment'</span><span class="p">,</span> <span class="s1">'enrollment_nonce'</span><span class="p">);</span>
+
+<span class="c1">// On submission</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">wp_verify_nonce</span><span class="p">(</span>
+    <span class="nf">sanitize_text_field</span><span class="p">(</span><span class="nf">wp_unslash</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">'enrollment_nonce'</span><span class="p">])),</span>
+    <span class="s1">'save_enrollment'</span>
+<span class="p">))</span> <span class="p">{</span>
+    <span class="nf">wp_die</span><span class="p">(</span><span class="s1">'Invalid request'</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="ajax-nonces">AJAX Nonces</h3>
+
+<p>AJAX requests include nonces in data:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nf">ajax</span><span class="p">({</span>
+    <span class="na">url</span><span class="p">:</span> <span class="nx">ajaxurl</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">action</span><span class="p">:</span> <span class="dl">'</span><span class="s1">process_enrollment</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">nonce</span><span class="p">:</span> <span class="nx">fieldsbrightData</span><span class="p">.</span><span class="nx">nonce</span><span class="p">,</span>
+        <span class="na">workshop_id</span><span class="p">:</span> <span class="mi">123</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="sql-injection-prevention">SQL Injection Prevention</h2>
+
+<h3 id="prepared-statements">Prepared Statements</h3>
+
+<p>All database queries use prepared statements:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Direct queries use $wpdb-&gt;prepare()</span>
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$wpdb</span><span class="o">-&gt;</span><span class="nf">get_results</span><span class="p">(</span><span class="nv">$wpdb</span><span class="o">-&gt;</span><span class="nf">prepare</span><span class="p">(</span>
+    <span class="s2">"SELECT * FROM </span><span class="si">{</span><span class="nv">$wpdb</span><span class="o">-&gt;</span><span class="n">prefix</span><span class="si">}</span><span class="s2">postmeta 
+     WHERE post_id = %d AND meta_key = %s"</span><span class="p">,</span>
+    <span class="nv">$post_id</span><span class="p">,</span>
+    <span class="nv">$meta_key</span>
+<span class="p">));</span>
+</code></pre></div></div>
+
+<h3 id="wordpress-query-functions">WordPress Query Functions</h3>
+
+<p>The system primarily uses WordPress query functions:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// get_posts() with proper arguments</span>
+<span class="nv">$enrollments</span> <span class="o">=</span> <span class="nf">get_posts</span><span class="p">([</span>
+    <span class="s1">'post_type'</span> <span class="o">=&gt;</span> <span class="s1">'enrollment'</span><span class="p">,</span>
+    <span class="s1">'meta_query'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span>
+            <span class="s1">'key'</span> <span class="o">=&gt;</span> <span class="s1">'workshop_id'</span><span class="p">,</span>
+            <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="nv">$workshop_id</span><span class="p">,</span>
+            <span class="s1">'compare'</span> <span class="o">=&gt;</span> <span class="s1">'='</span><span class="p">,</span>
+            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'NUMERIC'</span>
+        <span class="p">]</span>
+    <span class="p">],</span>
+    <span class="s1">'posts_per_page'</span> <span class="o">=&gt;</span> <span class="mi">100</span> <span class="c1">// Always limit results</span>
+<span class="p">]);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="xss-prevention">XSS Prevention</h2>
+
+<h3 id="output-escaping">Output Escaping</h3>
+
+<p>All output is escaped appropriately:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// HTML content</span>
+<span class="k">echo</span> <span class="nf">esc_html</span><span class="p">(</span><span class="nv">$customer_name</span><span class="p">);</span>
+
+<span class="c1">// HTML attributes</span>
+<span class="k">echo</span> <span class="s1">'&lt;input value="'</span> <span class="mf">.</span> <span class="nf">esc_attr</span><span class="p">(</span><span class="nv">$email</span><span class="p">)</span> <span class="mf">.</span> <span class="s1">'"&gt;'</span><span class="p">;</span>
+
+<span class="c1">// URLs</span>
+<span class="k">echo</span> <span class="s1">'&lt;a href="'</span> <span class="mf">.</span> <span class="nf">esc_url</span><span class="p">(</span><span class="nv">$link</span><span class="p">)</span> <span class="mf">.</span> <span class="s1">'"&gt;Link&lt;/a&gt;'</span><span class="p">;</span>
+
+<span class="c1">// JavaScript</span>
+<span class="k">echo</span> <span class="s1">'&lt;script&gt;var id = '</span> <span class="mf">.</span> <span class="nf">esc_js</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="mf">.</span> <span class="s1">';&lt;/script&gt;'</span><span class="p">;</span>
+
+<span class="c1">// JSON for JS</span>
+<span class="nf">wp_localize_script</span><span class="p">(</span><span class="s1">'script'</span><span class="p">,</span> <span class="s1">'data'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="nv">$value</span> <span class="c1">// Automatically escaped</span>
+<span class="p">]);</span>
+</code></pre></div></div>
+
+<h3 id="escaping-functions">Escaping Functions</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Context</th>
+      <th>Function</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HTML text</td>
+      <td><code class="language-plaintext highlighter-rouge">esc_html()</code></td>
+      <td>Text displayed in HTML</td>
+    </tr>
+    <tr>
+      <td>HTML attribute</td>
+      <td><code class="language-plaintext highlighter-rouge">esc_attr()</code></td>
+      <td>Input values, data attributes</td>
+    </tr>
+    <tr>
+      <td>URL</td>
+      <td><code class="language-plaintext highlighter-rouge">esc_url()</code></td>
+      <td>Links, redirects</td>
+    </tr>
+    <tr>
+      <td>JavaScript</td>
+      <td><code class="language-plaintext highlighter-rouge">esc_js()</code></td>
+      <td>Inline scripts</td>
+    </tr>
+    <tr>
+      <td>Textarea</td>
+      <td><code class="language-plaintext highlighter-rouge">esc_textarea()</code></td>
+      <td>Textarea content</td>
+    </tr>
+    <tr>
+      <td>SQL</td>
+      <td><code class="language-plaintext highlighter-rouge">esc_sql()</code></td>
+      <td>(Use prepare() instead)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="payment-security">Payment Security</h2>
+
+<h3 id="pci-compliance">PCI Compliance</h3>
+
+<p>Card data never touches your server:</p>
+
+<ul>
+  <li>Customers enter payment info directly on Stripe’s hosted page</li>
+  <li>Only Stripe tokens/session IDs are handled by the system</li>
+  <li>No card numbers, CVCs, or sensitive payment data is stored</li>
+</ul>
+
+<h3 id="api-key-security">API Key Security</h3>
+
+<p>Stripe keys are stored securely:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Keys stored in WordPress options (database)</span>
+<span class="nv">$secret_key</span> <span class="o">=</span> <span class="nf">get_option</span><span class="p">(</span><span class="s1">'fields_bright_stripe_secret_key'</span><span class="p">);</span>
+
+<span class="c1">// Never hardcoded, never logged</span>
+<span class="c1">// Environment-specific (test vs live)</span>
+</code></pre></div></div>
+
+<h3 id="webhook-security">Webhook Security</h3>
+
+<p>Stripe webhooks are verified:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Verify Stripe signature</span>
+<span class="nv">$payload</span> <span class="o">=</span> <span class="o">@</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'php://input'</span><span class="p">);</span>
+<span class="nv">$sig_header</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'HTTP_STRIPE_SIGNATURE'</span><span class="p">];</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$event</span> <span class="o">=</span> <span class="nc">\Stripe\Webhook</span><span class="o">::</span><span class="nf">constructEvent</span><span class="p">(</span>
+        <span class="nv">$payload</span><span class="p">,</span>
+        <span class="nv">$sig_header</span><span class="p">,</span>
+        <span class="nv">$webhook_secret</span>
+    <span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">\Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
+    <span class="k">exit</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="idempotency">Idempotency</h3>
+
+<p>Webhook processing includes idempotency checks:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Check if event was already processed</span>
+<span class="k">if</span> <span class="p">(</span><span class="nf">get_transient</span><span class="p">(</span><span class="s1">'stripe_event_'</span> <span class="mf">.</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="n">id</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span> <span class="c1">// Already processed</span>
+<span class="p">}</span>
+
+<span class="c1">// Process event...</span>
+
+<span class="c1">// Mark as processed</span>
+<span class="nf">set_transient</span><span class="p">(</span><span class="s1">'stripe_event_'</span> <span class="mf">.</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="n">id</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="no">DAY_IN_SECONDS</span><span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="sensitive-data-handling">Sensitive Data Handling</h2>
+
+<h3 id="personal-information-pii">Personal Information (PII)</h3>
+
+<p>Customer data is handled carefully:</p>
+
+<ul>
+  <li>Stored in WordPress database with standard protection</li>
+  <li>Accessible only to authorized administrators</li>
+  <li>Can be exported/deleted for GDPR compliance</li>
+</ul>
+
+<h3 id="ip-address-anonymization">IP Address Anonymization</h3>
+
+<p>IP addresses are anonymized before logging:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$anonymized_ip</span> <span class="o">=</span> <span class="nf">wp_privacy_anonymize_ip</span><span class="p">(</span>
+    <span class="nf">sanitize_text_field</span><span class="p">(</span><span class="nf">wp_unslash</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'REMOTE_ADDR'</span><span class="p">]))</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="password-handling">Password Handling</h3>
+
+<ul>
+  <li>User passwords use WordPress authentication</li>
+  <li>Never stored in plain text</li>
+  <li>Never logged or exposed</li>
+</ul>
+
+<h3 id="session-security">Session Security</h3>
+
+<p>Cart sessions use secure tokens:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Secure cookie settings</span>
+<span class="nb">setcookie</span><span class="p">(</span>
+    <span class="s1">'cart_session'</span><span class="p">,</span>
+    <span class="nv">$token</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="s1">'expires'</span> <span class="o">=&gt;</span> <span class="nb">time</span><span class="p">()</span> <span class="o">+</span> <span class="no">HOUR_IN_SECONDS</span><span class="p">,</span>
+        <span class="s1">'path'</span> <span class="o">=&gt;</span> <span class="no">COOKIEPATH</span><span class="p">,</span>
+        <span class="s1">'domain'</span> <span class="o">=&gt;</span> <span class="no">COOKIE_DOMAIN</span><span class="p">,</span>
+        <span class="s1">'secure'</span> <span class="o">=&gt;</span> <span class="nf">is_ssl</span><span class="p">(),</span>
+        <span class="s1">'httponly'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'samesite'</span> <span class="o">=&gt;</span> <span class="s1">'Strict'</span>
+    <span class="p">]</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="direct-file-access-prevention">Direct File Access Prevention</h2>
+
+<p>All PHP files prevent direct access:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="c1">// At the top of every file</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">defined</span><span class="p">(</span><span class="s1">'ABSPATH'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">exit</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="error-handling">Error Handling</h2>
+
+<h3 id="no-sensitive-info-in-errors">No Sensitive Info in Errors</h3>
+
+<p>Error messages shown to users are generic:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Bad - exposes system details</span>
+<span class="nf">wp_die</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">());</span>
+
+<span class="c1">// Good - generic message, detailed logging</span>
+<span class="nc">Logger</span><span class="o">::</span><span class="nf">error</span><span class="p">(</span><span class="s1">'Enrollment failed'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'exception'</span> <span class="o">=&gt;</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">()]);</span>
+<span class="nf">wp_die</span><span class="p">(</span><span class="s1">'An error occurred. Please try again.'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="logging-best-practices">Logging Best Practices</h3>
+
+<ul>
+  <li>Log errors with context (but no passwords/keys)</li>
+  <li>Anonymize IP addresses</li>
+  <li>Include timestamps and user info</li>
+  <li>Rotate logs periodically</li>
+</ul>
+
+<hr />
+
+<h2 id="security-checklist">Security Checklist</h2>
+
+<h3 id="for-deployment">For Deployment</h3>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Stripe keys are for production (not test)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />HTTPS is enabled and enforced</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />WordPress debug mode is OFF</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />File permissions are correct (644 for files, 755 for directories)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Admin accounts use strong passwords</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />WordPress and plugins are up to date</li>
+</ul>
+
+<h3 id="for-development">For Development</h3>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />All inputs are sanitized</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />All outputs are escaped</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Nonces are used on all forms</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Capability checks are in place</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Prepared statements for queries</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />No sensitive data in logs</li>
+</ul>
+
+<hr />
+
+<h2 id="reporting-security-issues">Reporting Security Issues</h2>
+
+<p>If you discover a security vulnerability:</p>
+
+<ol>
+  <li><strong>Do not</strong> create a public GitHub issue</li>
+  <li>Contact the development team privately</li>
+  <li>Include details about the vulnerability</li>
+  <li>Allow reasonable time for a fix before disclosure</li>
+</ol>
+
+<hr />
+
+<h2 id="additional-resources">Additional Resources</h2>
+
+<ul>
+  <li><a href="https://developer.wordpress.org/plugins/security/">WordPress Security Best Practices</a></li>
+  <li><a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a></li>
+  <li><a href="https://stripe.com/docs/security">Stripe Security</a></li>
+</ul>
+
+
+            </main>
+
+            <footer class="site-footer">
+                <div class="footer-content">
+                    <p><small>Version 1.2.0 | © Fields Bright</small></p>
+                    <p><small>Easy-to-use workshop enrollment system with Stripe payments</small></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        sidebarToggle.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+        
+        // Nav group toggle
+        document.querySelectorAll('.nav-group-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.parentElement.classList.toggle('expanded');
+            });
+        });
+        
+        // Auto-expand active nav groups on page load
+        function expandActiveNavGroups() {
+            const currentPath = window.location.pathname;
+            const baseUrl = '/fields-bright-enrollment';
+            const fullCurrentPath = baseUrl ? currentPath.replace(baseUrl, '') : currentPath;
+            
+            document.querySelectorAll('.nav-group').forEach(function(group) {
+                const subLinks = group.querySelectorAll('.nav-sublink');
+                let shouldExpand = false;
+                
+                // Check if any child link matches current page
+                subLinks.forEach(function(link) {
+                    const linkPath = link.getAttribute('href');
+                    if (linkPath) {
+                        // Normalize paths for comparison
+                        const normalizedLink = linkPath.replace(/\/$/, '');
+                        const normalizedCurrent = fullCurrentPath.replace(/\/$/, '');
+                        
+                        if (normalizedCurrent === normalizedLink || 
+                            normalizedCurrent.endsWith(normalizedLink) ||
+                            normalizedLink.endsWith(normalizedCurrent)) {
+                            shouldExpand = true;
+                        }
+                    }
+                });
+                
+                // Also check if the group toggle itself is active (set by template)
+                const groupToggle = group.querySelector('.nav-group-toggle');
+                if (groupToggle && (groupToggle.classList.contains('active') || 
+                    groupToggle.getAttribute('aria-expanded') === 'true')) {
+                    shouldExpand = true;
+                }
+                
+                if (shouldExpand) {
+                    group.classList.add('expanded');
+                    if (groupToggle) {
+                        groupToggle.setAttribute('aria-expanded', 'true');
+                        groupToggle.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Run immediately and also on DOMContentLoaded
+        expandActiveNavGroups();
+        document.addEventListener('DOMContentLoaded', expandActiveNavGroups);
+    </script>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script>
+        // Convert Rouge highlights to Prism.js format
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all Rouge highlight blocks
+            document.querySelectorAll('.highlight').forEach(function(highlight) {
+                const pre = highlight.querySelector('pre');
+                const code = highlight.querySelector('code');
+                
+                if (pre && code) {
+                    // Get the language from Rouge's class (e.g., 'highlight json' -> 'json')
+                    const classes = highlight.className.split(' ');
+                    let language = 'plain';
+                    
+                    // Try to find language in highlight classes
+                    classes.forEach(function(cls) {
+                        if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                            language = cls;
+                        }
+                    });
+                    
+                    // If not found, try code element classes
+                    if (language === 'plain' && code.className) {
+                        const codeClasses = code.className.split(' ');
+                        codeClasses.forEach(function(cls) {
+                            if (cls.startsWith('language-')) {
+                                language = cls.replace('language-', '');
+                            } else if (cls !== 'highlight' && cls !== 'highlighter-rouge') {
+                                language = cls;
+                            }
+                        });
+                    }
+                    
+                    // Create new Prism.js structure
+                    const newPre = document.createElement('pre');
+                    newPre.className = 'line-numbers language-' + language;
+                    const newCode = document.createElement('code');
+                    newCode.className = 'language-' + language;
+                    newCode.textContent = code.textContent;
+                    newPre.appendChild(newCode);
+                    
+                    // Replace the highlight div with new structure
+                    highlight.parentNode.replaceChild(newPre, highlight);
+                }
+            });
+            
+            // Initialize Prism.js after conversion
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html>
+

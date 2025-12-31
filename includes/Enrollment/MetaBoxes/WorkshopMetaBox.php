@@ -116,167 +116,24 @@ class WorkshopMetaBox
         // Enqueue jQuery UI Sortable for drag-and-drop reordering
         wp_enqueue_script('jquery-ui-sortable');
 
-        // Sync meta box fields with Block Editor data store
-        $script = "
-        (function($) {
-            // Wait for the Block Editor to be ready
-            if (typeof wp === 'undefined' || typeof wp.data === 'undefined') {
-                console.log('[Workshop Meta Box] Block Editor not detected, skipping sync');
-                return;
-            }
-
-            $(document).ready(function() {
-                console.log('[Workshop Meta Box] Syncing with Block Editor');
-
-                // Helper function to update post meta in editor store
-                function updateMeta(key, value) {
-                    if (typeof wp.data.dispatch('core/editor').editPost === 'function') {
-                        wp.data.dispatch('core/editor').editPost({
-                            meta: { [key]: value }
-                        });
-                    }
-                }
-
-                // Sync all workshop meta fields
-                $('#workshop_settings input, #workshop_settings textarea, #workshop_settings select').on('change', function() {
-                    var fieldName = $(this).attr('name');
-                    var fieldValue = $(this).val();
-                    var metaKey = fieldName.startsWith('event_') ? '_' + fieldName : fieldName;
-
-                    console.log('[Workshop Meta Box] Field changed:', metaKey, fieldValue);
-                    updateMeta(metaKey, fieldValue);
-                });
-
-                // Sync checkbox fields
-                $('#workshop_settings input[type=\"checkbox\"]').on('change', function() {
-                    var fieldName = $(this).attr('name');
-                    var fieldValue = $(this).is(':checked') ? '1' : '';
-                    var metaKey = fieldName.startsWith('event_') ? '_' + fieldName : fieldName;
-
-                    console.log('[Workshop Meta Box] Checkbox changed:', metaKey, fieldValue);
-                    updateMeta(metaKey, fieldValue);
-                });
-            });
-        })(jQuery);
-        ";
-
-        wp_add_inline_script('jquery-ui-sortable', $script);
+        // Note: Meta box saves are handled entirely via PHP through the meta-box-loader mechanism.
+        // No Block Editor JavaScript sync needed - WordPress handles this automatically.
     }
 
     /**
-     * Register meta fields for the REST API.
+     * Register meta fields.
+     *
+     * Note: We set show_in_rest to FALSE because we want the meta box to handle
+     * all saving via the meta-box-loader mechanism, not via REST API. This avoids
+     * type validation issues with Block Editor trying to save these fields via REST.
      *
      * @return void
      */
     public function register_meta_fields(): void
     {
-        // Permission callback: allow if user can edit the post
-        $auth_callback = function() {
-            return current_user_can('edit_posts');
-        };
-
-        $meta_fields = [
-            // === Event Info Fields (migrated from JetEngine) ===
-            'start_datetime' => [
-                'type'              => 'string',
-                'description'       => 'Event start date and time',
-                'single'            => true,
-                'sanitize_callback' => 'sanitize_text_field',
-                'show_in_rest'      => true,
-                'auth_callback'     => $auth_callback,
-            ],
-            'end_datetime' => [
-                'type'              => 'string',
-                'description'       => 'Event end date and time',
-                'single'            => true,
-                'sanitize_callback' => 'sanitize_text_field',
-                'show_in_rest'      => true,
-                'auth_callback'     => $auth_callback,
-            ],
-            'recurring_date_info' => [
-                'type'              => 'string',
-                'description'       => 'Recurring schedule description',
-                'single'            => true,
-                'sanitize_callback' => 'sanitize_text_field',
-                'show_in_rest'      => true,
-                'auth_callback'     => $auth_callback,
-            ],
-            'price' => [
-                'type'              => 'string',
-                'description'       => 'Display price text (e.g., "$50 per person")',
-                'single'            => true,
-                'sanitize_callback' => 'sanitize_text_field',
-                'show_in_rest'      => true,
-                'auth_callback'     => $auth_callback,
-            ],
-            'location' => [
-                'type'              => 'string',
-                'description'       => 'Event location',
-                'single'            => true,
-                'sanitize_callback' => 'sanitize_text_field',
-                'show_in_rest'      => true,
-                'auth_callback'     => $auth_callback,
-            ],
-            'registration_link' => [
-                'type'              => 'string',
-                'description'       => 'External registration link (optional)',
-                'single'            => true,
-                'sanitize_callback' => 'esc_url_raw',
-                'show_in_rest'      => true,
-                'auth_callback'     => $auth_callback,
-            ],
-
-            // === Enrollment Settings Fields ===
-            'checkout_enabled' => [
-                'type'              => 'boolean',
-                'description'       => 'Whether online enrollment is enabled',
-                'single'            => true,
-                'sanitize_callback' => 'rest_sanitize_boolean',
-                'show_in_rest'      => true,
-                'auth_callback'     => $auth_callback,
-                'default'           => false,
-            ],
-            'checkout_price' => [
-                'type'              => 'number',
-                'description'       => 'Base checkout price for Stripe',
-                'single'            => true,
-                'sanitize_callback' => [$this, 'sanitize_price'],
-                'show_in_rest'      => true,
-                'auth_callback'     => $auth_callback,
-            ],
-            'pricing_options' => [
-                'type'              => 'string',
-                'description'       => 'JSON array of pricing options',
-                'single'            => true,
-                'sanitize_callback' => [$this, 'sanitize_pricing_options'],
-                'show_in_rest'      => true,
-                'auth_callback'     => $auth_callback,
-            ],
-            'capacity' => [
-                'type'              => 'integer',
-                'description'       => 'Maximum enrollments (0 = unlimited)',
-                'single'            => true,
-                'sanitize_callback' => 'absint',
-                'show_in_rest'      => true,
-                'auth_callback'     => $auth_callback,
-                'default'           => 0,
-            ],
-            'waitlist_enabled' => [
-                'type'              => 'boolean',
-                'description'       => 'Whether waitlist is enabled when full',
-                'single'            => true,
-                'sanitize_callback' => 'rest_sanitize_boolean',
-                'show_in_rest'      => true,
-                'auth_callback'     => $auth_callback,
-                'default'           => false,
-            ],
-        ];
-
-        // Register meta for both post (backward compatibility) and workshop CPT
-        foreach ($meta_fields as $key => $args) {
-            register_post_meta('post', self::META_PREFIX . $key, $args);
-            register_post_meta(WorkshopCPT::POST_TYPE, self::META_PREFIX . $key, $args);
-        }
+        // Meta fields are registered in WorkshopCPT with show_in_rest => true for API access.
+        // We don't re-register them here to avoid conflicts.
+        // The meta box saves via traditional POST through meta-box-loader.
     }
 
     /**
@@ -743,17 +600,16 @@ class WorkshopMetaBox
             <?php $this->render_pricing_option_row(['id' => '', 'label' => '', 'price' => '', 'default' => false], '__INDEX__'); ?>
         </script>
 
+        <!-- Hidden input to store pricing options JSON (for Block Editor meta-box-loader) -->
+        <input type="hidden" name="event_pricing_options_json" id="event_pricing_options_json" value="">
+        
         <script>
         jQuery(document).ready(function($) {
             // Prevent double initialization
-            if (window.workshopMetaBoxInitialized) {
-                console.log('[Workshop Meta] Already initialized, skipping');
-                return;
-            }
+            if (window.workshopMetaBoxInitialized) return;
             window.workshopMetaBoxInitialized = true;
-            console.log('[Workshop Meta] Initializing meta box JavaScript');
 
-            // Toggle enrollment fields
+            // Toggle enrollment fields visibility
             $('#event_checkout_enabled').on('change', function() {
                 if ($(this).is(':checked')) {
                     $('#enrollment-conditional-fields').slideDown();
@@ -764,7 +620,7 @@ class WorkshopMetaBox
 
             // Pricing options management
             var lastAddTime = 0;
-            var addDebounceMs = 300; // Prevent double-clicks within 300ms
+            var addDebounceMs = 300;
             
             var getNextIndex = function() {
                 var maxIndex = -1;
@@ -777,80 +633,94 @@ class WorkshopMetaBox
                 return maxIndex + 1;
             };
             
-            console.log('[Workshop Meta] Initial max index:', getNextIndex() - 1);
+            // Sync pricing options to hidden JSON field (for meta-box-loader)
+            function syncPricingOptionsToJson() {
+                var pricingOptions = [];
+                var defaultIndex = $('input[name="event_pricing_option_default"]:checked').val();
+                
+                $('#pricing-options-list .pricing-option-row').each(function(i) {
+                    var $row = $(this);
+                    var idVal = $row.find('.pricing-option-id').val() || '';
+                    var labelVal = $row.find('.pricing-option-label').val() || '';
+                    var priceVal = $row.find('.price-input').val() || '';
+                    
+                    // Only include rows with at least a label or price
+                    if (labelVal || priceVal) {
+                        // Auto-generate ID if empty
+                        if (!idVal && labelVal) {
+                            idVal = labelVal.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+                        }
+                        pricingOptions.push({
+                            id: idVal,
+                            label: labelVal,
+                            price: parseFloat(priceVal) || 0,
+                            default: (String(i) === String(defaultIndex))
+                        });
+                    }
+                });
+                
+                $('#event_pricing_options_json').val(JSON.stringify(pricingOptions));
+            }
             
-            // Log existing rows on load
-            $('#pricing-options-list .pricing-option-row').each(function(i) {
-                var $row = $(this);
-                var idVal = $row.find('.pricing-option-id').val();
-                var labelVal = $row.find('.pricing-option-label').val();
-                var priceVal = $row.find('.price-input').val();
-                var idName = $row.find('.pricing-option-id').attr('name');
-                console.log('[Workshop Meta] Existing row', i, '- name:', idName, 'values:', idVal, labelVal, priceVal);
+            // Sync on any change to pricing fields
+            $(document).on('change input blur', '#pricing-options-list input', function() {
+                syncPricingOptionsToJson();
             });
             
-            // Remove ALL existing click handlers from this button
-            var $addBtn = $('#add-pricing-option');
-            $addBtn.off(); // Remove all event handlers
-            $addBtn.prop('onclick', null); // Remove inline onclick if any
+            // Initial sync
+            syncPricingOptionsToJson();
             
-            // Attach single handler with debounce protection
+            // Add pricing option button
+            var $addBtn = $('#add-pricing-option');
+            $addBtn.off();
+            $addBtn.prop('onclick', null);
+            
             $addBtn.on('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 e.stopImmediatePropagation();
                 
-                // Debounce check
                 var now = Date.now();
-                if (now - lastAddTime < addDebounceMs) {
-                    console.log('[Workshop Meta] Debounced - ignoring duplicate click');
-                    return false;
-                }
+                if (now - lastAddTime < addDebounceMs) return false;
                 lastAddTime = now;
                 
                 var newIndex = getNextIndex();
-                console.log('[Workshop Meta] Adding row with index:', newIndex);
-                
                 var template = $('#pricing-option-template').html();
                 template = template.replace(/__INDEX__/g, newIndex);
                 $('#pricing-options-list').append(template);
+                syncPricingOptionsToJson();
                 
-                console.log('[Workshop Meta] Row added successfully');
                 return false;
             });
 
+            // Remove pricing option
             $(document).off('click', '.remove-option-btn').on('click', '.remove-option-btn', function() {
                 $(this).closest('.pricing-option-row').remove();
                 reindexPricingOptions();
+                syncPricingOptionsToJson();
             });
 
-            // Function to reindex all pricing option fields after sorting/removing
+            // Reindex pricing options after sorting/removing
             function reindexPricingOptions() {
                 $('#pricing-options-list .pricing-option-row').each(function(index) {
                     var $row = $(this);
                     $row.attr('data-row-index', index);
-                    
-                    // Update input names
                     $row.find('.pricing-option-id').attr('name', 'event_pricing_options[' + index + '][id]');
                     $row.find('.pricing-option-label').attr('name', 'event_pricing_options[' + index + '][label]');
                     $row.find('.price-input').attr('name', 'event_pricing_options[' + index + '][price]');
-                    
-                    // Update default radio value
-                    var $radio = $row.find('input[type="radio"]');
-                    $radio.val(index);
+                    $row.find('input[type="radio"]').val(index);
                 });
-                console.log('[Workshop Meta] Reindexed', $('#pricing-options-list .pricing-option-row').length, 'rows');
             }
 
-            // Initialize jQuery UI Sortable for drag-and-drop reordering
+            // Enable drag-and-drop reordering
             $('#pricing-options-list').sortable({
                 handle: '.drag-handle',
                 placeholder: 'ui-sortable-placeholder',
                 axis: 'y',
                 tolerance: 'pointer',
-                update: function(event, ui) {
-                    reindexPricingOptions();
-                    console.log('[Workshop Meta] Rows reordered via drag-and-drop');
+                update: function() { 
+                    reindexPricingOptions(); 
+                    syncPricingOptionsToJson();
                 }
             });
 
@@ -863,150 +733,8 @@ class WorkshopMetaBox
                     var id = label.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
                     $idField.val(id);
                 }
+                syncPricingOptionsToJson();
             });
-
-            // Debug button - show what will be submitted
-            $('#debug-pricing-options').off('click').on('click', function(e) {
-                e.preventDefault();
-                var output = "=== PRICING OPTIONS DEBUG ===\n\n";
-                output += "Total rows found: " + $('#pricing-options-list .pricing-option-row').length + "\n\n";
-                
-                $('#pricing-options-list .pricing-option-row').each(function(i) {
-                    var $row = $(this);
-                    var rowIndex = $row.data('row-index');
-                    var $idInput = $row.find('.pricing-option-id');
-                    var $labelInput = $row.find('.pricing-option-label');
-                    var $priceInput = $row.find('.price-input');
-                    
-                    output += "Row " + i + " (data-index: " + rowIndex + "):\n";
-                    output += "  ID input name: " + $idInput.attr('name') + "\n";
-                    output += "  ID value: '" + $idInput.val() + "'\n";
-                    output += "  Label input name: " + $labelInput.attr('name') + "\n";
-                    output += "  Label value: '" + $labelInput.val() + "'\n";
-                    output += "  Price input name: " + $priceInput.attr('name') + "\n";
-                    output += "  Price value: '" + $priceInput.val() + "'\n\n";
-                });
-                
-                output += "=== WHAT WILL BE POSTED ===\n";
-                var formData = {};
-                $('#pricing-options-list input').each(function() {
-                    var name = $(this).attr('name');
-                    var val = $(this).val();
-                    if (name) {
-                        formData[name] = val;
-                    }
-                });
-                output += JSON.stringify(formData, null, 2);
-                
-                $('#pricing-debug-output').text(output).slideDown();
-                console.log('[Workshop Meta Debug]', output);
-            });
-
-            // Debug: Log form data before submission
-            $(document).on('submit', 'form#post', function() {
-                console.log('[Workshop Meta] Form submitting, capturing pricing data...');
-                $('#pricing-options-list .pricing-option-row').each(function(i) {
-                    var $row = $(this);
-                    var idName = $row.find('.pricing-option-id').attr('name');
-                    var idVal = $row.find('.pricing-option-id').val();
-                    var labelVal = $row.find('.pricing-option-label').val();
-                    var priceVal = $row.find('.price-input').val();
-                    console.log('[Workshop Meta] Submit row', i, '- name:', idName, 'values:', {id: idVal, label: labelVal, price: priceVal});
-                });
-            });
-
-            // Flag to prevent infinite loops when syncing
-            var isSyncing = false;
-            var lastSyncedPricingOptions = '';
-            
-            // Sync pricing options to Block Editor
-            function syncPricingOptionsToEditor() {
-                if (isSyncing) return lastSyncedPricingOptions;
-                
-                var pricingOptions = [];
-                var defaultIndex = $('input[name="event_pricing_option_default"]:checked').val();
-                
-                $('#pricing-options-list .pricing-option-row').each(function(i) {
-                    var $row = $(this);
-                    var idVal = $row.find('.pricing-option-id').val();
-                    var labelVal = $row.find('.pricing-option-label').val();
-                    var priceVal = $row.find('.price-input').val();
-                    
-                    // Skip empty rows
-                    if (!labelVal && !priceVal) {
-                        return;
-                    }
-                    
-                    // Generate ID from label if empty
-                    if (!idVal && labelVal) {
-                        idVal = labelVal.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
-                    }
-                    
-                    pricingOptions.push({
-                        id: idVal,
-                        label: labelVal,
-                        price: parseFloat(priceVal) || 0,
-                        default: (String(i) === String(defaultIndex))
-                    });
-                });
-                
-                var jsonOptions = JSON.stringify(pricingOptions);
-                
-                // Only sync if changed
-                if (jsonOptions === lastSyncedPricingOptions) {
-                    return jsonOptions;
-                }
-                
-                lastSyncedPricingOptions = jsonOptions;
-                console.log('[Workshop Meta] Syncing pricing options to editor:', jsonOptions);
-                
-                if (typeof wp !== 'undefined' && wp.data && wp.data.dispatch('core/editor')) {
-                    isSyncing = true;
-                    try {
-                        wp.data.dispatch('core/editor').editPost({
-                            meta: { '_event_pricing_options': jsonOptions }
-                        });
-                    } finally {
-                        // Use setTimeout to reset flag after current event loop
-                        setTimeout(function() { isSyncing = false; }, 100);
-                    }
-                }
-                
-                return jsonOptions;
-            }
-            
-            // Watch for changes in pricing options and sync (debounced)
-            var syncDebounceTimer = null;
-            $(document).on('change blur', '#pricing-options-list input', function() {
-                clearTimeout(syncDebounceTimer);
-                syncDebounceTimer = setTimeout(function() {
-                    syncPricingOptionsToEditor();
-                }, 250);
-            });
-            
-            // Sync before Gutenberg save using the beforeunload-style hook
-            // This avoids the infinite loop from wp.data.subscribe
-            if (typeof wp !== 'undefined' && wp.data) {
-                // Use the safer approach: hook into the save button click
-                $(document).on('click', '.editor-post-publish-button, .editor-post-save-draft', function() {
-                    console.log('[Workshop Meta] Save button clicked, syncing pricing options...');
-                    syncPricingOptionsToEditor();
-                });
-                
-                // Also sync on Ctrl+S / Cmd+S
-                $(document).on('keydown', function(e) {
-                    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-                        console.log('[Workshop Meta] Keyboard save detected, syncing pricing options...');
-                        syncPricingOptionsToEditor();
-                    }
-                });
-                
-                // Initial sync when page loads (once, with delay)
-                setTimeout(function() {
-                    console.log('[Workshop Meta] Initial sync to Block Editor');
-                    syncPricingOptionsToEditor();
-                }, 1000);
-            }
         });
         </script>
         <?php
@@ -1072,8 +800,19 @@ class WorkshopMetaBox
      */
     public function save_meta_boxes(int $post_id, \WP_Post $post): void
     {
-        // Debug: Log that save was triggered
-        $this->get_logger()->debug('save_meta_boxes called', ['post_id' => $post_id]);
+        // Debug: Log that save was triggered with request info
+        $request_uri = isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : '';
+        $is_rest = defined('REST_REQUEST') && REST_REQUEST;
+        $has_nonce = isset($_POST[self::NONCE_NAME]);
+        $has_pricing = isset($_POST['event_pricing_options']);
+        
+        $this->get_logger()->debug('save_meta_boxes called', [
+            'post_id' => $post_id,
+            'is_rest' => $is_rest,
+            'has_nonce' => $has_nonce,
+            'has_pricing' => $has_pricing,
+            'request_uri' => $request_uri,
+        ]);
 
         // Check autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
@@ -1095,15 +834,21 @@ class WorkshopMetaBox
 
         // Skip if this is a REST API request (Block Editor saves)
         // REST API has its own authentication and doesn't send meta box data
-        if (defined('REST_REQUEST') && REST_REQUEST) {
+        if ($is_rest) {
             $this->get_logger()->debug('Skipping - REST API request (Block Editor)', ['post_id' => $post_id]);
             return;
         }
 
-        // Verify nonce (only for Classic Editor form submissions). Use wp_unslash for proper sanitization.
-        $nonce = isset($_POST[self::NONCE_NAME]) ? sanitize_text_field(wp_unslash($_POST[self::NONCE_NAME])) : '';
+        // If nonce not present, this might be a WordPress internal call - skip silently
+        if (!$has_nonce) {
+            $this->get_logger()->debug('Skipping - no nonce present (not a form submission)', ['post_id' => $post_id]);
+            return;
+        }
+        
+        // Verify nonce
+        $nonce = sanitize_text_field(wp_unslash($_POST[self::NONCE_NAME]));
         if (! wp_verify_nonce($nonce, self::NONCE_ACTION)) {
-            $this->get_logger()->debug('Nonce verification failed or not present', ['post_id' => $post_id]);
+            $this->get_logger()->warning('Nonce verification failed', ['post_id' => $post_id]);
             return;
         }
 
@@ -1172,35 +917,65 @@ class WorkshopMetaBox
         $waitlist_enabled = isset($_POST['event_waitlist_enabled']) ? true : false;
         update_post_meta($post_id, self::META_PREFIX . 'waitlist_enabled', $waitlist_enabled);
 
-        // Pricing options (wp_unslash handled in process_pricing_options)
-        // Only process if the form field was actually submitted.
-        // In meta-box-loader requests (Block Editor), the form fields may not be present,
-        // so we should NOT delete existing data that was saved via REST API.
-        if (isset($_POST['event_pricing_options']) && is_array($_POST['event_pricing_options'])) {
+        // Pricing options - check JSON hidden field first (for Block Editor meta-box-loader)
+        // The JSON field is updated by JavaScript whenever the user makes changes,
+        // so it contains the actual user data even after the iframe reloads.
+        $pricing_options = null;
+        
+        if (isset($_POST['event_pricing_options_json']) && !empty($_POST['event_pricing_options_json'])) {
+            $json_data = sanitize_text_field(wp_unslash($_POST['event_pricing_options_json']));
+            $decoded = json_decode($json_data, true);
+            
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                // Sanitize each option
+                $sanitized = [];
+                foreach ($decoded as $option) {
+                    if (!empty($option['label']) || !empty($option['price'])) {
+                        $sanitized[] = [
+                            'id'      => sanitize_key($option['id'] ?? $option['label'] ?? ''),
+                            'label'   => sanitize_text_field($option['label'] ?? ''),
+                            'price'   => $this->sanitize_price($option['price'] ?? 0),
+                            'default' => !empty($option['default']),
+                        ];
+                    }
+                }
+                
+                if (!empty($sanitized)) {
+                    $pricing_options = wp_json_encode($sanitized);
+                    $this->get_logger()->debug('Pricing options from JSON field', [
+                        'post_id' => $post_id,
+                        'count' => count($sanitized),
+                        'options' => $pricing_options,
+                    ]);
+                }
+            }
+        }
+        
+        // Fallback to array fields if JSON is empty (Classic Editor)
+        if ($pricing_options === null && isset($_POST['event_pricing_options']) && is_array($_POST['event_pricing_options'])) {
             $default_index = isset($_POST['event_pricing_option_default']) 
                 ? sanitize_text_field(wp_unslash($_POST['event_pricing_option_default'])) 
                 : null;
             
             $pricing_options = $this->process_pricing_options(wp_unslash($_POST['event_pricing_options']), $default_index);
             
-            // Only update if we have actual data OR if this is a full form submission
-            // (not a meta-box-loader partial request)
-            $is_meta_box_loader = isset($_GET['meta-box-loader']) || isset($_POST['meta-box-loader']);
-            
-            if (!empty($pricing_options) && $pricing_options !== '[]') {
-                update_post_meta($post_id, self::META_PREFIX . 'pricing_options', $pricing_options);
-                $this->get_logger()->debug('Pricing options saved from POST', ['post_id' => $post_id, 'options' => $pricing_options]);
-            } elseif (!$is_meta_box_loader) {
-                // Only clear pricing options if this is a full form submission with intentionally empty options
-                $this->get_logger()->debug('Clearing pricing options - full form submission with empty options', ['post_id' => $post_id]);
-                delete_post_meta($post_id, self::META_PREFIX . 'pricing_options');
-            } else {
-                $this->get_logger()->debug('Skipping pricing options update - meta-box-loader with empty data', ['post_id' => $post_id]);
+            if ($pricing_options === '[]') {
+                $pricing_options = null;
             }
+            
+            $this->get_logger()->debug('Pricing options from array fields', [
+                'post_id' => $post_id,
+                'options' => $pricing_options,
+            ]);
+        }
+        
+        // Save or skip based on what we have
+        if (!empty($pricing_options) && $pricing_options !== '[]') {
+            update_post_meta($post_id, self::META_PREFIX . 'pricing_options', $pricing_options);
+            $this->get_logger()->debug('Pricing options saved', ['post_id' => $post_id, 'options' => $pricing_options]);
         } else {
-            // No pricing options in POST - this is likely a meta-box-loader request or partial save
-            // Do NOT delete existing data as it may have been saved via REST API
-            $this->get_logger()->debug('No pricing options array in POST data - preserving existing', ['post_id' => $post_id]);
+            // Don't delete existing options if we got no data - might be a partial request
+            $this->get_logger()->debug('Skipping pricing options update - no valid data received', ['post_id' => $post_id]);
         }
     }
 

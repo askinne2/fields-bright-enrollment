@@ -119,7 +119,7 @@ Click <strong>Update</strong> to save your changes.
 </ol>
 
 <div class="warning">
-<strong>Changing to "Cancelled" doesn't automatically refund the payment.</strong> If the customer paid, you'll need to process a refund separately. See <a href="{{ '/processing-refunds' | relative_url }}">Processing Refunds</a>.
+<strong>Changing to "Cancelled" doesn't automatically refund the payment.</strong> If the customer paid, you'll need to process a refund separately. See <a href="{{ '/guides/processing-refunds' | relative_url }}">Processing Refunds</a>.
 </div>
 
 ---
@@ -323,7 +323,7 @@ If they ask you to delete their data:
 
 ## Next Steps
 
-- [Processing Refunds]({{ '/processing-refunds' | relative_url }}) - Handle cancellations and refunds
-- [Email Templates]({{ '/email-templates' | relative_url }}) - Customize confirmation emails
-- [Troubleshooting]({{ '/troubleshooting' | relative_url }}) - Solve common problems
+- [Processing Refunds]({{ '/guides/processing-refunds' | relative_url }}) - Handle cancellations and refunds
+- [Email Templates]({{ '/guides/email-templates' | relative_url }}) - Customize confirmation emails
+- [Troubleshooting]({{ '/guides/troubleshooting' | relative_url }}) - Solve common problems
 

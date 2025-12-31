@@ -4,8 +4,6 @@ title: Getting Started
 description: Learn how to set up and start using the Fields Bright Enrollment System for your workshops.
 ---
 
-# Getting Started
-
 This guide will walk you through everything you need to know to start using your workshop enrollment system. By the end, you'll have created your first workshop and be ready to accept enrollments!
 
 ## What You'll Learn
@@ -24,12 +22,12 @@ The enrollment system is built into your WordPress website. Here's how to find i
 <ol class="steps">
 <li>
 <strong>Log into WordPress</strong><br>
-Go to your website's admin area (usually <code>yourwebsite.com/wp-admin</code>) and sign in with your administrator account.
+Go to your website's admin area (Login URL <a href="https://fields-bright.com/21ads-login" target="blank">fields-bright.com/21ads-login</a>) and sign in with your administrator account.
 </li>
 
 <li>
 <strong>Find the Enrollment Menu</strong><br>
-In the left sidebar, look for <strong>Workshops</strong> and <strong>Enrollments</strong>. These are where you'll manage everything.
+In the left sidebar, look for <strong>Enrollments</strong>. These are where you'll manage everything.
 </li>
 
 <li>
@@ -130,42 +128,10 @@ When everything looks good, click the blue <strong>Publish</strong> button.
 You can always come back and edit a workshop later. Unpublish it first if you need to make major changes.
 </div>
 
----
-
-## Step 4: Adding Enrollment to Your Website
-
-Once your workshop is created, you need to add it to a page where visitors can find it and enroll.
-
-### Option A: Workshop Archive Page
-
-If your theme has a workshop archive, workshops are automatically listed at:
-`yourwebsite.com/workshops/`
-
-### Option B: Using the Shortcode
-
-You can add individual workshops or a list of workshops to any page using shortcodes:
-
-**Display a single workshop:**
-```
-[workshop_enrollment id="123"]
-```
-Replace `123` with your workshop's ID (found in the WordPress URL when editing).
-
-**Display all upcoming workshops:**
-```
-[workshop_list]
-```
-
-### How to Add a Shortcode to a Page
-
-1. Edit the page where you want workshops to appear
-2. Add a new block (the `+` button)
-3. Search for "Shortcode" and add that block
-4. Paste the shortcode and save the page
 
 ---
 
-## Step 5: Test Your First Enrollment
+## Step 4: Test Your First Enrollment
 
 Before announcing your workshop, test the enrollment process yourself:
 
@@ -222,7 +188,7 @@ Congratulations! You now know how to:
 
 ### What's Next?
 
-- [Managing Workshops]({{ '/managing-workshops' | relative_url }}) - Learn about editing, duplicating, and organizing workshops
-- [Managing Enrollments]({{ '/managing-enrollments' | relative_url }}) - See who's enrolled and manage participants
-- [Email Templates]({{ '/email-templates' | relative_url }}) - Customize your confirmation emails
+- [Managing Workshops]({{ '/guides/managing-workshops' | relative_url }}) - Learn about editing, duplicating, and organizing workshops
+- [Managing Enrollments]({{ '/guides/managing-enrollments' | relative_url }}) - See who's enrolled and manage participants
+- [Email Templates]({{ '/guides/email-templates' | relative_url }}) - Customize your confirmation emails
 

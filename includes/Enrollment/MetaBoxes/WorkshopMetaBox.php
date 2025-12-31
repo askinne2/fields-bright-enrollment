@@ -915,8 +915,14 @@ class WorkshopMetaBox
                 });
             });
 
-            // Sync pricing options to Block Editor before save
+            // Flag to prevent infinite loops when syncing
+            var isSyncing = false;
+            var lastSyncedPricingOptions = '';
+            
+            // Sync pricing options to Block Editor
             function syncPricingOptionsToEditor() {
+                if (isSyncing) return lastSyncedPricingOptions;
+                
                 var pricingOptions = [];
                 var defaultIndex = $('input[name="event_pricing_option_default"]:checked').val();
                 
@@ -945,84 +951,61 @@ class WorkshopMetaBox
                 });
                 
                 var jsonOptions = JSON.stringify(pricingOptions);
+                
+                // Only sync if changed
+                if (jsonOptions === lastSyncedPricingOptions) {
+                    return jsonOptions;
+                }
+                
+                lastSyncedPricingOptions = jsonOptions;
                 console.log('[Workshop Meta] Syncing pricing options to editor:', jsonOptions);
                 
                 if (typeof wp !== 'undefined' && wp.data && wp.data.dispatch('core/editor')) {
-                    wp.data.dispatch('core/editor').editPost({
-                        meta: { '_event_pricing_options': jsonOptions }
-                    });
+                    isSyncing = true;
+                    try {
+                        wp.data.dispatch('core/editor').editPost({
+                            meta: { '_event_pricing_options': jsonOptions }
+                        });
+                    } finally {
+                        // Use setTimeout to reset flag after current event loop
+                        setTimeout(function() { isSyncing = false; }, 100);
+                    }
                 }
                 
                 return jsonOptions;
             }
             
-            // Sync all meta box fields to Block Editor
-            function syncAllMetaToEditor() {
-                if (typeof wp === 'undefined' || !wp.data || !wp.data.dispatch('core/editor')) {
-                    return;
-                }
-                
-                var meta = {};
-                
-                // Sync date/time fields
-                var startDateTime = $('#event_start_datetime').val();
-                if (startDateTime) {
-                    meta['_event_start_datetime'] = startDateTime.replace('T', ' ') + ':00';
-                }
-                
-                var endDateTime = $('#event_end_datetime').val();
-                if (endDateTime) {
-                    meta['_event_end_datetime'] = endDateTime.replace('T', ' ') + ':00';
-                }
-                
-                // Sync text fields
-                meta['_event_recurring_date_info'] = $('#event_recurring_date_info').val() || '';
-                meta['_event_location'] = $('#event_location').val() || '';
-                meta['_event_price'] = $('#event_price').val() || '';
-                meta['_event_registration_link'] = $('#event_registration_link').val() || '';
-                
-                // Sync enrollment settings
-                meta['_event_checkout_enabled'] = $('#event_checkout_enabled').is(':checked');
-                meta['_event_checkout_price'] = parseFloat($('#event_checkout_price').val()) || 0;
-                meta['_event_capacity'] = parseInt($('#event_capacity').val(), 10) || 0;
-                meta['_event_waitlist_enabled'] = $('#event_waitlist_enabled').is(':checked');
-                
-                // Sync pricing options
-                syncPricingOptionsToEditor();
-                
-                console.log('[Workshop Meta] Syncing all meta to editor:', meta);
-                wp.data.dispatch('core/editor').editPost({ meta: meta });
-            }
-            
-            // Watch for changes in pricing options and sync
+            // Watch for changes in pricing options and sync (debounced)
+            var syncDebounceTimer = null;
             $(document).on('change blur', '#pricing-options-list input', function() {
-                syncPricingOptionsToEditor();
+                clearTimeout(syncDebounceTimer);
+                syncDebounceTimer = setTimeout(function() {
+                    syncPricingOptionsToEditor();
+                }, 250);
             });
             
-            // Also intercept Gutenberg save - ensure data is synced BEFORE save starts
-            if (typeof wp !== 'undefined' && wp.data && wp.data.subscribe) {
-                var wasSaving = false;
-                var wasAutoSaving = false;
+            // Sync before Gutenberg save using the beforeunload-style hook
+            // This avoids the infinite loop from wp.data.subscribe
+            if (typeof wp !== 'undefined' && wp.data) {
+                // Use the safer approach: hook into the save button click
+                $(document).on('click', '.editor-post-publish-button, .editor-post-save-draft', function() {
+                    console.log('[Workshop Meta] Save button clicked, syncing pricing options...');
+                    syncPricingOptionsToEditor();
+                });
                 
-                // Initial sync when page loads
+                // Also sync on Ctrl+S / Cmd+S
+                $(document).on('keydown', function(e) {
+                    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                        console.log('[Workshop Meta] Keyboard save detected, syncing pricing options...');
+                        syncPricingOptionsToEditor();
+                    }
+                });
+                
+                // Initial sync when page loads (once, with delay)
                 setTimeout(function() {
                     console.log('[Workshop Meta] Initial sync to Block Editor');
-                    syncAllMetaToEditor();
-                }, 500);
-                
-                wp.data.subscribe(function() {
-                    var isSaving = wp.data.select('core/editor').isSavingPost();
-                    var isAutoSaving = wp.data.select('core/editor').isAutosavingPost();
-                    
-                    // Sync before save starts (not during autosave)
-                    if (isSaving && !wasSaving && !isAutoSaving) {
-                        console.log('[Workshop Meta] Gutenberg save detected, syncing meta...');
-                        syncAllMetaToEditor();
-                    }
-                    
-                    wasSaving = isSaving;
-                    wasAutoSaving = isAutoSaving;
-                });
+                    syncPricingOptionsToEditor();
+                }, 1000);
             }
         });
         </script>

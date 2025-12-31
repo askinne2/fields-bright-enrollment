@@ -915,23 +915,113 @@ class WorkshopMetaBox
                 });
             });
 
-            // Also intercept Gutenberg save
-            if (wp && wp.data && wp.data.subscribe) {
+            // Sync pricing options to Block Editor before save
+            function syncPricingOptionsToEditor() {
+                var pricingOptions = [];
+                var defaultIndex = $('input[name="event_pricing_option_default"]:checked').val();
+                
+                $('#pricing-options-list .pricing-option-row').each(function(i) {
+                    var $row = $(this);
+                    var idVal = $row.find('.pricing-option-id').val();
+                    var labelVal = $row.find('.pricing-option-label').val();
+                    var priceVal = $row.find('.price-input').val();
+                    
+                    // Skip empty rows
+                    if (!labelVal && !priceVal) {
+                        return;
+                    }
+                    
+                    // Generate ID from label if empty
+                    if (!idVal && labelVal) {
+                        idVal = labelVal.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+                    }
+                    
+                    pricingOptions.push({
+                        id: idVal,
+                        label: labelVal,
+                        price: parseFloat(priceVal) || 0,
+                        default: (String(i) === String(defaultIndex))
+                    });
+                });
+                
+                var jsonOptions = JSON.stringify(pricingOptions);
+                console.log('[Workshop Meta] Syncing pricing options to editor:', jsonOptions);
+                
+                if (typeof wp !== 'undefined' && wp.data && wp.data.dispatch('core/editor')) {
+                    wp.data.dispatch('core/editor').editPost({
+                        meta: { '_event_pricing_options': jsonOptions }
+                    });
+                }
+                
+                return jsonOptions;
+            }
+            
+            // Sync all meta box fields to Block Editor
+            function syncAllMetaToEditor() {
+                if (typeof wp === 'undefined' || !wp.data || !wp.data.dispatch('core/editor')) {
+                    return;
+                }
+                
+                var meta = {};
+                
+                // Sync date/time fields
+                var startDateTime = $('#event_start_datetime').val();
+                if (startDateTime) {
+                    meta['_event_start_datetime'] = startDateTime.replace('T', ' ') + ':00';
+                }
+                
+                var endDateTime = $('#event_end_datetime').val();
+                if (endDateTime) {
+                    meta['_event_end_datetime'] = endDateTime.replace('T', ' ') + ':00';
+                }
+                
+                // Sync text fields
+                meta['_event_recurring_date_info'] = $('#event_recurring_date_info').val() || '';
+                meta['_event_location'] = $('#event_location').val() || '';
+                meta['_event_price'] = $('#event_price').val() || '';
+                meta['_event_registration_link'] = $('#event_registration_link').val() || '';
+                
+                // Sync enrollment settings
+                meta['_event_checkout_enabled'] = $('#event_checkout_enabled').is(':checked');
+                meta['_event_checkout_price'] = parseFloat($('#event_checkout_price').val()) || 0;
+                meta['_event_capacity'] = parseInt($('#event_capacity').val(), 10) || 0;
+                meta['_event_waitlist_enabled'] = $('#event_waitlist_enabled').is(':checked');
+                
+                // Sync pricing options
+                syncPricingOptionsToEditor();
+                
+                console.log('[Workshop Meta] Syncing all meta to editor:', meta);
+                wp.data.dispatch('core/editor').editPost({ meta: meta });
+            }
+            
+            // Watch for changes in pricing options and sync
+            $(document).on('change blur', '#pricing-options-list input', function() {
+                syncPricingOptionsToEditor();
+            });
+            
+            // Also intercept Gutenberg save - ensure data is synced BEFORE save starts
+            if (typeof wp !== 'undefined' && wp.data && wp.data.subscribe) {
                 var wasSaving = false;
+                var wasAutoSaving = false;
+                
+                // Initial sync when page loads
+                setTimeout(function() {
+                    console.log('[Workshop Meta] Initial sync to Block Editor');
+                    syncAllMetaToEditor();
+                }, 500);
+                
                 wp.data.subscribe(function() {
                     var isSaving = wp.data.select('core/editor').isSavingPost();
-                    if (isSaving && !wasSaving) {
-                        console.log('[Workshop Meta] Gutenberg save detected, capturing pricing data...');
-                        $('#pricing-options-list .pricing-option-row').each(function(i) {
-                            var $row = $(this);
-                            var idName = $row.find('.pricing-option-id').attr('name');
-                            var idVal = $row.find('.pricing-option-id').val();
-                            var labelVal = $row.find('.pricing-option-label').val();
-                            var priceVal = $row.find('.price-input').val();
-                            console.log('[Workshop Meta] Gutenberg save row', i, '- name:', idName, 'values:', {id: idVal, label: labelVal, price: priceVal});
-                        });
+                    var isAutoSaving = wp.data.select('core/editor').isAutosavingPost();
+                    
+                    // Sync before save starts (not during autosave)
+                    if (isSaving && !wasSaving && !isAutoSaving) {
+                        console.log('[Workshop Meta] Gutenberg save detected, syncing meta...');
+                        syncAllMetaToEditor();
                     }
+                    
                     wasSaving = isSaving;
+                    wasAutoSaving = isAutoSaving;
                 });
             }
         });
@@ -1100,28 +1190,34 @@ class WorkshopMetaBox
         update_post_meta($post_id, self::META_PREFIX . 'waitlist_enabled', $waitlist_enabled);
 
         // Pricing options (wp_unslash handled in process_pricing_options)
-        if (isset($_POST['event_pricing_options'])) {
+        // Only process if the form field was actually submitted.
+        // In meta-box-loader requests (Block Editor), the form fields may not be present,
+        // so we should NOT delete existing data that was saved via REST API.
+        if (isset($_POST['event_pricing_options']) && is_array($_POST['event_pricing_options'])) {
             $default_index = isset($_POST['event_pricing_option_default']) 
                 ? sanitize_text_field(wp_unslash($_POST['event_pricing_option_default'])) 
                 : null;
             
-            // Debug: Log raw input
-            // if (defined('WP_DEBUG') && WP_DEBUG) {
-            //     error_log('[Workshop Meta] Raw pricing options POST data: ' . print_r($_POST['event_pricing_options'], true));
-            //     error_log('[Workshop Meta] Default index: ' . ($default_index ?? 'null'));
-            // }
-            
             $pricing_options = $this->process_pricing_options(wp_unslash($_POST['event_pricing_options']), $default_index);
             
-            // Debug: Log processed output
-            // if (defined('WP_DEBUG') && WP_DEBUG) {
-            //     error_log('[Workshop Meta] Processed pricing options JSON: ' . $pricing_options);
-            // }
+            // Only update if we have actual data OR if this is a full form submission
+            // (not a meta-box-loader partial request)
+            $is_meta_box_loader = isset($_GET['meta-box-loader']) || isset($_POST['meta-box-loader']);
             
-            update_post_meta($post_id, self::META_PREFIX . 'pricing_options', $pricing_options);
+            if (!empty($pricing_options) && $pricing_options !== '[]') {
+                update_post_meta($post_id, self::META_PREFIX . 'pricing_options', $pricing_options);
+                $this->get_logger()->debug('Pricing options saved from POST', ['post_id' => $post_id, 'options' => $pricing_options]);
+            } elseif (!$is_meta_box_loader) {
+                // Only clear pricing options if this is a full form submission with intentionally empty options
+                $this->get_logger()->debug('Clearing pricing options - full form submission with empty options', ['post_id' => $post_id]);
+                delete_post_meta($post_id, self::META_PREFIX . 'pricing_options');
+            } else {
+                $this->get_logger()->debug('Skipping pricing options update - meta-box-loader with empty data', ['post_id' => $post_id]);
+            }
         } else {
-            $this->get_logger()->debug('No pricing options in POST data', ['post_id' => $post_id]);
-            delete_post_meta($post_id, self::META_PREFIX . 'pricing_options');
+            // No pricing options in POST - this is likely a meta-box-loader request or partial save
+            // Do NOT delete existing data as it may have been saved via REST API
+            $this->get_logger()->debug('No pricing options array in POST data - preserving existing', ['post_id' => $post_id]);
         }
     }
 
